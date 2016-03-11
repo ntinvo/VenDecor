@@ -1,0 +1,375 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3C0356314E6A5D53EE425C24 /* Pods_VenDecor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D96E1BC62F7158C6E662DC3 /* Pods_VenDecor.framework */; };
+		4C977A321C9240680000A985 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C977A311C9240680000A985 /* AppDelegate.swift */; };
+		4C977A341C9240680000A985 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C977A331C9240680000A985 /* ViewController.swift */; };
+		4C977A371C9240680000A985 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C977A351C9240680000A985 /* Main.storyboard */; };
+		4C977A391C9240680000A985 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C977A381C9240680000A985 /* Assets.xcassets */; };
+		4C977A3C1C9240680000A985 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C977A3A1C9240680000A985 /* LaunchScreen.storyboard */; };
+		4C977A441C9248810000A985 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C977A431C9248810000A985 /* SignupViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4C977A2E1C9240680000A985 /* VenDecor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VenDecor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C977A311C9240680000A985 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4C977A331C9240680000A985 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4C977A361C9240680000A985 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4C977A381C9240680000A985 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C977A3B1C9240680000A985 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4C977A3D1C9240680000A985 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C977A431C9248810000A985 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		7D96E1BC62F7158C6E662DC3 /* Pods_VenDecor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VenDecor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98363C8C91B7119F33DF75E6 /* Pods-VenDecor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VenDecor.release.xcconfig"; path = "Pods/Target Support Files/Pods-VenDecor/Pods-VenDecor.release.xcconfig"; sourceTree = "<group>"; };
+		A2E6D9FA1C003CA6EC5055F9 /* Pods-VenDecor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VenDecor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VenDecor/Pods-VenDecor.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4C977A2B1C9240680000A985 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C0356314E6A5D53EE425C24 /* Pods_VenDecor.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4C977A251C9240680000A985 = {
+			isa = PBXGroup;
+			children = (
+				4C977A301C9240680000A985 /* VenDecor */,
+				4C977A2F1C9240680000A985 /* Products */,
+				FED60D01858869C0F38F5A92 /* Pods */,
+				546BAC97EFAD1A924727D7E9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4C977A2F1C9240680000A985 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4C977A2E1C9240680000A985 /* VenDecor.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4C977A301C9240680000A985 /* VenDecor */ = {
+			isa = PBXGroup;
+			children = (
+				4C977A311C9240680000A985 /* AppDelegate.swift */,
+				4C977A331C9240680000A985 /* ViewController.swift */,
+				4C977A431C9248810000A985 /* SignupViewController.swift */,
+				4C977A351C9240680000A985 /* Main.storyboard */,
+				4C977A381C9240680000A985 /* Assets.xcassets */,
+				4C977A3A1C9240680000A985 /* LaunchScreen.storyboard */,
+				4C977A3D1C9240680000A985 /* Info.plist */,
+			);
+			path = VenDecor;
+			sourceTree = "<group>";
+		};
+		546BAC97EFAD1A924727D7E9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D96E1BC62F7158C6E662DC3 /* Pods_VenDecor.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FED60D01858869C0F38F5A92 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A2E6D9FA1C003CA6EC5055F9 /* Pods-VenDecor.debug.xcconfig */,
+				98363C8C91B7119F33DF75E6 /* Pods-VenDecor.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4C977A2D1C9240680000A985 /* VenDecor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C977A401C9240680000A985 /* Build configuration list for PBXNativeTarget "VenDecor" */;
+			buildPhases = (
+				3DCFE3650DBCC7C47FE1B6D4 /* Check Pods Manifest.lock */,
+				4C977A2A1C9240680000A985 /* Sources */,
+				4C977A2B1C9240680000A985 /* Frameworks */,
+				4C977A2C1C9240680000A985 /* Resources */,
+				A58C958A39C54D01BA3DA608 /* Embed Pods Frameworks */,
+				FA3D27DFDFF6381CFC57F51F /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VenDecor;
+			productName = VenDecor;
+			productReference = 4C977A2E1C9240680000A985 /* VenDecor.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4C977A261C9240680000A985 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = cs378;
+				TargetAttributes = {
+					4C977A2D1C9240680000A985 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 4C977A291C9240680000A985 /* Build configuration list for PBXProject "VenDecor" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4C977A251C9240680000A985;
+			productRefGroup = 4C977A2F1C9240680000A985 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4C977A2D1C9240680000A985 /* VenDecor */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4C977A2C1C9240680000A985 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C977A3C1C9240680000A985 /* LaunchScreen.storyboard in Resources */,
+				4C977A391C9240680000A985 /* Assets.xcassets in Resources */,
+				4C977A371C9240680000A985 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3DCFE3650DBCC7C47FE1B6D4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A58C958A39C54D01BA3DA608 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VenDecor/Pods-VenDecor-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA3D27DFDFF6381CFC57F51F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VenDecor/Pods-VenDecor-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4C977A2A1C9240680000A985 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C977A441C9248810000A985 /* SignupViewController.swift in Sources */,
+				4C977A341C9240680000A985 /* ViewController.swift in Sources */,
+				4C977A321C9240680000A985 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4C977A351C9240680000A985 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C977A361C9240680000A985 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4C977A3A1C9240680000A985 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C977A3B1C9240680000A985 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4C977A3E1C9240680000A985 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4C977A3F1C9240680000A985 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4C977A411C9240680000A985 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2E6D9FA1C003CA6EC5055F9 /* Pods-VenDecor.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = VenDecor/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs378.VenDecor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4C977A421C9240680000A985 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98363C8C91B7119F33DF75E6 /* Pods-VenDecor.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = VenDecor/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs378.VenDecor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4C977A291C9240680000A985 /* Build configuration list for PBXProject "VenDecor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C977A3E1C9240680000A985 /* Debug */,
+				4C977A3F1C9240680000A985 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C977A401C9240680000A985 /* Build configuration list for PBXNativeTarget "VenDecor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C977A411C9240680000A985 /* Debug */,
+				4C977A421C9240680000A985 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4C977A261C9240680000A985 /* Project object */;
+}
