@@ -16,13 +16,9 @@ class SignupViewController: UIViewController {
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
     
     @IBOutlet weak var username: UITextField!
-    
     @IBOutlet weak var email: UITextField!
-    
     @IBOutlet weak var zipcode: UITextField!
-    
     @IBOutlet weak var password: UITextField!
-    
     @IBOutlet weak var repeatPassword: UITextField!
     
     override func viewDidLoad() {
@@ -39,23 +35,27 @@ class SignupViewController: UIViewController {
     @IBAction func signUp(sender: AnyObject) {
         myRootRef.createUser(email?.text, password: password?.text,
             withValueCompletionBlock: { error, result in
-                
                 if error != nil {
                     
-                    
-                    // TODO: handle the error
-                    
-                    
+                    //TODO handle error here
+                
                 } else {
+                    let date = NSDate()
+                    let calendar = NSCalendar.currentCalendar()
+                    let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+                    let year =  String(components.year)
+                    let month = components.month
+                    let dateFormatter: NSDateFormatter = NSDateFormatter()
+                    let months = dateFormatter.monthSymbols
+                    let monthStr = months[month - 1]
+                    
                     let uid = result["uid"] as? String
-                    
-                    
-                    // TODO: create the user's profile here
-                    
-                    
-                    print("Successfully created user account with uid: \(uid)")
+                    let user = ["email" : String(self.email.text!),"username": String(self.username.text!), "zipcode" : String(self.zipcode.text!), "datejoined" : monthStr + " " + year]
+                    self.myRootRef.childByAppendingPath(uid).setValue(user)
                 }
         })
+        
+        performSegueWithIdentifier("completedSignup", sender: sender)
     }
 
     /*
