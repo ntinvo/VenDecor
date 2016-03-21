@@ -54,8 +54,6 @@ class SignupViewController: UIViewController {
                     self.myRootRef.childByAppendingPath(uid).setValue(user)
                 }
         })
-        
-        performSegueWithIdentifier("completedSignup", sender: sender)
     }
 
     /*

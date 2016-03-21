@@ -59,7 +59,7 @@ class ViewController: UIViewController {
                         }
                     }
                 } else {
-                    print("sucessfully loggedin")
+                    //self.performSegueWithIdentifier("completedLogin", sender: sender)
                 }
         })
         
