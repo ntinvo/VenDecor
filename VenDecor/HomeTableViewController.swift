@@ -22,7 +22,7 @@ class HomeTableViewController: UITableViewController, UINavigationControllerDele
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        let logo = UIImage(named: "SingleLineLogo.png")
+        let logo = UIImage(named: "Sample.png")
         let imageView = UIImageView(image: logo)
         self.navigationItem.titleView = imageView
     }
@@ -68,13 +68,17 @@ class HomeTableViewController: UITableViewController, UINavigationControllerDele
         
         self.postImage = info[ UIImagePickerControllerOriginalImage ] as? UIImage
         
-        
+       
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondViewController = storyboard.instantiateViewControllerWithIdentifier("PostTemplateViewController") as! PostTemplateViewController
+        
+        
         
         secondViewController.image = self.postImage
         
         dismissViewControllerAnimated(true, completion: nil)
+        
+        //performSegueWithIdentifier("postItem", sender: nil )
         
         presentViewController(secondViewController, animated: true, completion: nil)
         

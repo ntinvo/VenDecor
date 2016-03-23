@@ -13,7 +13,6 @@
 		4C51E2021C9F7A1500622B71 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C51E2011C9F7A1500622B71 /* camera.png */; };
 		4C977A321C9240680000A985 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C977A311C9240680000A985 /* AppDelegate.swift */; };
 		4C977A341C9240680000A985 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C977A331C9240680000A985 /* ViewController.swift */; };
-		4C977A371C9240680000A985 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C977A351C9240680000A985 /* Main.storyboard */; };
 		4C977A391C9240680000A985 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C977A381C9240680000A985 /* Assets.xcassets */; };
 		4C977A3C1C9240680000A985 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C977A3A1C9240680000A985 /* LaunchScreen.storyboard */; };
 		4C977A441C9248810000A985 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C977A431C9248810000A985 /* SignupViewController.swift */; };
@@ -21,6 +20,8 @@
 		71EE4A681C9F415100A37B51 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 71EE4A661C9F415100A37B51 /* profile.png */; };
 		71EE4A6B1C9F438400A37B51 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 71EE4A691C9F438400A37B51 /* Logo.png */; };
 		71EE4A6C1C9F438400A37B51 /* SingleLineLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 71EE4A6A1C9F438400A37B51 /* SingleLineLogo.png */; };
+		9C20CE781CA34A3E0061AC7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C20CE771CA34A3E0061AC7F /* Main.storyboard */; };
+		9C20CE7C1CA34E090061AC7F /* Sample.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C20CE7B1CA34E090061AC7F /* Sample.png */; };
 		9CFA7DE31CA201DE009D7FB2 /* burgerMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFA7DE21CA201DE009D7FB2 /* burgerMenu.png */; };
 		9CFA7DE51CA208A3009D7FB2 /* PostTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */; };
 /* End PBXBuildFile section */
@@ -32,7 +33,6 @@
 		4C977A2E1C9240680000A985 /* VenDecor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VenDecor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C977A311C9240680000A985 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C977A331C9240680000A985 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4C977A361C9240680000A985 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4C977A381C9240680000A985 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C977A3B1C9240680000A985 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C977A3D1C9240680000A985 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,6 +43,8 @@
 		71EE4A6A1C9F438400A37B51 /* SingleLineLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SingleLineLogo.png; sourceTree = "<group>"; };
 		7D96E1BC62F7158C6E662DC3 /* Pods_VenDecor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VenDecor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98363C8C91B7119F33DF75E6 /* Pods-VenDecor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VenDecor.release.xcconfig"; path = "Pods/Target Support Files/Pods-VenDecor/Pods-VenDecor.release.xcconfig"; sourceTree = "<group>"; };
+		9C20CE771CA34A3E0061AC7F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9C20CE7B1CA34E090061AC7F /* Sample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sample.png; sourceTree = SOURCE_ROOT; };
 		9CFA7DE21CA201DE009D7FB2 /* burgerMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = burgerMenu.png; sourceTree = SOURCE_ROOT; };
 		9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTemplateViewController.swift; sourceTree = "<group>"; };
 		A2E6D9FA1C003CA6EC5055F9 /* Pods-VenDecor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VenDecor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VenDecor/Pods-VenDecor.debug.xcconfig"; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 		4C977A301C9240680000A985 /* VenDecor */ = {
 			isa = PBXGroup;
 			children = (
+				9C20CE7B1CA34E090061AC7F /* Sample.png */,
 				71EE4A691C9F438400A37B51 /* Logo.png */,
 				71EE4A6A1C9F438400A37B51 /* SingleLineLogo.png */,
 				71EE4A661C9F415100A37B51 /* profile.png */,
@@ -93,7 +96,7 @@
 				4C51E1F51C9F628900622B71 /* HomeTableViewController.swift */,
 				4C51E1F71C9F62DE00622B71 /* HomeTableViewCell.swift */,
 				9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */,
-				4C977A351C9240680000A985 /* Main.storyboard */,
+				9C20CE771CA34A3E0061AC7F /* Main.storyboard */,
 				4C977A381C9240680000A985 /* Assets.xcassets */,
 				4C977A3A1C9240680000A985 /* LaunchScreen.storyboard */,
 				4C977A3D1C9240680000A985 /* Info.plist */,
@@ -182,12 +185,13 @@
 			files = (
 				71EE4A6C1C9F438400A37B51 /* SingleLineLogo.png in Resources */,
 				4C51E2021C9F7A1500622B71 /* camera.png in Resources */,
+				9C20CE7C1CA34E090061AC7F /* Sample.png in Resources */,
 				4C977A3C1C9240680000A985 /* LaunchScreen.storyboard in Resources */,
 				4C977A391C9240680000A985 /* Assets.xcassets in Resources */,
 				71EE4A6B1C9F438400A37B51 /* Logo.png in Resources */,
 				9CFA7DE31CA201DE009D7FB2 /* burgerMenu.png in Resources */,
+				9C20CE781CA34A3E0061AC7F /* Main.storyboard in Resources */,
 				71EE4A681C9F415100A37B51 /* profile.png in Resources */,
-				4C977A371C9240680000A985 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,14 +263,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4C977A351C9240680000A985 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4C977A361C9240680000A985 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4C977A3A1C9240680000A985 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

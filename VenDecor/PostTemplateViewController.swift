@@ -34,12 +34,21 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         
         postImage.image = image
         
+        let logo = UIImage(named: "Sample.png")
+        let imageView = UIImageView(image: logo)
+        self.navigationItem.titleView = imageView
+        
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func postItem(sender: AnyObject) {
+
+        
     }
     
     // Called when the user touches on the main view (outside the UITextField).
@@ -80,6 +89,17 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
             return false
         }
         return true
+    }
+    
+    @IBAction func cancelBtn(sender: AnyObject) {
+       /* let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondViewController = storyboard.instantiateViewControllerWithIdentifier("HomeTableViewController") as! HomeTableViewController
+        
+        //dismissViewControllerAnimated(true, completion: nil)
+        
+        presentViewController(secondViewController, animated: true, completion: nil)*/
+        
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     /*

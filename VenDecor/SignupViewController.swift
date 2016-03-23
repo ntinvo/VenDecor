@@ -31,6 +31,13 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         self.repeatPassword.delegate = self
         // Do any additional setup after loading the view.
     }
+    
+    @IBAction func cancelBtn(sender: AnyObject) {
+        //performSegueWithIdentifier("toLogin", sender: sender )
+        
+       dismissViewControllerAnimated(true, completion: nil)
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -57,6 +64,10 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                     let uid = result["uid"] as? String
                     let user = ["email" : String(self.email.text!),"username": String(self.username.text!), "zipcode" : String(self.zipcode.text!), "datejoined" : monthStr + " " + year]
                     self.myRootRef.childByAppendingPath(uid).setValue(user)
+                    
+                    self.myRootRef.authUser(self.email!.text, password: self.password.text,
+                        withCompletionBlock: { (error, auth) in })
+
                 }
         })
     }

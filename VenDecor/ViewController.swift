@@ -89,7 +89,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                 } else {
-                    //self.performSegueWithIdentifier("completedLogin", sender: sender)
+                    
+                    self.performSegueWithIdentifier("completedLogin", sender: sender)
                 }
         })
         
