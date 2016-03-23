@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SignupViewController: UIViewController {
+class SignupViewController: UIViewController, UITextFieldDelegate {
 
     
     // Create a reference to a Firebase location
@@ -24,6 +24,11 @@ class SignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.username.delegate = self
+        self.email.delegate = self
+        self.zipcode.delegate = self
+        self.password.delegate = self
+        self.repeatPassword.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -54,6 +59,36 @@ class SignupViewController: UIViewController {
                     self.myRootRef.childByAppendingPath(uid).setValue(user)
                 }
         })
+    }
+    
+    // Called when the user touches on the main view (outside the UITextField).
+    // This causes the keyboard to go away also - but handles all situations when
+    // the user touches anywhere outside the keyboard.
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    // UITextFieldDelegate delegate method
+    //
+    // This method is called when the user touches the Return key on the
+    // keyboard. The 'textField' passed in is a pointer to the textField
+    // widget the cursor was in at the time they touched the Return key on
+    // the keyboard.
+    //
+    // From the Apple documentation: Asks the delegate if the text field
+    // should process the pressing of the return button.
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        // A responder is an object that can respond to events and handle them.
+        // Resigning first responder here means this text field will no longer be the first
+        // UI element to receive an event from this apps UI - you can think of it as giving
+        // up input 'focus'.
+        self.username.resignFirstResponder()
+        self.email.resignFirstResponder()
+        self.zipcode.resignFirstResponder()
+        self.password.resignFirstResponder()
+        self.repeatPassword.resignFirstResponder()
+        return true
     }
 
     /*

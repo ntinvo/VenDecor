@@ -11,6 +11,7 @@ import UIKit
 class HomeTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     var imagePicker: UIImagePickerController!
+    var postImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,15 +57,36 @@ class HomeTableViewController: UITableViewController, UINavigationControllerDele
         imagePicker =  UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .Camera
-        
+        print("HERE")
         presentViewController(imagePicker, animated: true, completion: nil)
+        //performSegueWithIdentifier( "postPicSegue", sender: sender )
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        print( "chose use photo, then seque to post template" )
+        
+        self.postImage = info[ UIImagePickerControllerOriginalImage ] as? UIImage
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondViewController = storyboard.instantiateViewControllerWithIdentifier("PostTemplateViewController") as! PostTemplateViewController
+        
+        secondViewController.image = self.postImage
+        
         dismissViewControllerAnimated(true, completion: nil)
+        
+        presentViewController(secondViewController, animated: true, completion: nil)
+        
+        
+        
+        print("after picture")
+        
+        
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        print("cancelled")
         dismissViewControllerAnimated(true, completion: nil)
     }
 
@@ -103,6 +125,7 @@ class HomeTableViewController: UITableViewController, UINavigationControllerDele
     }
     */
 
+ 
     /*
     // MARK: - Navigation
 
@@ -110,6 +133,10 @@ class HomeTableViewController: UITableViewController, UINavigationControllerDele
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        //let postTemplateVC = segue.destinationViewController as! PostTemplateViewController
+        //postTemplateVC.postImage.image = self.postImage!
+        
     }
     */
 
