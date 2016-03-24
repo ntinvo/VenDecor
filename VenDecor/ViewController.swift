@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var passwordTxtField: UITextField!
     
+    var alertController: UIAlertController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,27 +76,57 @@ class ViewController: UIViewController, UITextFieldDelegate {
         myRootRef.authUser(emailTxtField!.text, password: passwordTxtField.text,
             withCompletionBlock: { (error, auth) in
                 if error != nil {
+                    print( "inside if " )
+                    self.alertController = UIAlertController(title: "Error", message: "Wrong email or password", preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+                        print("Ok Button Pressed 1");
+                    }
+                    self.alertController!.addAction(okAction)
+                    
+                    self.presentViewController(self.alertController!, animated: true, completion:nil)
+                    
                     if let errorCode = FAuthenticationError(rawValue: error.code) {
                         switch (errorCode) {
                             case .InvalidEmail:
                                 //TODO
-                                print("")
+                                print("Invalid email")
                             case .InvalidPassword:
-                                print("")
+                                print("Invalid password")
                                 //TODO
                             default:
                                 //TOOD
-                                print("")
+                                print("default")
                         }
                     }
+                    
                 } else {
                     
+                    print( "auth = " + String( auth ) )
                     self.performSegueWithIdentifier("completedLogin", sender: sender)
+                    
                 }
         })
         
+        
+        
 
     }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
+        return false
+    }
+    
+   /* override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!){
+        
+        if( segue.identifier == "completeLogin" ) {
+            let navVC = segue.destinationViewController as! UINavigationController
+            let tableVC = navVC.viewControllers.first as! HomeTableViewController
+            //navVC.pushViewController(tableVC, animated: true )
+        }
+        
+
+    }*/
     
     
 }

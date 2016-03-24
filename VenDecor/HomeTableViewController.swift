@@ -8,10 +8,9 @@
 
 import UIKit
 
-class HomeTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
-    var imagePicker: UIImagePickerController!
-    var postImage: UIImage?
+class HomeTableViewController: UITableViewController, UISearchBarDelegate {
+    
+   // @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +21,8 @@ class HomeTableViewController: UITableViewController, UINavigationControllerDele
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        //self.searchBar.delegate = self
+        
         let logo = UIImage(named: "Sample.png")
         let imageView = UIImageView(image: logo)
         self.navigationItem.titleView = imageView
@@ -31,6 +32,33 @@ class HomeTableViewController: UITableViewController, UINavigationControllerDele
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+  /*  // Called when the user touches on the main view (outside the UITextField).
+    // This causes the keyboard to go away also - but handles all situations when
+    // the user touches anywhere outside the keyboard.
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.searchBar.endEditing(true)
+    }
+    
+    // UITextFieldDelegate delegate method
+    //
+    // This method is called when the user touches the Return key on the
+    // keyboard. The 'textField' passed in is a pointer to the textField
+    // widget the cursor was in at the time they touched the Return key on
+    // the keyboard.
+    //
+    // From the Apple documentation: Asks the delegate if the text field
+    // should process the pressing of the return button.
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        // A responder is an object that can respond to events and handle them.
+        // Resigning first responder here means this text field will no longer be the first
+        // UI element to receive an event from this apps UI - you can think of it as giving
+        // up input 'focus'.
+        self.searchBar.resignFirstResponder()
+        return true
+    }*/
+
 
     // MARK: - Table view data source
 
@@ -53,47 +81,12 @@ class HomeTableViewController: UITableViewController, UINavigationControllerDele
         return cell
     }
 
-    @IBAction func takePictureBtn(sender: AnyObject) {
-        imagePicker =  UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .Camera
-        print("HERE")
-        presentViewController(imagePicker, animated: true, completion: nil)
-        //performSegueWithIdentifier( "postPicSegue", sender: sender )
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    @IBAction func sellBtn(sender: AnyObject) {
         
-        print( "chose use photo, then seque to post template" )
-        
-        self.postImage = info[ UIImagePickerControllerOriginalImage ] as? UIImage
-        
-       
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondViewController = storyboard.instantiateViewControllerWithIdentifier("PostTemplateViewController") as! PostTemplateViewController
-        
-        
-        
-        secondViewController.image = self.postImage
-        
-        dismissViewControllerAnimated(true, completion: nil)
-        
-        //performSegueWithIdentifier("postItem", sender: nil )
-        
-        presentViewController(secondViewController, animated: true, completion: nil)
-        
-        
-        
-        print("after picture")
-        
+        self.performSegueWithIdentifier("postItem", sender: sender)
         
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        print("cancelled")
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -129,8 +122,7 @@ class HomeTableViewController: UITableViewController, UINavigationControllerDele
     }
     */
 
- 
-    /*
+ /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -141,7 +133,16 @@ class HomeTableViewController: UITableViewController, UINavigationControllerDele
         //let postTemplateVC = segue.destinationViewController as! PostTemplateViewController
         //postTemplateVC.postImage.image = self.postImage!
         
-    }
-    */
+        /*if segue.identifier == "postItem" {
+            
+            let postTemplateVC = segue.destinationViewController as! PostTemplateViewController
+            postTemplateVC.image = self.postImage
+            
+            
+        }*/
+
+        
+    } */
+
 
 }

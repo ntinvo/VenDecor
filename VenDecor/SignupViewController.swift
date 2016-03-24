@@ -21,6 +21,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var repeatPassword: UITextField!
     
+    var alertController: UIAlertController? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,31 +47,53 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signUp(sender: AnyObject) {
-        myRootRef.createUser(email?.text, password: password?.text,
-            withValueCompletionBlock: { error, result in
-                if error != nil {
+        
+        if( self.password.text != self.repeatPassword.text ) {
+            self.alertController = UIAlertController(title: "Error", message: "Passwords do not match", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+                //print("Ok Button Pressed 1");
+            }
+            self.alertController!.addAction(okAction)
+            
+            self.presentViewController(self.alertController!, animated: true, completion:nil)
+        } else {
+        
+            myRootRef.createUser(email?.text, password: password?.text,
+                withValueCompletionBlock: { error, result in
+                    if error != nil {
                     
-                    //TODO handle error here
+                        self.alertController = UIAlertController(title: "Error", message: "A user with that email already exists", preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+                            //print("Ok Button Pressed 1");
+                        }
+                        self.alertController!.addAction(okAction)
+                        
+                        self.presentViewController(self.alertController!, animated: true, completion:nil)
+                    
+                        //TODO handle error here
                 
-                } else {
-                    let date = NSDate()
-                    let calendar = NSCalendar.currentCalendar()
-                    let components = calendar.components([.Day , .Month , .Year], fromDate: date)
-                    let year =  String(components.year)
-                    let month = components.month
-                    let dateFormatter: NSDateFormatter = NSDateFormatter()
-                    let months = dateFormatter.monthSymbols
-                    let monthStr = months[month - 1]
+                    } else {
+                        let date = NSDate()
+                        let calendar = NSCalendar.currentCalendar()
+                        let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+                        let year =  String(components.year)
+                        let month = components.month
+                        let dateFormatter: NSDateFormatter = NSDateFormatter()
+                        let months = dateFormatter.monthSymbols
+                        let monthStr = months[month - 1]
                     
-                    let uid = result["uid"] as? String
-                    let user = ["email" : String(self.email.text!),"username": String(self.username.text!), "zipcode" : String(self.zipcode.text!), "datejoined" : monthStr + " " + year]
-                    self.myRootRef.childByAppendingPath(uid).setValue(user)
+                        let uid = result["uid"] as? String
+                        let user = ["email" : String(self.email.text!),"username": String(self.username.text!), "zipcode" : String(self.zipcode.text!), "datejoined" : monthStr + " " + year]
+                        self.myRootRef.childByAppendingPath(uid).setValue(user)
                     
-                    self.myRootRef.authUser(self.email!.text, password: self.password.text,
-                        withCompletionBlock: { (error, auth) in })
+                        self.myRootRef.authUser(self.email!.text, password: self.password.text,
+                            withCompletionBlock: { (error, auth) in })
 
-                }
-        })
+                    }
+            })
+        }
     }
     
     // Called when the user touches on the main view (outside the UITextField).

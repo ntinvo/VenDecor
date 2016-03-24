@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import Firebase 
 
-class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    var imagePicker: UIImagePickerController!
+    // Create a reference to a Firebase location
+    var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
     
     @IBOutlet weak var titleTxtField: UITextField!
     @IBOutlet weak var descriptionTxtField: UITextView!
@@ -21,6 +26,8 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     var image: UIImage? = nil
     @IBOutlet weak var postImage: UIImageView!
 
+    var alertController: UIAlertController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,9 +38,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         self.streetTxtField.delegate = self
         self.stateTextField.delegate = self
         self.zipTxtField.delegate = self
-        
-        postImage.image = image
-        
+    
         let logo = UIImage(named: "Sample.png")
         let imageView = UIImageView(image: logo)
         self.navigationItem.titleView = imageView
@@ -45,9 +50,70 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    @IBAction func takePictureBtn(sender: AnyObject) {
+        imagePicker =  UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .Camera
+        print("HERE")
+        presentViewController(imagePicker, animated: true, completion: nil)
+        //performSegueWithIdentifier( "postPicSegue", sender: sender )
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        print( "chose use photo, then seque to post template" )
+        
+        self.postImage.image = info[ UIImagePickerControllerOriginalImage ] as? UIImage
+        
+        dismissViewControllerAnimated(true, completion: nil)
+        
+        //presentViewController(secondViewController, animated: true, completion: nil)
+        
+        print("after picture")
+        
+        
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        print("cancelled")
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    
     
     @IBAction func postItem(sender: AnyObject) {
-
+        
+        if( self.myRootRef.authData != nil ) {
+            print( self.myRootRef.authData.uid )
+        }
+        
+        //var mediumQualityJPEGNSData: NSData  { return UIImageJPEGRepresentation(postImage.image!, 0.5)!  }
+        //let imageData: NSData = postImage.image.mediumQualityJPEGNSData
+        
+        
+        //Now use image to create into NSData format
+        //let imageData:NSData = UIImagePNGRepresentation(postImage.image!)!
+        //let base64String = imageData.base64EncodedStringWithOptions( .EncodingEndLineWithCarriageReturn )
+        
+        let postInfo = ["title" : String(self.titleTxtField.text!),"image": "", "description" : self.descriptionTxtField.text!, "price" : String(self.priceTxtField.text!), "condition": String(self.conditionTxtField.text!), "street": String(self.streetTxtField.text!), "state": String(self.stateTextField.text!), "zip": String(self.zipTxtField.text!)]
+        
+        let myUserRef = Firebase(url:"https://vendecor.firebaseio.com/" + self.myRootRef.authData.uid )
+        myUserRef.childByAppendingPath( "post" ).setValue( postInfo )
+        
+        
+        self.alertController = UIAlertController(title: "Complete!", message: "Your item has been posted", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+            print("Ok Button Pressed 1");
+            // go to home screen 
+            self.performSegueWithIdentifier("backHome", sender: sender )
+        }
+        self.alertController!.addAction(okAction)
+        
+        self.presentViewController(self.alertController!, animated: true, completion:nil)
+        
+        print( "completed post" )
         
     }
     
