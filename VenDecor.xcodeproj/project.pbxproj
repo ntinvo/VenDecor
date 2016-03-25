@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C0356314E6A5D53EE425C24 /* Pods_VenDecor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D96E1BC62F7158C6E662DC3 /* Pods_VenDecor.framework */; };
+		4C4079031CA5F6EE001CDA64 /* burgerMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C4079021CA5F6EE001CDA64 /* burgerMenu.png */; };
 		4C51E1F61C9F628900622B71 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51E1F51C9F628900622B71 /* HomeTableViewController.swift */; };
 		4C51E1F81C9F62DE00622B71 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51E1F71C9F62DE00622B71 /* HomeTableViewCell.swift */; };
 		4C51E2021C9F7A1500622B71 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C51E2011C9F7A1500622B71 /* camera.png */; };
@@ -25,11 +26,11 @@
 		9C0D05341CA3828100AF897C /* GROUP11README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9C0D05331CA3828100AF897C /* GROUP11README.rtf */; };
 		9C20CE781CA34A3E0061AC7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C20CE771CA34A3E0061AC7F /* Main.storyboard */; };
 		9C20CE7C1CA34E090061AC7F /* Sample.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C20CE7B1CA34E090061AC7F /* Sample.png */; };
-		9CFA7DE31CA201DE009D7FB2 /* burgerMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CFA7DE21CA201DE009D7FB2 /* burgerMenu.png */; };
 		9CFA7DE51CA208A3009D7FB2 /* PostTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C4079021CA5F6EE001CDA64 /* burgerMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = burgerMenu.png; sourceTree = "<group>"; };
 		4C51E1F51C9F628900622B71 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		4C51E1F71C9F62DE00622B71 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		4C51E2011C9F7A1500622B71 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = SOURCE_ROOT; };
@@ -51,7 +52,6 @@
 		9C0D05331CA3828100AF897C /* GROUP11README.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = GROUP11README.rtf; sourceTree = "<group>"; };
 		9C20CE771CA34A3E0061AC7F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9C20CE7B1CA34E090061AC7F /* Sample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sample.png; sourceTree = SOURCE_ROOT; };
-		9CFA7DE21CA201DE009D7FB2 /* burgerMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = burgerMenu.png; sourceTree = SOURCE_ROOT; };
 		9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTemplateViewController.swift; sourceTree = "<group>"; };
 		A2E6D9FA1C003CA6EC5055F9 /* Pods-VenDecor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VenDecor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VenDecor/Pods-VenDecor.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,13 +118,13 @@
 			isa = PBXGroup;
 			children = (
 				9C0D05301CA379E600AF897C /* photo.png */,
+				4C4079021CA5F6EE001CDA64 /* burgerMenu.png */,
 				9C0D052C1CA377F300AF897C /* sell.png */,
 				9C20CE7B1CA34E090061AC7F /* Sample.png */,
 				71EE4A691C9F438400A37B51 /* Logo.png */,
 				71EE4A6A1C9F438400A37B51 /* SingleLineLogo.png */,
 				71EE4A661C9F415100A37B51 /* profile.png */,
 				4C51E2011C9F7A1500622B71 /* camera.png */,
-				9CFA7DE21CA201DE009D7FB2 /* burgerMenu.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -173,7 +173,7 @@
 				TargetAttributes = {
 					4C977A2D1C9240680000A985 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 76SZ5KGJ7K;
+						DevelopmentTeam = 9ZLF8AXGEQ;
 					};
 				};
 			};
@@ -208,8 +208,8 @@
 				4C977A3C1C9240680000A985 /* LaunchScreen.storyboard in Resources */,
 				4C977A391C9240680000A985 /* Assets.xcassets in Resources */,
 				71EE4A6B1C9F438400A37B51 /* Logo.png in Resources */,
-				9CFA7DE31CA201DE009D7FB2 /* burgerMenu.png in Resources */,
 				9C20CE781CA34A3E0061AC7F /* Main.storyboard in Resources */,
+				4C4079031CA5F6EE001CDA64 /* burgerMenu.png in Resources */,
 				71EE4A681C9F415100A37B51 /* profile.png in Resources */,
 				9C0D05311CA379E600AF897C /* photo.png in Resources */,
 			);
@@ -386,7 +386,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = VenDecor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs378.VenDecor;
+				PRODUCT_BUNDLE_IDENTIFIER = cs378.VenDecor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -401,7 +401,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = VenDecor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cs378.VenDecor;
+				PRODUCT_BUNDLE_IDENTIFIER = cs378.VenDecor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

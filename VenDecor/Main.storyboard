@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -41,7 +41,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HIi-m1-ouE">
-                                <rect key="frame" x="164" y="513" width="86" height="30"/>
+                                <rect key="frame" x="163" y="504" width="88" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.68159577770252822" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Log in">
@@ -64,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10" y="629"/>
+            <point key="canvasLocation" x="-578" y="457"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="rZ8-NB-Idr">
@@ -144,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2HC-TN-lHv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="835" y="-249"/>
+            <point key="canvasLocation" x="999" y="-169"/>
         </scene>
         <!--Home Table View Controller-->
         <scene sceneID="cLa-W4-MbH">
@@ -278,7 +278,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q0c-ar-P6L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2619" y="651"/>
+            <point key="canvasLocation" x="1047" y="875"/>
         </scene>
         <!--Post Template View Controller-->
         <scene sceneID="Pnr-3l-pXh">
@@ -362,7 +362,11 @@
                         <color key="backgroundColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="P3l-yZ-mbU">
+                        <barButtonItem key="leftBarButtonItem" image="burgerMenu.png" id="h1q-t3-xYt">
+                            <color key="tintColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="camera.png" id="WJL-Zb-fqb">
+                            <color key="tintColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="takePictureBtn:" destination="dwE-yF-CVw" id="bym-QJ-01H"/>
                             </connections>
@@ -382,7 +386,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="glH-Zi-Rfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4317" y="635"/>
+            <point key="canvasLocation" x="1047" y="1875"/>
         </scene>
         <!--Account View Controller-->
         <scene sceneID="Gkr-vM-o5x">
@@ -443,7 +447,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9jr-3J-sDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1521" y="-235"/>
+            <point key="canvasLocation" x="2529" y="1485"/>
         </scene>
         <!--SignUp-->
         <scene sceneID="BK2-L1-OZj">
@@ -462,7 +466,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fgj-JP-pzP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118" y="-243"/>
+            <point key="canvasLocation" x="362" y="-169"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="d5M-dJ-F3v">
@@ -481,7 +485,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="75P-wa-sdI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1993" y="651"/>
+            <point key="canvasLocation" x="362" y="875"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Cw3-ha-BA8">
@@ -500,19 +504,19 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rUp-lA-Nv7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3691" y="635"/>
+            <point key="canvasLocation" x="403" y="1883"/>
         </scene>
     </scenes>
     <resources>
         <image name="Logo.png" width="467" height="331"/>
         <image name="SingleLineLogo.png" width="431" height="137"/>
-        <image name="burgerMenu.png" width="35" height="36"/>
+        <image name="burgerMenu.png" width="32" height="32"/>
         <image name="camera.png" width="37" height="34"/>
         <image name="photo.png" width="256" height="256"/>
         <image name="profile.png" width="354" height="354"/>
         <image name="sell.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vys-wh-9tI"/>
+        <segue reference="Uod-gm-lsV"/>
     </inferredMetricsTieBreakers>
 </document>

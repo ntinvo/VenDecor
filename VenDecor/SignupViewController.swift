@@ -37,7 +37,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     @IBAction func cancelBtn(sender: AnyObject) {
         //performSegueWithIdentifier("toLogin", sender: sender )
         
-       dismissViewControllerAnimated(true, completion: nil)
+       self.dismissViewControllerAnimated(true, completion: nil)
         
     }
 
@@ -51,9 +51,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         if( self.password.text != self.repeatPassword.text ) {
             self.alertController = UIAlertController(title: "Error", message: "Passwords do not match", preferredStyle: UIAlertControllerStyle.Alert)
             
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
-                //print("Ok Button Pressed 1");
-            }
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
             self.alertController!.addAction(okAction)
             
             self.presentViewController(self.alertController!, animated: true, completion:nil)
@@ -88,8 +86,9 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                         let user = ["email" : String(self.email.text!),"username": String(self.username.text!), "zipcode" : String(self.zipcode.text!), "datejoined" : monthStr + " " + year]
                         self.myRootRef.childByAppendingPath(uid).setValue(user)
                     
-                        self.myRootRef.authUser(self.email!.text, password: self.password.text,
-                            withCompletionBlock: { (error, auth) in })
+//                        self.myRootRef.authUser(self.email!.text, password: self.password.text,
+//                            withCompletionBlock: { (error, auth) in })
+                        self.dismissViewControllerAnimated(true, completion: nil)
 
                     }
             })
