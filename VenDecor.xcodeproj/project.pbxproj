@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C0356314E6A5D53EE425C24 /* Pods_VenDecor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D96E1BC62F7158C6E662DC3 /* Pods_VenDecor.framework */; };
+		4C1CCD111CA6E9CD002C39E2 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1CCD101CA6E9CD002C39E2 /* SWRevealViewController.m */; };
 		4C4079031CA5F6EE001CDA64 /* burgerMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C4079021CA5F6EE001CDA64 /* burgerMenu.png */; };
 		4C51E1F61C9F628900622B71 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51E1F51C9F628900622B71 /* HomeTableViewController.swift */; };
 		4C51E1F81C9F62DE00622B71 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51E1F71C9F62DE00622B71 /* HomeTableViewCell.swift */; };
@@ -30,6 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C1CCD0E1CA6E9CD002C39E2 /* VenDecor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VenDecor-Bridging-Header.h"; sourceTree = "<group>"; };
+		4C1CCD0F1CA6E9CD002C39E2 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		4C1CCD101CA6E9CD002C39E2 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		4C4079021CA5F6EE001CDA64 /* burgerMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = burgerMenu.png; sourceTree = "<group>"; };
 		4C51E1F51C9F628900622B71 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		4C51E1F71C9F62DE00622B71 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
@@ -68,6 +72,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C1CCD121CA6E9D5002C39E2 /* slideout */ = {
+			isa = PBXGroup;
+			children = (
+				4C1CCD0E1CA6E9CD002C39E2 /* VenDecor-Bridging-Header.h */,
+				4C1CCD0F1CA6E9CD002C39E2 /* SWRevealViewController.h */,
+				4C1CCD101CA6E9CD002C39E2 /* SWRevealViewController.m */,
+			);
+			name = slideout;
+			sourceTree = "<group>";
+		};
 		4C977A251C9240680000A985 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +103,7 @@
 		4C977A301C9240680000A985 /* VenDecor */ = {
 			isa = PBXGroup;
 			children = (
+				4C1CCD121CA6E9D5002C39E2 /* slideout */,
 				9C0D05321CA3815000AF897C /* images */,
 				4C977A311C9240680000A985 /* AppDelegate.swift */,
 				4C977A331C9240680000A985 /* ViewController.swift */,
@@ -167,7 +182,7 @@
 		4C977A261C9240680000A985 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = cs378;
 				TargetAttributes = {
@@ -273,6 +288,7 @@
 				4C51E1F81C9F62DE00622B71 /* HomeTableViewCell.swift in Sources */,
 				4C977A441C9248810000A985 /* SignupViewController.swift in Sources */,
 				4C977A341C9240680000A985 /* ViewController.swift in Sources */,
+				4C1CCD111CA6E9CD002C39E2 /* SWRevealViewController.m in Sources */,
 				4CF0105B1C9C8F0B00F01F33 /* AccountViewController.swift in Sources */,
 				4C977A321C9240680000A985 /* AppDelegate.swift in Sources */,
 				9CFA7DE51CA208A3009D7FB2 /* PostTemplateViewController.swift in Sources */,
@@ -382,6 +398,7 @@
 			baseConfigurationReference = A2E6D9FA1C003CA6EC5055F9 /* Pods-VenDecor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = VenDecor/Info.plist;
@@ -389,6 +406,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cs378.VenDecor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "VenDecor/VenDecor-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -397,6 +416,7 @@
 			baseConfigurationReference = 98363C8C91B7119F33DF75E6 /* Pods-VenDecor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = VenDecor/Info.plist;
@@ -404,6 +424,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cs378.VenDecor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "VenDecor/VenDecor-Bridging-Header.h";
 			};
 			name = Release;
 		};

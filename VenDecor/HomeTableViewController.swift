@@ -10,22 +10,27 @@ import UIKit
 
 class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     
-   // @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var burgerBtn: UIBarButtonItem!
+//  @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
         //self.searchBar.delegate = self
         
+        // navigation bar
         let logo = UIImage(named: "Sample.png")
         let imageView = UIImageView(image: logo)
         self.navigationItem.titleView = imageView
+        if revealViewController() != nil {
+            self.burgerBtn.target = revealViewController()
+            self.burgerBtn.action = "revealToggle:"
+            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
     }
 
     override func didReceiveMemoryWarning() {

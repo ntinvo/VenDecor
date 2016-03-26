@@ -61,7 +61,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 withValueCompletionBlock: { error, result in
                     if error != nil {
                     
-                        self.alertController = UIAlertController(title: "Error", message: "A user with that email already exists", preferredStyle: UIAlertControllerStyle.Alert)
+                        self.alertController = UIAlertController(title: "Error", message: "Please check the information you entered", preferredStyle: UIAlertControllerStyle.Alert)
                     
                         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
                             //print("Ok Button Pressed 1");

@@ -11,6 +11,9 @@ import Firebase
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    @IBAction func testing(sender: AnyObject) {
+        self.performSegueWithIdentifier("testing", sender: sender)
+    }
     // Create a reference to a Firebase location
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
 
