@@ -12,6 +12,7 @@ class AccountViewController: UIViewController {
 
     @IBOutlet weak var profileImageView: UIImageView!
     
+    @IBOutlet weak var burgerBtn: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
@@ -21,9 +22,12 @@ class AccountViewController: UIViewController {
 //        self.btnPicture.layer.cornerRadius = self.btnPicture.frame.size.width / 2;
 //        self.btnPicture.clipsToBounds = true;
         
-        
-        
-        
+        // navigation bar
+        if revealViewController() != nil {
+            self.burgerBtn.target = revealViewController()
+            self.burgerBtn.action = "revealToggle:"
+            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         profileImageView.userInteractionEnabled = true

@@ -13,6 +13,7 @@
 		4C1CCD181CA6FB32002C39E2 /* sell-sidebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C1CCD171CA6FB32002C39E2 /* sell-sidebar.png */; };
 		4C1CCD1A1CA6FB89002C39E2 /* saved-posts.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C1CCD191CA6FB89002C39E2 /* saved-posts.png */; };
 		4C1CCD1C1CA6FBE8002C39E2 /* messages.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C1CCD1B1CA6FBE8002C39E2 /* messages.png */; };
+		4C1CCD241CA706FA002C39E2 /* my-account.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C1CCD231CA706FA002C39E2 /* my-account.png */; };
 		4C4079031CA5F6EE001CDA64 /* burgerMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C4079021CA5F6EE001CDA64 /* burgerMenu.png */; };
 		4C51E1F61C9F628900622B71 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51E1F51C9F628900622B71 /* HomeTableViewController.swift */; };
 		4C51E1F81C9F62DE00622B71 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51E1F71C9F62DE00622B71 /* HomeTableViewCell.swift */; };
@@ -42,6 +43,7 @@
 		4C1CCD171CA6FB32002C39E2 /* sell-sidebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sell-sidebar.png"; sourceTree = "<group>"; };
 		4C1CCD191CA6FB89002C39E2 /* saved-posts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saved-posts.png"; sourceTree = "<group>"; };
 		4C1CCD1B1CA6FBE8002C39E2 /* messages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = messages.png; sourceTree = "<group>"; };
+		4C1CCD231CA706FA002C39E2 /* my-account.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "my-account.png"; sourceTree = "<group>"; };
 		4C4079021CA5F6EE001CDA64 /* burgerMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = burgerMenu.png; sourceTree = "<group>"; };
 		4C51E1F51C9F628900622B71 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		4C51E1F71C9F62DE00622B71 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 		9C0D05321CA3815000AF897C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4C1CCD231CA706FA002C39E2 /* my-account.png */,
 				9C0D05301CA379E600AF897C /* photo.png */,
 				4C4079021CA5F6EE001CDA64 /* burgerMenu.png */,
 				4C1CCD191CA6FB89002C39E2 /* saved-posts.png */,
@@ -243,6 +246,7 @@
 				4C1CCD161CA6FA83002C39E2 /* home.png in Resources */,
 				71EE4A681C9F415100A37B51 /* profile.png in Resources */,
 				9C0D05311CA379E600AF897C /* photo.png in Resources */,
+				4C1CCD241CA706FA002C39E2 /* my-account.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
