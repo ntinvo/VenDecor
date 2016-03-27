@@ -85,7 +85,11 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-VenDecor/Firebase.framework"
+  install_framework "Pods-VenDecor/JSQMessagesViewController.framework"
+  install_framework "Pods-VenDecor/JSQSystemSoundPlayer.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-VenDecor/Firebase.framework"
+  install_framework "Pods-VenDecor/JSQMessagesViewController.framework"
+  install_framework "Pods-VenDecor/JSQSystemSoundPlayer.framework"
 fi

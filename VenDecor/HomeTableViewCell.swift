@@ -18,7 +18,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var condition: UILabel!
     @IBOutlet weak var postView: UIView!
     @IBOutlet weak var postImage: UIImageView!
-    
+    var homeTableViewController: HomeTableViewController? = nil
     
     /*
     [self.cardView setAlpha:1];
@@ -96,19 +96,17 @@ class HomeTableViewCell: UITableViewCell {
     }
 
     @IBAction func saveBtn(sender: AnyObject) {
-        
-        
+        print("save")
     }
     
     
     @IBAction func messageBtn(sender: AnyObject) {
-        
-        
+        self.homeTableViewController!.performSegueWithIdentifier("message", sender: sender)
     }
     
     
     @IBAction func claimBtn(sender: AnyObject) {
-        
+        print("claim")
         
     }
     

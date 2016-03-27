@@ -120,16 +120,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
-   /* override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!){
-        
-        if( segue.identifier == "completeLogin" ) {
-            let navVC = segue.destinationViewController as! UINavigationController
-            let tableVC = navVC.viewControllers.first as! HomeTableViewController
-            //navVC.pushViewController(tableVC, animated: true )
-        }
-        
-
-    }*/
+//   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!){
+//        super.prepareForSegue(segue, sender: sender)
+//        if( segue.identifier == "completedLogin" ) {
+//            let messageVC = segue.destinationViewController as! MessageViewController
+//            messageVC.senderId = myRootRef.authData.uid
+//            print(myRootRef.authData.uid)
+//            messageVC.senderDisplayName = ""
+//        }
+//    }
     
     
 }

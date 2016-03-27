@@ -23,6 +23,9 @@ class AccountViewController: UIViewController {
 //        self.btnPicture.clipsToBounds = true;
         
         // navigation bar
+        let logo = UIImage(named: "Sample.png")
+        let imageView = UIImageView(image: logo)
+        self.navigationItem.titleView = imageView
         if revealViewController() != nil {
             self.burgerBtn.target = revealViewController()
             self.burgerBtn.action = "revealToggle:"

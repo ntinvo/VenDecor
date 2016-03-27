@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
 //  @IBOutlet weak var searchBar: UISearchBar!
+    var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,10 +81,10 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath) as! HomeTableViewCell
+        
+        cell.homeTableViewController = self
+        
         return cell
     }
 
@@ -127,27 +129,16 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     }
     */
 
- /*
+ 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
-        //let postTemplateVC = segue.destinationViewController as! PostTemplateViewController
-        //postTemplateVC.postImage.image = self.postImage!
-        
-        /*if segue.identifier == "postItem" {
-            
-            let postTemplateVC = segue.destinationViewController as! PostTemplateViewController
-            postTemplateVC.image = self.postImage
-            
-            
-        }*/
-
-        
-    } */
-
-
+        if( segue.identifier == "message" ) {
+            let navVC = segue.destinationViewController as! UINavigationController
+            let messageVC = navVC.viewControllers.first as! MessageViewController
+            messageVC.senderId = myRootRef.authData.uid
+            messageVC.senderDisplayName = ""
+        }
+    }
 }
