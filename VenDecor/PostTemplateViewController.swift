@@ -82,10 +82,12 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         let imageData:NSData = UIImagePNGRepresentation(postImage.image!)!
         let base64String = imageData.base64EncodedStringWithOptions( .EncodingEndLineWithCarriageReturn )
         
-        let postInfo = ["title" : String(self.titleTxtField.text!),"image": base64String, "description" : self.descriptionTxtField.text!, "price" : String(self.priceTxtField.text!), "condition": String(self.conditionTxtField.text!), "street": String(self.streetTxtField.text!), "state": String(self.stateTextField.text!), "zip": String(self.zipTxtField.text!)]
+        let postInfo = ["title" : String(self.titleTxtField.text!),"image": base64String, "description" : self.descriptionTxtField.text!, "price" : String(self.priceTxtField.text!), "condition": String(self.conditionTxtField.text!), "street": String(self.streetTxtField.text!), "state": String(self.stateTextField.text!), "zip": String(self.zipTxtField.text!), "userID" : self.myRootRef.authData.uid]
         
-        let myUserRef = Firebase(url:"https://vendecor.firebaseio.com/" + self.myRootRef.authData.uid )
-        myUserRef.childByAppendingPath( "post" ).setValue( postInfo )
+        let myUserRef = Firebase(url:"https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid)
+        myUserRef.childByAppendingPath("post").setValue(postInfo)
+        let myPostRef = Firebase(url:"https://vendecor.firebaseio.com/posts/")
+        //myPostRef.childByAppendingPath("post").setValue(postInfo)
         self.performSegueWithIdentifier("backHome", sender: sender )
     }
     

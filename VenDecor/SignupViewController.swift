@@ -13,7 +13,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
 
     
     // Create a reference to a Firebase location
-    var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
+    var myRootRef = Firebase(url:"https://vendecor.firebaseio.com/users")
     
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var email: UITextField!
