@@ -27,9 +27,13 @@ import JSQMessagesViewController
 class MessageViewController: JSQMessagesViewController {
     
     // MARK: Properties
-    let rootRef = Firebase(url: "https://vendecor.firebaseio.com")
+    var rootRef = Firebase(url: "https://vendecor.firebaseio.com/13f59eb5-a856-48db-a795-7b67e14de78f")
+    //var rootRef: Firebase!
     var messageRef: Firebase!
     var messages = [JSQMessage]()
+    
+    var temp:Int? = nil
+    
     
     var userIsTypingRef: Firebase!
     var usersTypingQuery: FQuery!
@@ -50,6 +54,15 @@ class MessageViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBubbles()
+        
+        
+        print(temp!)
+        if self.temp! == 0 {
+            rootRef = Firebase(url: "https://vendecor.firebaseio.com/fce5e426-5f38-402f-b310-787638a9bf38")
+        } else {
+            rootRef = Firebase(url: "https://vendecor.firebaseio.com/f7f52264-0a0c-4995-9a1a-c44d35aaf1fc")
+        }
+        
         messageRef = rootRef.childByAppendingPath("messages")
         
         // No avatars
@@ -76,12 +89,14 @@ class MessageViewController: JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
-        let message = messages[indexPath.item] // 1
-        if message.senderId == senderId { // 2
+        let message = messages[indexPath.item]
+        
+        if message.senderId == senderId {
             return outgoingBubbleImageView
-        } else { // 3
+        } else {
             return incomingBubbleImageView
         }
+
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -89,10 +104,10 @@ class MessageViewController: JSQMessagesViewController {
         
         let message = messages[indexPath.item]
         
-        if message.senderId == senderId { // 1
-            cell.textView!.textColor = UIColor.whiteColor() // 2
+        if message.senderId == senderId {
+            cell.textView!.textColor = UIColor.whiteColor()
         } else {
-            cell.textView!.textColor = UIColor.blackColor() // 3
+            cell.textView!.textColor = UIColor.blackColor()
         }
         
         return cell
@@ -103,18 +118,11 @@ class MessageViewController: JSQMessagesViewController {
     }
     
     private func observeMessages() {
-        // 1
         let messagesQuery = messageRef.queryLimitedToLast(25)
-        // 2
         messagesQuery.observeEventType(.ChildAdded) { (snapshot: FDataSnapshot!) in
-            // 3
             let id = snapshot.value["senderId"] as! String
             let text = snapshot.value["text"] as! String
-            
-            // 4
             self.addMessage(id, text: text)
-            
-            // 5
             self.finishReceivingMessage()
         }
     }
@@ -151,25 +159,25 @@ class MessageViewController: JSQMessagesViewController {
     }
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        
-        let itemRef = messageRef.childByAutoId() // 1
-        let messageItem = [ // 2
+        let itemRef = messageRef.childByAutoId()
+        let messageItem = [
             "text": text,
             "senderId": senderId
         ]
-        itemRef.setValue(messageItem) // 3
-        
-        // 4
+        itemRef.setValue(messageItem)
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        
-        // 5
         finishSendingMessage()
         isTyping = false
+    }
+    
+    override func didPressAccessoryButton(sender: UIButton!) {
+        //
     }
     
     @IBAction func finishedMessaging(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
     private func setupBubbles() {
         let bubbleImageFactory = JSQMessagesBubbleImageFactory()
         outgoingBubbleImageView = bubbleImageFactory.outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleBlueColor())

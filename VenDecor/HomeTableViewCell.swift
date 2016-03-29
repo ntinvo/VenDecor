@@ -19,6 +19,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var postView: UIView!
     @IBOutlet weak var postImage: UIImageView!
     var homeTableViewController: HomeTableViewController? = nil
+    var cellNum: Int? = nil
     
     /*
     [self.cardView setAlpha:1];
@@ -101,7 +102,7 @@ class HomeTableViewCell: UITableViewCell {
     
     
     @IBAction func messageBtn(sender: AnyObject) {
-        self.homeTableViewController!.performSegueWithIdentifier("message", sender: sender)
+        self.homeTableViewController!.temp = self.cellNum
     }
     
     

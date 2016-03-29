@@ -14,6 +14,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
 //  @IBOutlet weak var searchBar: UISearchBar!
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
+    var temp: Int? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,9 +83,8 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath) as! HomeTableViewCell
-        
         cell.homeTableViewController = self
-        
+        cell.cellNum = indexPath.row
         return cell
     }
 
@@ -139,6 +139,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             let messageVC = navVC.viewControllers.first as! MessageViewController
             messageVC.senderId = myRootRef.authData.uid
             messageVC.senderDisplayName = ""
+            messageVC.temp = self.temp!
         }
     }
 }
