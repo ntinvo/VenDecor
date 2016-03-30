@@ -33,6 +33,8 @@
 		9C0D05311CA379E600AF897C /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0D05301CA379E600AF897C /* photo.png */; };
 		9C0D05341CA3828100AF897C /* GROUP11README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9C0D05331CA3828100AF897C /* GROUP11README.rtf */; };
 		9C20CE781CA34A3E0061AC7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C20CE771CA34A3E0061AC7F /* Main.storyboard */; };
+		9C84825C1CAB474600ABE9B2 /* cogwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C84825B1CAB474600ABE9B2 /* cogwheel.png */; };
+		9C8482601CAB4D0A00ABE9B2 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C84825F1CAB4D0A00ABE9B2 /* SettingsTableViewController.swift */; };
 		9CFA7DE51CA208A3009D7FB2 /* PostTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +70,8 @@
 		9C0D05301CA379E600AF897C /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
 		9C0D05331CA3828100AF897C /* GROUP11README.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = GROUP11README.rtf; sourceTree = "<group>"; };
 		9C20CE771CA34A3E0061AC7F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9C84825B1CAB474600ABE9B2 /* cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cogwheel.png; sourceTree = SOURCE_ROOT; };
+		9C84825F1CAB4D0A00ABE9B2 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTemplateViewController.swift; sourceTree = "<group>"; };
 		A2E6D9FA1C003CA6EC5055F9 /* Pods-VenDecor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VenDecor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VenDecor/Pods-VenDecor.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +129,7 @@
 				4C51E1F71C9F62DE00622B71 /* HomeTableViewCell.swift */,
 				9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */,
 				4C1CCD291CA781A0002C39E2 /* MessageViewController.swift */,
+				9C84825F1CAB4D0A00ABE9B2 /* SettingsTableViewController.swift */,
 				9C20CE771CA34A3E0061AC7F /* Main.storyboard */,
 				4C977A381C9240680000A985 /* Assets.xcassets */,
 				4C977A3A1C9240680000A985 /* LaunchScreen.storyboard */,
@@ -145,6 +150,7 @@
 		9C0D05321CA3815000AF897C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9C84825B1CAB474600ABE9B2 /* cogwheel.png */,
 				4C1CCD231CA706FA002C39E2 /* my-account.png */,
 				9C0D05301CA379E600AF897C /* photo.png */,
 				4C4079021CA5F6EE001CDA64 /* burgerMenu.png */,
@@ -234,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C1CCD181CA6FB32002C39E2 /* sell-sidebar.png in Resources */,
+				9C84825C1CAB474600ABE9B2 /* cogwheel.png in Resources */,
 				9C0D05341CA3828100AF897C /* GROUP11README.rtf in Resources */,
 				71EE4A6C1C9F438400A37B51 /* SingleLineLogo.png in Resources */,
 				4C1CCD1A1CA6FB89002C39E2 /* saved-posts.png in Resources */,
@@ -311,6 +318,7 @@
 				4C51E1F81C9F62DE00622B71 /* HomeTableViewCell.swift in Sources */,
 				4C1CCD2A1CA781A0002C39E2 /* MessageViewController.swift in Sources */,
 				4C977A441C9248810000A985 /* SignupViewController.swift in Sources */,
+				9C8482601CAB4D0A00ABE9B2 /* SettingsTableViewController.swift in Sources */,
 				4C977A341C9240680000A985 /* ViewController.swift in Sources */,
 				4C1CCD111CA6E9CD002C39E2 /* SWRevealViewController.m in Sources */,
 				4CF0105B1C9C8F0B00F01F33 /* AccountViewController.swift in Sources */,

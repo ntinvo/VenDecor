@@ -9,7 +9,7 @@
 import UIKit
 import Firebase 
 
-class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class PostTemplateViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     // Properties
     @IBOutlet weak var titleTxtField: UITextField!
@@ -28,7 +28,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         super.viewDidLoad()
         
         self.titleTxtField.delegate = self
-        self.descriptionTxtField.delegate = self
+        //self.descriptionTxtField.delegate = self
         self.priceTxtField.delegate = self
         self.conditionTxtField.delegate = self
         self.streetTxtField.delegate = self
@@ -84,11 +84,25 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         
         let postInfo = ["title" : String(self.titleTxtField.text!),"image": base64String, "description" : self.descriptionTxtField.text!, "price" : String(self.priceTxtField.text!), "condition": String(self.conditionTxtField.text!), "street": String(self.streetTxtField.text!), "state": String(self.stateTextField.text!), "zip": String(self.zipTxtField.text!), "userID" : self.myRootRef.authData.uid]
         
-        let myUserRef = Firebase(url:"https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid)
+        let myUserRef = Firebase(url:"https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid + "/numPosts")
+        
+        myUserRef.observeEventType(.Value, withBlock: { snapshot in
+            //self.numPosts = snapshot.value as? Int
+            
+            print( snapshot.value )
+            //update numPosts
+            /*var numPosts = snapshot.value.valueForKey( "numPosts" ) as? Int
+            numPosts = numPosts! + 1
+            let myNumPostsRef = Firebase(url:"https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid + "/numPosts")
+            myNumPostsRef.setValue( numPosts )*/
+        })
+
+        
         myUserRef.childByAppendingPath("post").setValue(postInfo)
         let myPostRef = Firebase(url:"https://vendecor.firebaseio.com/posts/")
         //myPostRef.childByAppendingPath("post").setValue(postInfo)
-        self.performSegueWithIdentifier("backHome", sender: sender )
+        //self.performSegueWithIdentifier("backHome", sender: sender )
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     // Called when the user touches on the main view (outside the UITextField).

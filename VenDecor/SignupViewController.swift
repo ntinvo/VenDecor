@@ -83,7 +83,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                         let monthStr = months[month - 1]
                     
                         let uid = result["uid"] as? String
-                        let user = ["email" : String(self.email.text!),"username": String(self.username.text!), "zipcode" : String(self.zipcode.text!), "datejoined" : monthStr + " " + year]
+                        let user = ["email" : String(self.email.text!),"username": String(self.username.text!), "zipcode" : String(self.zipcode.text!), "datejoined" : monthStr + " " + year, "numPosts": 0 ]
                         self.myRootRef.childByAppendingPath(uid).setValue(user)
                     
 //                        self.myRootRef.authUser(self.email!.text, password: self.password.text,
