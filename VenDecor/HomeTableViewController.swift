@@ -14,7 +14,9 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
 //  @IBOutlet weak var searchBar: UISearchBar!
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
+    var postings = [NSDictionary]()
     var temp: Int? = nil
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,23 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             self.burgerBtn.action = "revealToggle:"
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        
+        print("view did load")
+        
+        let postsRef = Firebase(url: "https://vendecor.firebaseio.com/posts")
+        // Retrieve new posts as they are added to your database
+        postsRef.observeEventType(.Value, withBlock: { snapshot in
+            let posts = snapshot.value as! NSDictionary
+
+            let enumerator = posts.keyEnumerator()
+            while let key = enumerator.nextObject() {
+                let post = posts[String(key)] as! NSDictionary
+                self.postings.append(post)
+            }
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,14 +96,30 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        print("count")
+        return self.postings.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath) as! HomeTableViewCell
+        
         cell.homeTableViewController = self
         cell.cellNum = indexPath.row
+        print("down")
+
+        
+        let dict = self.postings[indexPath.row]
+        cell.title.text = String(dict.valueForKey("title")!)
+        cell.itemDescription.text = String(dict.valueForKey("description")!)
+        cell.price.text = String(dict.valueForKey("price")!)
+        cell.condition.text = String(dict.valueForKey("condition")!)
+        cell.location.text = String(dict.valueForKey("street")!) + " " + String(dict.valueForKey("state")!) + " " + String(dict.valueForKey("zip")!)
+        let decodedData = NSData(base64EncodedString: String(dict.valueForKey("image")!), options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+        
+        let decodedImage = UIImage(data: decodedData!)
+        cell.postImage.image = decodedImage
+
         return cell
     }
 
@@ -134,12 +169,17 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         if( segue.identifier == "message" ) {
             let navVC = segue.destinationViewController as! UINavigationController
             let messageVC = navVC.viewControllers.first as! MessageViewController
             messageVC.senderId = myRootRef.authData.uid
             messageVC.senderDisplayName = ""
             messageVC.temp = self.temp!
+        } else if (segue.identifier == "postItem") {
+            let navVC = segue.destinationViewController as! UINavigationController
+            let postTemplateVC = navVC.viewControllers.first as! PostTemplateViewController
+            postTemplateVC.homeTableViewController = self
         }
     }
 }

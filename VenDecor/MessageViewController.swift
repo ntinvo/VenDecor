@@ -62,8 +62,14 @@ class MessageViewController: JSQMessagesViewController {
         } else {
             rootRef = Firebase(url: "https://vendecor.firebaseio.com/f7f52264-0a0c-4995-9a1a-c44d35aaf1fc")
         }
-        
+    
         messageRef = rootRef.childByAppendingPath("messages")
+        
+
+        
+        
+        
+        
         
         // No avatars
         //collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero

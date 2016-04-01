@@ -24,6 +24,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UINavig
     var imagePicker: UIImagePickerController!
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
     var numPosts:Int? = nil
+    var homeTableViewController: HomeTableViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,9 +107,14 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UINavig
                 // increment post number and saved
                 self.numPosts! += 1
                 numPostRef.setValue(self.numPosts)
+                
+                self.homeTableViewController?.postings.removeAll()
+                self.homeTableViewController?.tableView.reloadData()
+                
             })
         }
-        dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
+
     }
     
     // Called when the user touches on the main view (outside the UITextField).
