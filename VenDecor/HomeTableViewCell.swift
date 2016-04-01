@@ -18,6 +18,10 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var condition: UILabel!
     @IBOutlet weak var postView: UIView!
     @IBOutlet weak var postImage: UIImageView!
+    @IBOutlet weak var claimLabel: UILabel!
+    
+    var alertController: UIAlertController? = nil
+    
     var homeTableViewController: HomeTableViewController? = nil
     var cellNum: Int? = nil
     
@@ -87,7 +91,7 @@ class HomeTableViewCell: UITableViewCell {
         postImage.layer.cornerRadius = postImage.frame.size.width/2
         postImage.clipsToBounds = true
         postImage.contentMode = .ScaleAspectFill
-        postImage.backgroundColor = UIColor.whiteColor()
+        //postImage.backgroundColor = UIColor.whiteColor()
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
@@ -98,6 +102,20 @@ class HomeTableViewCell: UITableViewCell {
 
     @IBAction func saveBtn(sender: AnyObject) {
         print("save")
+        
+        self.alertController = UIAlertController(title: "Save Item", message: "This item will be stored under Saved Items", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+            //print("Ok Button Pressed 1");
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+            //print("Ok Button Pressed 1");
+        }
+        
+        self.alertController!.addAction(okAction)
+        self.alertController!.addAction(cancelAction)
+        
+        self.homeTableViewController!.presentViewController(self.alertController!, animated: true, completion:nil)
     }
     
     
@@ -109,6 +127,22 @@ class HomeTableViewCell: UITableViewCell {
     @IBAction func claimBtn(sender: AnyObject) {
         print("claim")
         
+        self.alertController = UIAlertController(title: "Claim Item", message: "Pick up the item within 24 hours. Contact the seller for more details.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+            //print("Ok Button Pressed 1");
+            self.claimLabel.text = "CLAIMED"
+            // get post info and add it to claimed posts... should we have that also in our menu? Also, need to send notification/alert to seller
+            // just flag their post in their personal post storage?
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+            //print("Ok Button Pressed 1");
+        }
+
+        self.alertController!.addAction(okAction)
+        self.alertController!.addAction(cancelAction)
+        
+        self.homeTableViewController!.presentViewController(self.alertController!, animated: true, completion:nil)
     }
     
 }

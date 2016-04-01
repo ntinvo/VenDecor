@@ -53,7 +53,7 @@ class SettingsTableViewController: UITableViewController {
         if( indexPath.row == 8 ) {
             return 65
         } else if cellSelector == 0 {
-            return 100
+            return 70
         } else {
             return 35
         }
