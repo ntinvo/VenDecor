@@ -23,6 +23,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UINavig
     var alertController: UIAlertController?
     var imagePicker: UIImagePickerController!
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
+    var numPosts:Int? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,34 +75,39 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UINavig
     
     
     @IBAction func postItem(sender: AnyObject) {
-        
         if( self.myRootRef.authData != nil ) {
             print( self.myRootRef.authData.uid )
         }
         
+        // convert images to base64 string
         let imageData:NSData = UIImagePNGRepresentation(postImage.image!)!
         let base64String = imageData.base64EncodedStringWithOptions( .EncodingEndLineWithCarriageReturn )
         
-        let postInfo = ["title" : String(self.titleTxtField.text!),"image": base64String, "description" : self.descriptionTxtField.text!, "price" : String(self.priceTxtField.text!), "condition": String(self.conditionTxtField.text!), "street": String(self.streetTxtField.text!), "state": String(self.stateTextField.text!), "zip": String(self.zipTxtField.text!), "userID" : self.myRootRef.authData.uid]
-        
-        let myUserRef = Firebase(url:"https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid + "/numPosts")
-        
-        myUserRef.observeEventType(.Value, withBlock: { snapshot in
-            //self.numPosts = snapshot.value as? Int
+        dispatch_sync(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
+            let numPostRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid + "/numPosts")
+            numPostRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+                self.numPosts = snapshot.value as? Int
             
-            print( snapshot.value )
-            //update numPosts
-            /*var numPosts = snapshot.value.valueForKey( "numPosts" ) as? Int
-            numPosts = numPosts! + 1
-            let myNumPostsRef = Firebase(url:"https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid + "/numPosts")
-            myNumPostsRef.setValue( numPosts )*/
-        })
-
-        
-        myUserRef.childByAppendingPath("post").setValue(postInfo)
-        let myPostRef = Firebase(url:"https://vendecor.firebaseio.com/posts/")
-        //myPostRef.childByAppendingPath("post").setValue(postInfo)
-        //self.performSegueWithIdentifier("backHome", sender: sender )
+                // generate the post id
+                let postID = self.myRootRef.authData.uid + "-" + String(self.numPosts!)
+                
+                // create post info
+                let postInfo = ["id": postID,"title" : String(self.titleTxtField.text!),"image": base64String, "description" : self.descriptionTxtField.text!, "price" : String(self.priceTxtField.text!), "condition": String(self.conditionTxtField.text!), "street": String(self.streetTxtField.text!), "state": String(self.stateTextField.text!), "zip": String(self.zipTxtField.text!), "userID" : self.myRootRef.authData.uid]
+                
+                // save post id to Firebase
+                let myUserRef = Firebase(url:"https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid)
+                let postIDsRef = myUserRef.childByAppendingPath("postIDs")
+                postIDsRef.childByAppendingPath(String(self.numPosts!)).setValue(postID)
+                
+                // save post info to Firebase
+                let myPostRef = Firebase(url:"https://vendecor.firebaseio.com/posts/")
+                myPostRef.childByAppendingPath(postID).setValue(postInfo)
+                
+                // increment post number and saved
+                self.numPosts! += 1
+                numPostRef.setValue(self.numPosts)
+            })
+        }
         dismissViewControllerAnimated(true, completion: nil)
     }
     

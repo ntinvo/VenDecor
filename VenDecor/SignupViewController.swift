@@ -61,7 +61,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 withValueCompletionBlock: { error, result in
                     if error != nil {
                     
-                        self.alertController = UIAlertController(title: "Error", message: "Please check the information you entered", preferredStyle: UIAlertControllerStyle.Alert)
+                        self.alertController = UIAlertController(title: "Error", message: "Invalid email or email was already taken!", preferredStyle: UIAlertControllerStyle.Alert)
                     
                         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
                             //print("Ok Button Pressed 1");
@@ -81,13 +81,9 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                         let dateFormatter: NSDateFormatter = NSDateFormatter()
                         let months = dateFormatter.monthSymbols
                         let monthStr = months[month - 1]
-                    
                         let uid = result["uid"] as? String
-                        let user = ["email" : String(self.email.text!),"username": String(self.username.text!), "zipcode" : String(self.zipcode.text!), "datejoined" : monthStr + " " + year, "numPosts": 0 ]
+                        let user = ["email" : String(self.email.text!),"username": String(self.username.text!), "zipcode" : String(self.zipcode.text!), "datejoined" : monthStr + " " + year, "numPosts": 0, "profilePic": ""]
                         self.myRootRef.childByAppendingPath(uid).setValue(user)
-                    
-//                        self.myRootRef.authUser(self.email!.text, password: self.password.text,
-//                            withCompletionBlock: { (error, auth) in })
                         self.dismissViewControllerAnimated(true, completion: nil)
 
                     }
