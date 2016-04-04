@@ -19,6 +19,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var postView: UIView!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var claimLabel: UILabel!
+    @IBOutlet weak var datePostedLabel: UILabel!
     
     var alertController: UIAlertController? = nil
     

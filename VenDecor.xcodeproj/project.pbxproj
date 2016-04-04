@@ -33,6 +33,7 @@
 		9C0D05311CA379E600AF897C /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0D05301CA379E600AF897C /* photo.png */; };
 		9C0D05341CA3828100AF897C /* GROUP11README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9C0D05331CA3828100AF897C /* GROUP11README.rtf */; };
 		9C20CE781CA34A3E0061AC7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C20CE771CA34A3E0061AC7F /* Main.storyboard */; };
+		9C56BBB11CB32C95003723C9 /* MyMessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C56BBB01CB32C95003723C9 /* MyMessagesTableViewController.swift */; };
 		9C84825C1CAB474600ABE9B2 /* cogwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C84825B1CAB474600ABE9B2 /* cogwheel.png */; };
 		9C8482601CAB4D0A00ABE9B2 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C84825F1CAB4D0A00ABE9B2 /* SettingsTableViewController.swift */; };
 		9CFA7DE51CA208A3009D7FB2 /* PostTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */; };
@@ -70,6 +71,7 @@
 		9C0D05301CA379E600AF897C /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
 		9C0D05331CA3828100AF897C /* GROUP11README.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = GROUP11README.rtf; sourceTree = "<group>"; };
 		9C20CE771CA34A3E0061AC7F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9C56BBB01CB32C95003723C9 /* MyMessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMessagesTableViewController.swift; sourceTree = "<group>"; };
 		9C84825B1CAB474600ABE9B2 /* cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cogwheel.png; sourceTree = SOURCE_ROOT; };
 		9C84825F1CAB4D0A00ABE9B2 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTemplateViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */,
 				4C1CCD291CA781A0002C39E2 /* MessageViewController.swift */,
 				9C84825F1CAB4D0A00ABE9B2 /* SettingsTableViewController.swift */,
+				9C56BBB01CB32C95003723C9 /* MyMessagesTableViewController.swift */,
 				9C20CE771CA34A3E0061AC7F /* Main.storyboard */,
 				4C977A381C9240680000A985 /* Assets.xcassets */,
 				4C977A3A1C9240680000A985 /* LaunchScreen.storyboard */,
@@ -212,7 +215,7 @@
 				TargetAttributes = {
 					4C977A2D1C9240680000A985 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 9ZLF8AXGEQ;
+						DevelopmentTeam = 76SZ5KGJ7K;
 					};
 				};
 			};
@@ -322,6 +325,7 @@
 				4C977A341C9240680000A985 /* ViewController.swift in Sources */,
 				4C1CCD111CA6E9CD002C39E2 /* SWRevealViewController.m in Sources */,
 				4CF0105B1C9C8F0B00F01F33 /* AccountViewController.swift in Sources */,
+				9C56BBB11CB32C95003723C9 /* MyMessagesTableViewController.swift in Sources */,
 				4C977A321C9240680000A985 /* AppDelegate.swift in Sources */,
 				9CFA7DE51CA208A3009D7FB2 /* PostTemplateViewController.swift in Sources */,
 				4C51E1F61C9F628900622B71 /* HomeTableViewController.swift in Sources */,

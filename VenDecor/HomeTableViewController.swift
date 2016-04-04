@@ -112,9 +112,10 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         let dict = self.postings[indexPath.row]
         cell.title.text = String(dict.valueForKey("title")!)
         cell.itemDescription.text = String(dict.valueForKey("description")!)
-        cell.price.text = String(dict.valueForKey("price")!)
+        cell.price.text = "$" + String(dict.valueForKey("price")!)
         cell.condition.text = String(dict.valueForKey("condition")!)
         cell.location.text = String(dict.valueForKey("street")!) + " " + String(dict.valueForKey("state")!) + " " + String(dict.valueForKey("zip")!)
+        cell.datePostedLabel.text = String( dict.valueForKey("datePosted")! )
         let decodedData = NSData(base64EncodedString: String(dict.valueForKey("image")!), options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
         
         let decodedImage = UIImage(data: decodedData!)
@@ -176,6 +177,14 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             messageVC.senderId = myRootRef.authData.uid
             messageVC.senderDisplayName = ""
             messageVC.temp = self.temp!
+            let url = "https://vendecor.firebaseio.com/users/"
+            print( self.temp! )
+            //print( "indexPath = " + String( indexPath!.row ) )
+            let dict = self.postings[ self.temp! ]
+            let uid = dict.valueForKey( "userID" ) as? String
+            
+            messageVC.rootRef = Firebase(url: String(url + uid!) )
+            
         } else if (segue.identifier == "postItem") {
             let navVC = segue.destinationViewController as! UINavigationController
             let postTemplateVC = navVC.viewControllers.first as! PostTemplateViewController

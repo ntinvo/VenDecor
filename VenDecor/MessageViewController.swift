@@ -27,13 +27,13 @@ import JSQMessagesViewController
 class MessageViewController: JSQMessagesViewController {
     
     // MARK: Properties
-    var rootRef = Firebase(url: "https://vendecor.firebaseio.com/13f59eb5-a856-48db-a795-7b67e14de78f")
+    var rootRef: Firebase!
     //var rootRef: Firebase!
     var messageRef: Firebase!
     var messages = [JSQMessage]()
     
     var temp:Int? = nil
-    
+
     
     var userIsTypingRef: Firebase!
     var usersTypingQuery: FQuery!
@@ -56,12 +56,12 @@ class MessageViewController: JSQMessagesViewController {
         setupBubbles()
         
         
-        print(temp!)
+       /* print(temp!)
         if self.temp! == 0 {
             rootRef = Firebase(url: "https://vendecor.firebaseio.com/fce5e426-5f38-402f-b310-787638a9bf38")
         } else {
             rootRef = Firebase(url: "https://vendecor.firebaseio.com/f7f52264-0a0c-4995-9a1a-c44d35aaf1fc")
-        }
+        }*/
     
         messageRef = rootRef.childByAppendingPath("messages")
         

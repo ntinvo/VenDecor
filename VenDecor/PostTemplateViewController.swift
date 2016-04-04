@@ -80,6 +80,16 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UINavig
             print( self.myRootRef.authData.uid )
         }
         
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+        let year =  String(components.year)
+        let month = components.month
+        let dateFormatter: NSDateFormatter = NSDateFormatter()
+        let months = dateFormatter.monthSymbols
+        let monthStr = months[month - 1]
+        let day = String(components.day)
+        
         // convert images to base64 string
         let imageData:NSData = UIImagePNGRepresentation(postImage.image!)!
         let base64String = imageData.base64EncodedStringWithOptions( .EncodingEndLineWithCarriageReturn )
@@ -92,8 +102,10 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UINavig
                 // generate the post id
                 let postID = self.myRootRef.authData.uid + "-" + String(self.numPosts!)
                 
+                let datePosted = monthStr + " " + day + ", " + year
+                
                 // create post info
-                let postInfo = ["id": postID,"title" : String(self.titleTxtField.text!),"image": base64String, "description" : self.descriptionTxtField.text!, "price" : String(self.priceTxtField.text!), "condition": String(self.conditionTxtField.text!), "street": String(self.streetTxtField.text!), "state": String(self.stateTextField.text!), "zip": String(self.zipTxtField.text!), "userID" : self.myRootRef.authData.uid]
+                let postInfo = ["id": postID,"title" : String(self.titleTxtField.text!),"image": base64String, "description" : self.descriptionTxtField.text!, "price" : String(self.priceTxtField.text!), "condition": String(self.conditionTxtField.text!), "street": String(self.streetTxtField.text!), "state": String(self.stateTextField.text!), "zip": String(self.zipTxtField.text!), "userID" : self.myRootRef.authData.uid, "datePosted" : datePosted ]
                 
                 // save post id to Firebase
                 let myUserRef = Firebase(url:"https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid)
