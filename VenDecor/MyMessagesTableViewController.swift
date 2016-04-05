@@ -10,6 +10,8 @@ import UIKit
 
 class MyMessagesTableViewController: UITableViewController {
 
+    @IBOutlet weak var burgerBtn: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +20,17 @@ class MyMessagesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        // navigation bar
+        let logo = UIImage(named: "Sample.png")
+        let imageView = UIImageView(image: logo)
+        self.navigationItem.titleView = imageView
+        if revealViewController() != nil {
+            self.burgerBtn.target = revealViewController()
+            self.burgerBtn.action = "revealToggle:"
+            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,15 +50,15 @@ class MyMessagesTableViewController: UITableViewController {
         return 0
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("msgCell", forIndexPath: indexPath)
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

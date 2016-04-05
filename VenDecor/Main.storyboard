@@ -69,7 +69,7 @@
         <!--Table View Controller-->
         <scene sceneID="WoX-Hx-hc6">
             <objects>
-                <tableViewController id="JTW-Cx-ueT" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="slideMenu" id="JTW-Cx-ueT" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="uVY-4f-Hkn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -189,7 +189,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="yn6-Gm-2av" imageView="7mS-Uu-6d8" style="IBUITableViewCellStyleDefault" id="Pqm-hB-YU4">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuMsgCell" textLabel="yn6-Gm-2av" imageView="7mS-Uu-6d8" style="IBUITableViewCellStyleDefault" id="Pqm-hB-YU4">
                                         <rect key="frame" x="0.0" y="220" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pqm-hB-YU4" id="Kve-U4-l1p">
@@ -201,6 +201,14 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DCA-Db-PQO">
+                                                    <rect key="frame" x="179" y="5" width="35" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.8832267992424242" green="0.22889243366853884" blue="0.18981999654282194" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="messages.png" id="7mS-Uu-6d8">
@@ -276,7 +284,7 @@
         <!--Reveal View Controller-->
         <scene sceneID="p3D-Sk-a1r">
             <objects>
-                <viewController id="jzV-Z6-zYB" customClass="SWRevealViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="revealVC" id="jzV-Z6-zYB" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="09p-4e-EuL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -613,9 +621,6 @@
                         <color key="backgroundColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="P3l-yZ-mbU">
-                        <barButtonItem key="leftBarButtonItem" image="burgerMenu.png" id="h1q-t3-xYt">
-                            <color key="tintColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="camera.png" id="WJL-Zb-fqb">
                             <color key="tintColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -736,7 +741,7 @@
         <scene sceneID="LFY-53-S7D">
             <objects>
                 <tableViewController id="B8Q-UI-1v5" customClass="SettingsTableViewController" customModule="VenDecor" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="137" sectionHeaderHeight="28" sectionFooterHeight="28" id="lfv-jf-zc2">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="137" sectionHeaderHeight="28" sectionFooterHeight="28" id="lfv-jf-zc2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -744,20 +749,26 @@
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <color key="sectionIndexBackgroundColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cellid" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellid" textLabel="9jv-bj-TcB" detailTextLabel="k3N-Ud-Op8" rowHeight="70" style="IBUITableViewCellStyleValue1" id="BQa-GS-sBM">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cellid" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellid" textLabel="9jv-bj-TcB" detailTextLabel="k3N-Ud-Op8" rowHeight="70" style="IBUITableViewCellStyleValue1" id="BQa-GS-sBM" customClass="SettingsTableViewCell" customModule="VenDecor" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BQa-GS-sBM" id="TO4-71-dGO">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" restorationIdentifier="cellLabel" text="&lt;user info&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9jv-bj-TcB">
-                                            <rect key="frame" x="15" y="25" width="83" height="20"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" restorationIdentifier="cellLabel" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9jv-bj-TcB">
+                                            <rect key="frame" x="15" y="25" width="32" height="20"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" id="pzu-b9-lm9">
+                                            <rect key="frame" x="8" y="20" width="398" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Edit" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k3N-Ud-Op8">
                                             <rect key="frame" x="371" y="25" width="28" height="20"/>
                                             <autoresizingMask key="autoresizingMask"/>
@@ -767,18 +778,21 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="userInfoTxtField" destination="pzu-b9-lm9" id="9QX-yd-iyo"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="fillerCell" rowHeight="43" id="Z2z-OI-Kyn">
-                                <rect key="frame" x="0.0" y="162" width="414" height="43"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="fillerCell" rowHeight="48" id="UYC-aG-jYb">
+                                <rect key="frame" x="0.0" y="162" width="414" height="48"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z2z-OI-Kyn" id="YIp-8A-FJv">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UYC-aG-jYb" id="Jal-hK-LrH">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="saveCell" rowHeight="65" id="lIm-hu-ftl">
-                                <rect key="frame" x="0.0" y="205" width="414" height="65"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="saveCell" rowHeight="65" id="lIm-hu-ftl" customClass="SaveSettingsTableViewCell" customModule="VenDecor" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="210" width="414" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lIm-hu-ftl" id="zoc-UV-iJQ">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
@@ -791,6 +805,9 @@
                                             <state key="normal" title="Save Changes">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="saveSettingsBtn:" destination="lIm-hu-ftl" eventType="touchUpInside" id="Tar-kQ-1kq"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -914,16 +931,16 @@
             </objects>
             <point key="canvasLocation" x="1345" y="3575"/>
         </scene>
-        <!--Table View Controller-->
+        <!--My Messages Table View Controller-->
         <scene sceneID="kap-U9-NF7">
             <objects>
-                <tableViewController id="1IP-vu-nes" sceneMemberID="viewController">
+                <tableViewController id="1IP-vu-nes" customClass="MyMessagesTableViewController" customModule="VenDecor" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xh9-Vd-caV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="o2I-VF-fNq">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="msgCell" id="o2I-VF-fNq">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o2I-VF-fNq" id="Tbt-Eq-ADy">
@@ -937,7 +954,14 @@
                             <outlet property="delegate" destination="1IP-vu-nes" id="Sru-9X-6Q9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="mo9-IR-2rb"/>
+                    <navigationItem key="navigationItem" id="mo9-IR-2rb">
+                        <barButtonItem key="leftBarButtonItem" image="burgerMenu.png" id="eOb-dv-ix2">
+                            <color key="tintColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="burgerBtn" destination="eOb-dv-ix2" id="PAq-aa-oNp"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUP-65-y2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -997,6 +1021,6 @@
         <image name="sell.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l2o-Z9-JmT"/>
+        <segue reference="NlP-zJ-xga"/>
     </inferredMetricsTieBreakers>
 </document>

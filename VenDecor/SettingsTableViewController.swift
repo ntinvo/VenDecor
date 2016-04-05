@@ -11,7 +11,7 @@ import UIKit
 class SettingsTableViewController: UITableViewController {
 
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
-    var userInfo: [String] = [ "Username", "Email", "Zip Code", "Password" ]
+    var userInfo: [String] = [ "USERNAME", "EMAIL", "ZIP CODE", "CHANGE PASSWORD", "" ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,51 +48,62 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: (NSIndexPath!)) -> CGFloat {
         
         // Toggle the cell height - alternating between rows.
-        let cellSelector = indexPath.row % 2
         
-        if( indexPath.row == 8 ) {
-            return 65
-        } else if cellSelector == 0 {
-            return 70
-        } else {
+        if( indexPath.row % 2 != 0 && indexPath.section != 4 ) {
             return 35
+        } else {
+           return 75
         }
+        
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 5
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return ( userInfo.count * 2 ) + 1
+        //return ( userInfo.count * 2 ) + 1
+        return 2
     }
-
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return userInfo[ section ]
+    }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         print( indexPath.row )
         
-        if( indexPath.row == 8 ) {
+        if( indexPath.section == 4 && indexPath.row == 0 ) {
             let cell = tableView.dequeueReusableCellWithIdentifier("saveCell", forIndexPath: indexPath)
             // Configure the cell...
-            return cell
-        } else if( indexPath.row % 2 != 0 ) {
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("fillerCell", forIndexPath: indexPath)   
             return cell
+            
+        } else if( (indexPath.row % 2 != 0) || indexPath.section == 4 ) {
+            let cell = tableView.dequeueReusableCellWithIdentifier("fillerCell", forIndexPath: indexPath)
+            // Configure the cell...
+            return cell
+        
         } else {
             
             //let index = indexPath.row
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath) as! SettingsTableViewCell
             // Configure the cell...
             
             // TODO: can we access that label? Or do we need custom cells? Or could we manually add each cell in the storyboard? 
             
+            if( indexPath.section != 3 ) {
+                cell.userInfoTxtField.text = "testing"
+            } else {
+                cell.userInfoTxtField.secureTextEntry = true
+                cell.userInfoTxtField.text = "hidden"
+            }
             return cell
         }
     }

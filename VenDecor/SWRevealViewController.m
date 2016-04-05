@@ -59,6 +59,8 @@ static CGFloat statusBarAdjustment( UIView* view )
 @property (nonatomic, readonly) UIView *frontView;
 @property (nonatomic, assign) BOOL disableLayout;
 
+//added this var
+@property (weak) IBOutlet UITableViewCell *msgCell;
  
 
 
@@ -95,6 +97,7 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     
         _frontView = [[UIView alloc] initWithFrame:bounds];
         _frontView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+
         [self reloadShadow];
 
         [self addSubview:_frontView];
@@ -110,6 +113,7 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     frontViewLayer.shadowOpacity = _c.frontViewShadowOpacity;
     frontViewLayer.shadowOffset = _c.frontViewShadowOffset;
     frontViewLayer.shadowRadius = _c.frontViewShadowRadius;
+    
 }
 
 
@@ -230,6 +234,7 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     
     UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:shadowBounds];
     _frontView.layer.shadowPath = shadowPath.CGPath;
+    
 }
 
 
@@ -1827,9 +1832,23 @@ const int FrontViewPositionNone = 0xff;
 
 - (SWRevealViewController*)revealViewController
 {
+    
+    
     UIViewController *parent = self;
     Class revealClass = [SWRevealViewController class];
-    while ( nil != (parent = [parent parentViewController]) && ![parent isKindOfClass:revealClass] ) {}
+    while ( nil != (parent = [parent parentViewController]) && ![parent isKindOfClass:revealClass] ) { }
+    printf( "uiviewcontroller here? parent = %s\n", parent );
+    
+    
+    //from http://useyourloaf.com/blog/static-table-views-with-storyboards/
+   /* UIStoryboard *settingsStoryboard = [UIStoryboard
+                                        storyboardWithName:@"slideMenu"
+                                        bundle:nil];
+    UITableViewController *menuViewConroller = [settingsStoryboard
+                                               instantiateInitialTableViewController];
+    
+    menuViewConroller.view = NSLocalizedString(@"slideMenu", @"slideMenu");*/
+    
     return (id)parent;
 }
 
@@ -1879,6 +1898,7 @@ NSString * const SWSegueRightIdentifier = @"sw_right";
 {
     SWRevealViewController *rvc = [self.sourceViewController revealViewController];
     UIViewController *dvc = self.destinationViewController;
+    
     [rvc pushFrontViewController:dvc animated:YES];
 }
 

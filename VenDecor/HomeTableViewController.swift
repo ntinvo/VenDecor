@@ -183,7 +183,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             let dict = self.postings[ self.temp! ]
             let uid = dict.valueForKey( "userID" ) as? String
             
-            messageVC.rootRef = Firebase(url: String(url + uid!) )
+            messageVC.rootRef = Firebase(url: String(url + uid!) + "/messages" )
             
         } else if (segue.identifier == "postItem") {
             let navVC = segue.destinationViewController as! UINavigationController

@@ -36,6 +36,8 @@
 		9C56BBB11CB32C95003723C9 /* MyMessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C56BBB01CB32C95003723C9 /* MyMessagesTableViewController.swift */; };
 		9C84825C1CAB474600ABE9B2 /* cogwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C84825B1CAB474600ABE9B2 /* cogwheel.png */; };
 		9C8482601CAB4D0A00ABE9B2 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C84825F1CAB4D0A00ABE9B2 /* SettingsTableViewController.swift */; };
+		9CB6AB491CB4266700687EED /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB6AB481CB4266700687EED /* SettingsTableViewCell.swift */; };
+		9CB6AB4B1CB4289800687EED /* SaveSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB6AB4A1CB4289800687EED /* SaveSettingsTableViewCell.swift */; };
 		9CFA7DE51CA208A3009D7FB2 /* PostTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +76,8 @@
 		9C56BBB01CB32C95003723C9 /* MyMessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMessagesTableViewController.swift; sourceTree = "<group>"; };
 		9C84825B1CAB474600ABE9B2 /* cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cogwheel.png; sourceTree = SOURCE_ROOT; };
 		9C84825F1CAB4D0A00ABE9B2 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		9CB6AB481CB4266700687EED /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		9CB6AB4A1CB4289800687EED /* SaveSettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTemplateViewController.swift; sourceTree = "<group>"; };
 		A2E6D9FA1C003CA6EC5055F9 /* Pods-VenDecor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VenDecor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VenDecor/Pods-VenDecor.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +136,8 @@
 				9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */,
 				4C1CCD291CA781A0002C39E2 /* MessageViewController.swift */,
 				9C84825F1CAB4D0A00ABE9B2 /* SettingsTableViewController.swift */,
+				9CB6AB481CB4266700687EED /* SettingsTableViewCell.swift */,
+				9CB6AB4A1CB4289800687EED /* SaveSettingsTableViewCell.swift */,
 				9C56BBB01CB32C95003723C9 /* MyMessagesTableViewController.swift */,
 				9C20CE771CA34A3E0061AC7F /* Main.storyboard */,
 				4C977A381C9240680000A985 /* Assets.xcassets */,
@@ -320,6 +326,8 @@
 			files = (
 				4C51E1F81C9F62DE00622B71 /* HomeTableViewCell.swift in Sources */,
 				4C1CCD2A1CA781A0002C39E2 /* MessageViewController.swift in Sources */,
+				9CB6AB491CB4266700687EED /* SettingsTableViewCell.swift in Sources */,
+				9CB6AB4B1CB4289800687EED /* SaveSettingsTableViewCell.swift in Sources */,
 				4C977A441C9248810000A985 /* SignupViewController.swift in Sources */,
 				9C8482601CAB4D0A00ABE9B2 /* SettingsTableViewController.swift in Sources */,
 				4C977A341C9240680000A985 /* ViewController.swift in Sources */,
