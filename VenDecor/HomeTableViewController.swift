@@ -37,8 +37,6 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
-        print("view did load")
-        
         let postsRef = Firebase(url: "https://vendecor.firebaseio.com/posts")
         // Retrieve new posts as they are added to your database
         postsRef.observeEventType(.Value, withBlock: { snapshot in
@@ -53,6 +51,12 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
                 self.tableView.reloadData()
             }
         })
+    }
+    @IBAction func sortBtn(sender: AnyObject) {
+        let descriptor: NSSortDescriptor = NSSortDescriptor(key: "datePosted", ascending: false)
+        let sortedResults: NSArray = (self.postings as NSArray).sortedArrayUsingDescriptors([descriptor])
+        self.postings = sortedResults as! [NSDictionary]
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -182,8 +186,8 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             //print( "indexPath = " + String( indexPath!.row ) )
             let dict = self.postings[ self.temp! ]
             let uid = dict.valueForKey( "userID" ) as? String
-            
-            messageVC.rootRef = Firebase(url: String(url + uid!) + "/messages" )
+            messageVC.receiverID = uid
+            messageVC.rootRef = Firebase(url: String(url + uid!) )
             
         } else if (segue.identifier == "postItem") {
             let navVC = segue.destinationViewController as! UINavigationController

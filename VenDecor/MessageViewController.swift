@@ -28,10 +28,10 @@ class MessageViewController: JSQMessagesViewController {
     
     // MARK: Properties
     var rootRef: Firebase!
-    //var rootRef: Firebase!
     var messageRef: Firebase!
+    var messageQueryRef: Firebase!
     var messages = [JSQMessage]()
-    
+    var receiverID: String? = nil
     var temp:Int? = nil
 
     
@@ -56,16 +56,15 @@ class MessageViewController: JSQMessagesViewController {
         setupBubbles()
         
         
-       /* print(temp!)
-        if self.temp! == 0 {
-            rootRef = Firebase(url: "https://vendecor.firebaseio.com/fce5e426-5f38-402f-b310-787638a9bf38")
-        } else {
-            rootRef = Firebase(url: "https://vendecor.firebaseio.com/f7f52264-0a0c-4995-9a1a-c44d35aaf1fc")
-        }*/
+//        if self.temp! == 0 {
+//            rootRef = Firebase(url: "https:vendecor.firebaseio.com/fce5e426-5f38-402f-b310-787638a9bf38")
+//        } else {
+//            rootRef = Firebase(url: "https:vendecor.firebaseio.com/f7f52264-0a0c-4995-9a1a-c44d35aaf1fc")
+//        }
     
-        messageRef = rootRef.childByAppendingPath("messages")
+//        rootRef = Firebase(url : "https:vendecor.firebaseio.com/7244a6d7-9ea7-4af0-aac6-ca6a0760b6bf/")
+        messageRef = rootRef.childByAppendingPath("messages/" + self.rootRef.authData.uid)
         
-
         
         
         
@@ -124,7 +123,7 @@ class MessageViewController: JSQMessagesViewController {
     }
     
     private func observeMessages() {
-        let messagesQuery = messageRef.queryLimitedToLast(25)
+        let messagesQuery = messageQueryRef.queryLimitedToLast(25)
         messagesQuery.observeEventType(.ChildAdded) { (snapshot: FDataSnapshot!) in
             let id = snapshot.value["senderId"] as! String
             let text = snapshot.value["text"] as! String
