@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import Firebase
 
 class SettingsTableViewController: UITableViewController {
 
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
     var userInfo: [String] = [ "USERNAME", "EMAIL", "ZIP CODE", "CHANGE PASSWORD", "" ]
+    var username:String? = nil
+    var email:String? = nil
+    var zipcode:String? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +36,19 @@ class SettingsTableViewController: UITableViewController {
             self.burgerBtn.action = "revealToggle:"
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-
         
+        let myRootRef = Firebase( url: "https://vendecor.firebaseio.com/users/" )
+        let uid = myRootRef.authData.uid
+        let userAccount = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid )
+        
+        userAccount.observeEventType(.Value, withBlock: { snapshot in
+//            self.usernameLabel.text = snapshot.value.valueForKey( "username" ) as? String
+//            self.emailLabel.text = snapshot.value.valueForKey( "email" ) as? String
+//            self.zipLabel.text = snapshot.value.valueForKey( "zipcode" ) as? String
+//            self.dateJoinedLabel.text = snapshot.value.valueForKey( "datejoined" ) as? String
+            
+        })
+
     }
 
     override func didReceiveMemoryWarning() {

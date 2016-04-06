@@ -24,15 +24,28 @@ import UIKit
 import Firebase
 import JSQMessagesViewController
 
+
+//extension UIColor {
+//    convenience init(red: Int, green: Int, blue: Int)
+//    {
+//        let newRed = CGFloat(red) / 255
+//        let newGreen = CGFloat(green) / 255
+//        let newBlue = CGFloat(blue) / 255
+//        self.init(red: newRed, green: newGreen, blue: newBlue, alpha: 1.0)
+//    }
+//}
+
 class MessageViewController: JSQMessagesViewController {
     
     // MARK: Properties
-    var rootRef: Firebase!
+    var rootRef = Firebase(url: "https://vendecor.firebaseio.com/posts/")
     var messageRef: Firebase!
     var messageQueryRef: Firebase!
+    var typingRef: Firebase!
     var messages = [JSQMessage]()
     var receiverID: String? = nil
     var temp:Int? = nil
+    var postID:String? = nil
 
     
     var userIsTypingRef: Firebase!
@@ -54,25 +67,12 @@ class MessageViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBubbles()
-        
-        
-//        if self.temp! == 0 {
-//            rootRef = Firebase(url: "https:vendecor.firebaseio.com/fce5e426-5f38-402f-b310-787638a9bf38")
-//        } else {
-//            rootRef = Firebase(url: "https:vendecor.firebaseio.com/f7f52264-0a0c-4995-9a1a-c44d35aaf1fc")
-//        }
+        messageRef = rootRef.childByAppendingPath(self.postID! + "/messages")
+        typingRef = Firebase(url: "https://vendecor.firebaseio.com/posts/" + self.postID!)
     
-//        rootRef = Firebase(url : "https:vendecor.firebaseio.com/7244a6d7-9ea7-4af0-aac6-ca6a0760b6bf/")
-        messageRef = rootRef.childByAppendingPath("messages/" + self.rootRef.authData.uid)
-        
-        
-        
-        
-        
-        
         // No avatars
-        //collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
-        //collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
+//        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
+//        collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -119,11 +119,12 @@ class MessageViewController: JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
+        /// SET AVATAR HERE
         return nil
     }
     
     private func observeMessages() {
-        let messagesQuery = messageQueryRef.queryLimitedToLast(25)
+        let messagesQuery = messageRef.queryLimitedToLast(25)
         messagesQuery.observeEventType(.ChildAdded) { (snapshot: FDataSnapshot!) in
             let id = snapshot.value["senderId"] as! String
             let text = snapshot.value["text"] as! String
@@ -133,7 +134,7 @@ class MessageViewController: JSQMessagesViewController {
     }
     
     private func observeTyping() {
-        let typingIndicatorRef = rootRef.childByAppendingPath("typingIndicator")
+        let typingIndicatorRef = typingRef.childByAppendingPath("typingIndicator")
         userIsTypingRef = typingIndicatorRef.childByAppendingPath(senderId)
         userIsTypingRef.onDisconnectRemoveValue()
         usersTypingQuery = typingIndicatorRef.queryOrderedByValue().queryEqualToValue(true)
@@ -183,10 +184,14 @@ class MessageViewController: JSQMessagesViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+
+    
     private func setupBubbles() {
         let bubbleImageFactory = JSQMessagesBubbleImageFactory()
-        outgoingBubbleImageView = bubbleImageFactory.outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleBlueColor())
+        outgoingBubbleImageView = bubbleImageFactory.outgoingMessagesBubbleImageWithColor(UIColor(red: 68/255, green: 105/255, blue: 140/255, alpha: 1.0))
         incomingBubbleImageView = bubbleImageFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     }
+    
+    
     
 }

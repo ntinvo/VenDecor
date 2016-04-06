@@ -181,13 +181,15 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             messageVC.senderId = myRootRef.authData.uid
             messageVC.senderDisplayName = ""
             messageVC.temp = self.temp!
-            let url = "https://vendecor.firebaseio.com/users/"
-            print( self.temp! )
-            //print( "indexPath = " + String( indexPath!.row ) )
             let dict = self.postings[ self.temp! ]
             let uid = dict.valueForKey( "userID" ) as? String
+            let postID = dict.valueForKey("id") as? String
+            let postTitle = dict.valueForKey("title") as? String
+            messageVC.title = postTitle!
             messageVC.receiverID = uid
-            messageVC.rootRef = Firebase(url: String(url + uid!) )
+            messageVC.postID = postID
+            //messageVC.rootRef = Firebase(url: String(url + uid!) )
+            print(postID)
             
         } else if (segue.identifier == "postItem") {
             let navVC = segue.destinationViewController as! UINavigationController

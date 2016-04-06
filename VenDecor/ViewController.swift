@@ -116,6 +116,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     }
     
+    @IBAction func resetPassword(sender: AnyObject) {
+        //myRootRef.resetPasswordForUser(email: r_frock@yahoo.com", withCompletionBlock: ((NSError!) -> Void)! )
+        
+        
+        myRootRef.resetPasswordForUser("r_frock@yahoo.com") { (error) -> Void in
+            print("sent")
+        }
+    }
+    
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
         return false
     }
