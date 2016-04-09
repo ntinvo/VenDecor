@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 class MyMessagesTableViewController: UITableViewController {
 
+    var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
+    var postIDs = [String]()
+    var messageTitles = [String]()
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -30,7 +34,52 @@ class MyMessagesTableViewController: UITableViewController {
             self.burgerBtn.action = "revealToggle:"
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        
+        let uid = myRootRef.authData.uid
+        let postsRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/postIDs")
+        // Retrieve new posts as they are added to your database
+        postsRef.observeEventType(.Value, withBlock: { snapshot in
+            print( "first" )
+            print( snapshot.value)
+            
+            if( !snapshot.value.exists() ) {
+                
+            } else {
+            let postIDsSnap = snapshot.value as! NSDictionary
+            
 
+            let enumerator = postIDsSnap.keyEnumerator()
+            while let key = enumerator.nextObject() {
+                let postID = postIDsSnap[String(key)] as! String
+                //self.postIDs.append( postID )
+                
+                //for post in postIDs {
+                    let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + postID + "/title")
+                    // Retrieve new posts as they are added to your database
+                    postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
+                        print( "second" )
+                        print( snapshot.value )
+                        let messageTitle = snapshot.value as! String
+                        
+                        self.messageTitles.append( messageTitle )
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.tableView.reloadData()
+                        }
+                    })
+                    
+               // }
+
+                
+                
+            }
+            /*dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+            }*/
+            }
+        })
+
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,20 +91,24 @@ class MyMessagesTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        print( "num rows = " + String( self.messageTitles.count ) )
+        return messageTitles.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("msgCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
         // Configure the cell...
-
+        
+        cell.textLabel!.text = messageTitles[ indexPath.row ]
+        cell.detailTextLabel!.text = "<message>"
+        
         return cell
     }
     

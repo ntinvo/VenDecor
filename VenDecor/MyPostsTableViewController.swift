@@ -1,21 +1,21 @@
 //
-//  SettingsTableViewController.swift
+//  MyPostsTableViewController.swift
 //  VenDecor
 //
-//  Created by Rachel Frock on 3/29/16.
+//  Created by Rachel Frock on 4/8/16.
 //  Copyright © 2016 cs378. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class SettingsTableViewController: UITableViewController {
+class MyPostsTableViewController: UITableViewController {
 
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
-    var userInfo: [String] = [ "USERNAME", "EMAIL", "ZIP CODE", "CHANGE PASSWORD", "" ]
-    var username:String? = nil
-    var email:String? = nil
-    var zipcode:String? = nil
+    var myRootRef = Firebase( url:"https://vendecor.firebaseio.com")
+    var messageTitles = [String]()
+    var postImages = [String]()
+    var postDates = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,107 +30,98 @@ class SettingsTableViewController: UITableViewController {
         let logo = UIImage(named: "Sample.png")
         let imageView = UIImageView(image: logo)
         self.navigationItem.titleView = imageView
-        
         if revealViewController() != nil {
             self.burgerBtn.target = revealViewController()
             self.burgerBtn.action = "revealToggle:"
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
-        let myRootRef = Firebase( url: "https://vendecor.firebaseio.com/users/" )
         let uid = myRootRef.authData.uid
-        let userAccount = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid )
-        
-        userAccount.observeEventType(.Value, withBlock: { snapshot in
-            self.username = snapshot.value.valueForKey( "username" ) as? String
-            self.email = snapshot.value.valueForKey( "email" ) as? String
-            self.zipcode = snapshot.value.valueForKey( "zipcode" ) as? String
+        let postsRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/postIDs/")
+        // Retrieve new posts as they are added to your database
+        postsRef.observeEventType(.Value, withBlock: { snapshot in
+            print( "first" )
+            print( snapshot.value)
             
-            dispatch_async(dispatch_get_main_queue()) {
-                self.tableView.reloadData()
+            if( !snapshot.value.exists() ) {
+                print( "value doesn't exist" )
+                // do nothing
+            }else {
+                let postIDsSnap = snapshot.value as! NSDictionary
+            
+            
+            let enumerator = postIDsSnap.keyEnumerator()
+            while let key = enumerator.nextObject() {
+                let postID = postIDsSnap[String(key)] as! String
+                //self.postIDs.append( postID )
+                
+                //for post in postIDs {
+                let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + postID )
+                // Retrieve new posts as they are added to your database
+                postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
+                    print( "second" )
+                    print( snapshot.value )
+                    let messageTitle = snapshot.value.valueForKey("title") as! String
+                    let postImage = snapshot.value.valueForKey("image") as! String
+                    let datePosted = snapshot.value.valueForKey("datePosted") as! String
+                    
+                    self.messageTitles.append( messageTitle )
+                    self.postImages.append( postImage )
+                    self.postDates.append( datePosted )
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.tableView.reloadData()
+                    }
+                })
+                
+                 }
+                
+                
+                
             }
-            
-        })
+            /*dispatch_async(dispatch_get_main_queue()) {
+            self.tableView.reloadData()
+            }*/
 
+        })
+        
+
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func loadDataModel() {
-        // get user info to fill cells
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: (NSIndexPath!)) -> CGFloat {
-        
-        // Toggle the cell height - alternating between rows.
-        
-        if( indexPath.row % 2 != 0 && indexPath.section != 4 ) {
-            return 35
-        } else {
-           return 75
-        }
-        
-    }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 5
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        //return ( userInfo.count * 2 ) + 1
-        return 2
-    }
-    
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return userInfo[ section ]
+        return self.messageTitles.count
     }
 
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+
+        // Configure the cell...
+
+        cell.textLabel!.text = messageTitles[ indexPath.row ]
         
-        print( indexPath.row )
+        let image = postImages[indexPath.row]
+        let decodedData = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+        let decodedImage = UIImage(data: decodedData!)
+        cell.imageView!.image = decodedImage
         
-        if( indexPath.section == 4 && indexPath.row == 0 ) {
-            let cell = tableView.dequeueReusableCellWithIdentifier("saveCell", forIndexPath: indexPath)
-            // Configure the cell...
-            
-            return cell
-            
-        } else if( (indexPath.row % 2 != 0) || indexPath.section == 4 ) {
-            let cell = tableView.dequeueReusableCellWithIdentifier("fillerCell", forIndexPath: indexPath)
-            // Configure the cell...
-            return cell
+        cell.detailTextLabel!.text = postDates[ indexPath.row ]
         
-        } else {
-            
-            //let index = indexPath.row
-            
-            let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath) as! SettingsTableViewCell
-            // Configure the cell...
-            
-            // TODO: can we access that label? Or do we need custom cells? Or could we manually add each cell in the storyboard? 
-            
-            if( indexPath.section != 3 ) {
-                print("here" )
-                if( indexPath.section == 0 ) {
-                    cell.userInfoTxtField.text = username
-                } else if( indexPath.section == 1 ) {
-                    cell.userInfoTxtField.text = email
-                } else {
-                    cell.userInfoTxtField.text = zipcode
-                }
-            } else {
-                cell.userInfoTxtField.secureTextEntry = true
-                cell.userInfoTxtField.text = "hidden"
-            }
-            return cell
-        }
+        return cell
     }
 
 

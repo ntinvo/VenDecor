@@ -46,7 +46,6 @@ class MessageViewController: JSQMessagesViewController {
     var receiverID: String? = nil
     var temp:Int? = nil
     var postID:String? = nil
-
     
     var userIsTypingRef: Firebase!
     var usersTypingQuery: FQuery!
@@ -181,6 +180,8 @@ class MessageViewController: JSQMessagesViewController {
     }
     
     @IBAction func finishedMessaging(sender: AnyObject) {
+        //self.homeTableViewController?.postings.removeAll()
+        //self.homeTableViewController?.tableView.reloadData()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

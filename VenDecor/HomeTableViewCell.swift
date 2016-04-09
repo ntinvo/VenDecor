@@ -108,6 +108,9 @@ class HomeTableViewCell: UITableViewCell {
         
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
             //print("Ok Button Pressed 1");
+            
+            // add saved post to DB
+            
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
             //print("Ok Button Pressed 1");

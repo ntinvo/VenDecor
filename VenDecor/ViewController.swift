@@ -22,6 +22,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTxtField: UITextField!
     
     var alertController: UIAlertController? = nil
+    var forgotAlertController: UIAlertController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,6 +120,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func resetPassword(sender: AnyObject) {
         //myRootRef.resetPasswordForUser(email: r_frock@yahoo.com", withCompletionBlock: ((NSError!) -> Void)! )
         
+        //TODO- get users email
+        
+        let email: String? = nil
+        
+        self.forgotAlertController = UIAlertController(title: "Error", message: "Invalid email or email was already taken!", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+            //print("Ok Button Pressed 1");
+        }
+        self.forgotAlertController!.addAction(okAction)
+        
+        self.presentViewController(self.forgotAlertController!, animated: true, completion:nil)
         
         myRootRef.resetPasswordForUser("r_frock@yahoo.com") { (error) -> Void in
             print("sent")
