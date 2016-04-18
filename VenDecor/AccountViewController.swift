@@ -66,6 +66,7 @@ class AccountViewController: UIViewController {
     }
     
     func imageTapped(img : AnyObject) {
+        // change profile image
         print("GG")
     }
     
