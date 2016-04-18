@@ -9,7 +9,7 @@
 import UIKit
 import Firebase 
 
-class PostTemplateViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     // Properties
     @IBOutlet weak var titleTxtField: UITextField!
@@ -30,12 +30,15 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UINavig
         super.viewDidLoad()
         
         self.titleTxtField.delegate = self
-        //self.descriptionTxtField.delegate = self
+        self.descriptionTxtField.delegate = self
         self.priceTxtField.delegate = self
         self.conditionTxtField.delegate = self
         self.streetTxtField.delegate = self
         self.stateTextField.delegate = self
         self.zipTxtField.delegate = self
+        
+        self.descriptionTxtField.text = "Description"
+        self.descriptionTxtField.textColor = UIColor.lightGrayColor()
     
         let logo = UIImage(named: "Sample.png")
         let imageView = UIImageView(image: logo)
@@ -160,14 +163,28 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UINavig
         self.zipTxtField.resignFirstResponder()
         return true
     }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.textColor == UIColor.lightGrayColor() {
+            textView.text = ""
+            textView.textColor = UIColor.blackColor()
+        }
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Description"
+            textView.textColor = UIColor.lightGrayColor()
+        }
+    }
 
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    /*func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if(text == "\n") {
             descriptionTxtField.resignFirstResponder()
             return false
         }
         return true
-    }
+    }*/
     
     @IBAction func cancelBtn(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
