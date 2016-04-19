@@ -124,6 +124,8 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
                 
                 self.homeTableViewController?.postings.removeAll()
                 self.homeTableViewController?.tableView.reloadData()
+                self.homeTableViewController?.postings.removeAll()
+                self.homeTableViewController?.tableView.reloadData()
             })
         }
         self.dismissViewControllerAnimated(true, completion: nil)

@@ -185,6 +185,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             messageVC.title = postTitle!
             messageVC.receiverID = uid
             messageVC.postID = postID
+            messageVC.homeTableViewController = self
         } else if (segue.identifier == "postItem") {
             let navVC = segue.destinationViewController as! UINavigationController
             let postTemplateVC = navVC.viewControllers.first as! PostTemplateViewController

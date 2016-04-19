@@ -42,41 +42,41 @@ class MyMessagesTableViewController: UITableViewController {
             print( "first" )
             print( snapshot.value)
             
-            if( !snapshot.value.exists() ) {
-                
-            } else {
-            let postIDsSnap = snapshot.value as! NSDictionary
-            
-
-            let enumerator = postIDsSnap.keyEnumerator()
-            while let key = enumerator.nextObject() {
-                let postID = postIDsSnap[String(key)] as! String
-                //self.postIDs.append( postID )
-                
-                //for post in postIDs {
-                    let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + postID + "/title")
-                    // Retrieve new posts as they are added to your database
-                    postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
-                        print( "second" )
-                        print( snapshot.value )
-                        let messageTitle = snapshot.value as! String
-                        
-                        self.messageTitles.append( messageTitle )
-                        
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.tableView.reloadData()
-                        }
-                    })
-                    
-               // }
-
-                
-                
-            }
-            /*dispatch_async(dispatch_get_main_queue()) {
-                self.tableView.reloadData()
-            }*/
-            }
+//            if( !snapshot.value.exists() ) {
+//                
+//            } else {
+//            let postIDsSnap = snapshot.value as! NSDictionary
+//            
+//
+//            let enumerator = postIDsSnap.keyEnumerator()
+//            while let key = enumerator.nextObject() {
+//                let postID = postIDsSnap[String(key)] as! String
+//                //self.postIDs.append( postID )
+//                
+//                //for post in postIDs {
+//                    let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + postID + "/title")
+//                    // Retrieve new posts as they are added to your database
+//                    postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
+//                        print( "second" )
+//                        print( snapshot.value )
+//                        let messageTitle = snapshot.value as! String
+//                        
+//                        self.messageTitles.append( messageTitle )
+//                        
+//                        dispatch_async(dispatch_get_main_queue()) {
+//                            self.tableView.reloadData()
+//                        }
+//                    })
+//                    
+//               // }
+//
+//                
+//                
+//            }
+//            /*dispatch_async(dispatch_get_main_queue()) {
+//                self.tableView.reloadData()
+//            }*/
+//            }
         })
 
         

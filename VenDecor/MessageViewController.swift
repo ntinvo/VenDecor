@@ -25,15 +25,6 @@ import Firebase
 import JSQMessagesViewController
 
 
-//extension UIColor {
-//    convenience init(red: Int, green: Int, blue: Int)
-//    {
-//        let newRed = CGFloat(red) / 255
-//        let newGreen = CGFloat(green) / 255
-//        let newBlue = CGFloat(blue) / 255
-//        self.init(red: newRed, green: newGreen, blue: newBlue, alpha: 1.0)
-//    }
-//}
 
 class MessageViewController: JSQMessagesViewController {
     
@@ -46,6 +37,7 @@ class MessageViewController: JSQMessagesViewController {
     var receiverID: String? = nil
     var temp:Int? = nil
     var postID:String? = nil
+    var homeTableViewController: HomeTableViewController? = nil
     
     var userIsTypingRef: Firebase!
     var usersTypingQuery: FQuery!
@@ -172,6 +164,7 @@ class MessageViewController: JSQMessagesViewController {
         itemRef.setValue(messageItem)
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         finishSendingMessage()
+
         isTyping = false
     }
     
@@ -180,8 +173,24 @@ class MessageViewController: JSQMessagesViewController {
     }
     
     @IBAction func finishedMessaging(sender: AnyObject) {
-        //self.homeTableViewController?.postings.removeAll()
-        //self.homeTableViewController?.tableView.reloadData()
+        self.homeTableViewController?.postings.removeAll()
+        let postsRef = Firebase(url: "https://vendecor.firebaseio.com/posts")
+        
+        // Retrieve new posts as they are added to your database
+        postsRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            let posts = snapshot.value as! NSDictionary
+            
+            let enumerator = posts.keyEnumerator()
+            while let key = enumerator.nextObject() {
+                let post = posts[String(key)] as! NSDictionary
+                self.homeTableViewController?.postings.append(post)
+            }
+            dispatch_async(dispatch_get_main_queue()) {
+                self.homeTableViewController?.tableView.reloadData()
+            }
+        })
+
+//        self.homeTableViewController?.tableView.reloadData()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
