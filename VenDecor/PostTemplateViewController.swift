@@ -80,7 +80,6 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     
     @IBAction func postItem(sender: AnyObject) {
         if( self.myRootRef.authData != nil ) {
-            print( self.myRootRef.authData.uid )
         }
         
         let date = NSDate()
@@ -125,11 +124,9 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
                 
                 self.homeTableViewController?.postings.removeAll()
                 self.homeTableViewController?.tableView.reloadData()
-                
             })
         }
         self.dismissViewControllerAnimated(true, completion: nil)
-
     }
     
     // Called when the user touches on the main view (outside the UITextField).

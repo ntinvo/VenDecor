@@ -9,9 +9,7 @@
 import UIKit
 import Firebase
 
-class AccountViewController: UIViewController {
-
-    
+class AccountViewController: UIViewController {    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -23,10 +21,9 @@ class AccountViewController: UIViewController {
         super.viewDidLoad()
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
         self.profileImageView.clipsToBounds = true;
-        //profileImageView.frame = CGRectMake(0, 0, 50, 50)
-//
-//        self.btnPicture.layer.cornerRadius = self.btnPicture.frame.size.width / 2;
-//        self.btnPicture.clipsToBounds = true;
+//      profileImageView.frame = CGRectMake(0, 0, 50, 50)
+//      self.btnPicture.layer.cornerRadius = self.btnPicture.frame.size.width / 2;
+//      self.btnPicture.clipsToBounds = true;
         
         // navigation bar
         let logo = UIImage(named: "Sample.png")
@@ -47,17 +44,11 @@ class AccountViewController: UIViewController {
         let userAccount = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid )
         
         userAccount.observeEventType(.Value, withBlock: { snapshot in
-            //self.numPosts = snapshot.value as? Int
-            
-            print( snapshot.value )
             self.usernameLabel.text = snapshot.value.valueForKey( "username" ) as? String
             self.emailLabel.text = snapshot.value.valueForKey( "email" ) as? String
             self.zipLabel.text = snapshot.value.valueForKey( "zipcode" ) as? String
             self.dateJoinedLabel.text = snapshot.value.valueForKey( "datejoined" ) as? String
-            
         })
-        
-        
     }
 
     override func didReceiveMemoryWarning() {

@@ -80,7 +80,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         myRootRef.authUser(emailTxtField!.text, password: passwordTxtField.text,
             withCompletionBlock: { (error, auth) in
                 if error != nil {
-                    print( "inside if " )
                     self.alertController = UIAlertController(title: "Error", message: "Wrong email or password", preferredStyle: UIAlertControllerStyle.Alert)
                     
                     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
@@ -99,22 +98,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                 print("Invalid password")
                                 //TODO
                             default:
-                                //TOOD
+                                //TODO
                                 print("default")
                         }
                     }
-                    
                 } else {
-                    
-                    print( "auth = " + String( auth ) )
                     self.performSegueWithIdentifier("completedLogin", sender: sender)
-                    
                 }
         })
-        
-        
-        
-
     }
     
     @IBAction func resetPassword(sender: AnyObject) {
