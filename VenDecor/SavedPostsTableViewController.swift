@@ -13,6 +13,9 @@ class SavedPostsTableViewController: UITableViewController {
 
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
     var myRootRef = Firebase( url:"https://vendecor.firebaseio.com")
+    var messageTitles = [String]()
+    var postImages = [String]()
+    var postDates = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +36,6 @@ class SavedPostsTableViewController: UITableViewController {
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
 
-        
         let uid = myRootRef.authData.uid
         let postsRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/savedIDs/")
         // Retrieve new posts as they are added to your database
@@ -49,9 +51,9 @@ class SavedPostsTableViewController: UITableViewController {
                     let postImage = snapshot.value.valueForKey("image") as! String
                     let datePosted = snapshot.value.valueForKey("datePosted") as! String
 
-                    print(messageTitle)
-                    print(postImage)
-                    print(datePosted)
+                    self.messageTitles.append( messageTitle )
+                    self.postImages.append( postImage )
+                    self.postDates.append( datePosted )
                     
                     dispatch_async(dispatch_get_main_queue()) {
                         self.tableView.reloadData()
@@ -72,24 +74,30 @@ class SavedPostsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.messageTitles.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
         // Configure the cell...
+        cell.textLabel!.text = messageTitles[ indexPath.row ]
+        
+        let image = postImages[indexPath.row]
+        let decodedData = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+        let decodedImage = UIImage(data: decodedData!)
+        cell.imageView!.image = decodedImage
+        
+        cell.detailTextLabel!.text = postDates[ indexPath.row ]
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
