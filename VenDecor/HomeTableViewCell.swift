@@ -101,9 +101,7 @@ class HomeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    @IBAction func saveBtn(sender: AnyObject) {
-        print("save")
-        
+    @IBAction func saveBtn(sender: AnyObject) {        
         self.alertController = UIAlertController(title: "Save Item", message: "This item will be stored under Saved Items", preferredStyle: UIAlertControllerStyle.Alert)
         
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
@@ -129,8 +127,6 @@ class HomeTableViewCell: UITableViewCell {
     
     
     @IBAction func claimBtn(sender: AnyObject) {
-        print("claim")
-        
         self.alertController = UIAlertController(title: "Claim Item", message: "Pick up the item within 24 hours. Contact the seller for more details.", preferredStyle: UIAlertControllerStyle.Alert)
         
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in

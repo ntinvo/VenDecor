@@ -54,7 +54,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     }
     @IBAction func sortBtn(sender: AnyObject) {
         print( "sorted")
-        let descriptor: NSSortDescriptor = NSSortDescriptor(key: "datePosted", ascending: false)
+        let descriptor: NSSortDescriptor = NSSortDescriptor(key: "datePosted", ascending: true)
         let sortedResults: NSArray = (self.postings as NSArray).sortedArrayUsingDescriptors([descriptor])
         self.postings = sortedResults as! [NSDictionary]
         self.tableView.reloadData()
@@ -101,7 +101,6 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print("count")
         return self.postings.count
     }
 
@@ -111,8 +110,6 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         
         cell.homeTableViewController = self
         cell.cellNum = indexPath.row
-        print("down")
-
         
         let dict = self.postings[indexPath.row]
         cell.title.text = String(dict.valueForKey("title")!)
@@ -189,9 +186,6 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             messageVC.title = postTitle!
             messageVC.receiverID = uid
             messageVC.postID = postID
-            //messageVC.rootRef = Firebase(url: String(url + uid!) )
-            print(postID)
-            
         } else if (segue.identifier == "postItem") {
             let navVC = segue.destinationViewController as! UINavigationController
             let postTemplateVC = navVC.viewControllers.first as! PostTemplateViewController

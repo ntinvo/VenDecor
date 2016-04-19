@@ -142,8 +142,6 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate {
     
     func textFieldDidEndEditing(textField: UITextField) {
         //let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath!) as! SettingsTableViewCell
-
-        print( "end edit" )
         
         self.inputUserInfoText.append(textField.text!)
         print(self.inputUserInfoText)
