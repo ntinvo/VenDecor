@@ -1836,9 +1836,7 @@ const int FrontViewPositionNone = 0xff;
     
     UIViewController *parent = self;
     Class revealClass = [SWRevealViewController class];
-    while ( nil != (parent = [parent parentViewController]) && ![parent isKindOfClass:revealClass] ) { }
-    printf( "uiviewcontroller here? parent = %s\n", parent );
-    
+    while ( nil != (parent = [parent parentViewController]) && ![parent isKindOfClass:revealClass] ) { }    
     
     //from http://useyourloaf.com/blog/static-table-views-with-storyboards/
    /* UIStoryboard *settingsStoryboard = [UIStoryboard
