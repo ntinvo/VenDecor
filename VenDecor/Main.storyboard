@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -175,7 +175,6 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="burderBtn" destination="nac-Kq-Bcv" id="xWZ-tC-YXf"/>
                         <outlet property="burgerBtn" destination="nac-Kq-Bcv" id="EJX-nW-2Ar"/>
                     </connections>
                 </tableViewController>
@@ -308,6 +307,9 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Kg2-Pd-UC3" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="RpV-Ri-sc0"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuMsgCell" textLabel="yn6-Gm-2av" imageView="7mS-Uu-6d8" style="IBUITableViewCellStyleDefault" id="Pqm-hB-YU4">
                                         <rect key="frame" x="0.0" y="220" width="414" height="44"/>
@@ -863,7 +865,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9jr-3J-sDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3759" y="4668"/>
+            <point key="canvasLocation" x="-3771" y="4668"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="LFY-53-S7D">
@@ -1110,7 +1112,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUP-65-y2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2875" y="4694"/>
+            <point key="canvasLocation" x="-2867" y="4694"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Np5-Fo-l6i">
@@ -1205,6 +1207,6 @@
         <image name="sell.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NlP-zJ-xga"/>
+        <segue reference="l2o-Z9-JmT"/>
     </inferredMetricsTieBreakers>
 </document>

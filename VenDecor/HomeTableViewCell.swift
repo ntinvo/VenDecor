@@ -112,9 +112,7 @@ class HomeTableViewCell: UITableViewCell {
         // alert
         self.alertController = UIAlertController(title: "Save Item", message: "This item will be stored under Saved Posts", preferredStyle: UIAlertControllerStyle.Alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
         self.alertController!.addAction(okAction)
-        self.alertController!.addAction(cancelAction)
         self.homeTableViewController!.presentViewController(self.alertController!, animated: true, completion:nil)
     }
     
