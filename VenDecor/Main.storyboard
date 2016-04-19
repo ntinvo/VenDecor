@@ -127,7 +127,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pcA-7Q-bPt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1173" y="4718"/>
+            <point key="canvasLocation" x="-2425" y="4766"/>
         </scene>
         <!--Saved Posts Table View Controller-->
         <scene sceneID="sjZ-mn-CTn">
@@ -180,7 +180,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vCg-4C-Gsz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-430" y="4711"/>
+            <point key="canvasLocation" x="-1682" y="4759"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="WoX-Hx-hc6">
@@ -965,7 +965,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="frP-ps-ldj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1990" y="4668"/>
+            <point key="canvasLocation" x="-3242" y="4716"/>
         </scene>
         <!--SignUp-->
         <scene sceneID="BK2-L1-OZj">
@@ -1096,6 +1096,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="ZHo-2i-8bq" kind="modal" id="xKR-cd-RC6"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1115,7 +1118,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUP-65-y2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2867" y="4694"/>
+            <point key="canvasLocation" x="-831" y="4750"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Np5-Fo-l6i">
@@ -1134,7 +1137,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="va3-09-HEF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1990" y="3651"/>
+            <point key="canvasLocation" x="-3242" y="3699"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3mA-ky-eFh">
@@ -1153,7 +1156,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ieH-JA-fya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2867" y="3643"/>
+            <point key="canvasLocation" x="-831" y="3699"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="diB-7c-gNR">
@@ -1172,7 +1175,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oGR-W7-fty" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-430" y="3643"/>
+            <point key="canvasLocation" x="-1682" y="3691"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rs9-hn-dVL">
@@ -1191,7 +1194,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMV-or-C2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1173" y="3658"/>
+            <point key="canvasLocation" x="-2425" y="3706"/>
         </scene>
     </scenes>
     <resources>
@@ -1211,5 +1214,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="l2o-Z9-JmT"/>
+        <segue reference="xKR-cd-RC6"/>
     </inferredMetricsTieBreakers>
 </document>

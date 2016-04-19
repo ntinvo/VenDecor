@@ -14,6 +14,7 @@ class MyMessagesTableViewController: UITableViewController {
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
     var lastTexts = [String]()
     var messageTitles = [String]()
+    var postsID = [String]()
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -58,11 +59,9 @@ class MyMessagesTableViewController: UITableViewController {
                                 let lastText = msgDict.valueForKey(lastKey)!["text"]!
                                 self.messageTitles.append(postTitle as! String)
                                 self.lastTexts.append(lastText as! String)
+                                self.postsID.append(String(postIDsSnap[postID]))
                             }
                         }
-                        
-                        print(self.messageTitles)
-                        print(self.lastTexts)
                         
                         dispatch_async(dispatch_get_main_queue()) {
                             self.tableView.reloadData()
@@ -139,14 +138,19 @@ class MyMessagesTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let navVC = segue.destinationViewController as! UINavigationController
+        let messageVC = navVC.viewControllers.first as! MessageViewController
+        let indexPath = tableView.indexPathForSelectedRow!
+        messageVC.postID = self.postsID[indexPath.row]
+        messageVC.senderId = myRootRef.authData.uid
+        messageVC.senderDisplayName = ""
+        messageVC.myMessagesViewController = self
     }
-    */
+ 
 
 }

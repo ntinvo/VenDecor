@@ -137,7 +137,6 @@ class HomeTableViewCell: UITableViewCell {
 
         self.alertController!.addAction(okAction)
         self.alertController!.addAction(cancelAction)
-        
         self.homeTableViewController!.presentViewController(self.alertController!, animated: true, completion:nil)
     }
     

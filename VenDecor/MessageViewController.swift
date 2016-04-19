@@ -38,6 +38,7 @@ class MessageViewController: JSQMessagesViewController {
     var temp:Int? = nil
     var postID:String? = nil
     var homeTableViewController: HomeTableViewController? = nil
+    var myMessagesViewController: MyMessagesTableViewController? = nil
     
     var userIsTypingRef: Firebase!
     var usersTypingQuery: FQuery!
@@ -165,6 +166,7 @@ class MessageViewController: JSQMessagesViewController {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         finishSendingMessage()
 
+        
         isTyping = false
     }
     
@@ -190,7 +192,7 @@ class MessageViewController: JSQMessagesViewController {
             }
         })
 
-//        self.homeTableViewController?.tableView.reloadData()
+
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
