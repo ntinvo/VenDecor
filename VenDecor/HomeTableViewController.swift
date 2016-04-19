@@ -118,6 +118,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         cell.condition.text = String(dict.valueForKey("condition")!)
         cell.location.text = String(dict.valueForKey("street")!) + " " + String(dict.valueForKey("state")!) + " " + String(dict.valueForKey("zip")!)
         cell.datePostedLabel.text = String( dict.valueForKey("datePosted")! )
+        cell.postID = String(dict.valueForKey("id")!)
         let decodedData = NSData(base64EncodedString: String(dict.valueForKey("image")!), options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
         
         let decodedImage = UIImage(data: decodedData!)
@@ -127,9 +128,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     }
 
     @IBAction func sellBtn(sender: AnyObject) {
-        
         self.performSegueWithIdentifier("postItem", sender: sender)
-        
     }
     
     /*

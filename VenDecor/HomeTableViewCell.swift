@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeTableViewCell: UITableViewCell {
 
@@ -21,9 +22,10 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var claimLabel: UILabel!
     @IBOutlet weak var datePostedLabel: UILabel!
     
-    var alertController: UIAlertController? = nil
     
+    var alertController: UIAlertController? = nil
     var homeTableViewController: HomeTableViewController? = nil
+    var postID: String? = nil
     var cellNum: Int? = nil
     
     /*
@@ -97,26 +99,22 @@ class HomeTableViewCell: UITableViewCell {
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 
-    @IBAction func saveBtn(sender: AnyObject) {        
-        self.alertController = UIAlertController(title: "Save Item", message: "This item will be stored under Saved Items", preferredStyle: UIAlertControllerStyle.Alert)
+    @IBAction func saveBtn(sender: AnyObject) {
+        // save post id to Firebase
+        let myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
+        let myUserRef = Firebase(url:"https://vendecor.firebaseio.com/users/" + myRootRef.authData.uid)
+        let postIDsRef = myUserRef.childByAppendingPath("savedIDs")
+        postIDsRef.childByAppendingPath(String(self.postID!)).setValue(self.postID!)
         
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
-            //print("Ok Button Pressed 1");
-            
-            // add saved post to DB
-            
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
-            //print("Ok Button Pressed 1");
-        }
-        
+        // alert
+        self.alertController = UIAlertController(title: "Save Item", message: "This item will be stored under Saved Posts", preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
         self.alertController!.addAction(okAction)
         self.alertController!.addAction(cancelAction)
-        
         self.homeTableViewController!.presentViewController(self.alertController!, animated: true, completion:nil)
     }
     
