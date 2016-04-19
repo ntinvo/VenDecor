@@ -12,7 +12,7 @@ import Firebase
 class MyMessagesTableViewController: UITableViewController {
 
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
-    var postIDs = [String]()
+    var lastTexts = [String]()
     var messageTitles = [String]()
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
     
@@ -36,50 +36,41 @@ class MyMessagesTableViewController: UITableViewController {
         }
         
         let uid = myRootRef.authData.uid
-        let postsRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/postIDs")
+        let postsRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/postIDs/")
         // Retrieve new posts as they are added to your database
         postsRef.observeEventType(.Value, withBlock: { snapshot in
-            print( "first" )
-            print( snapshot.value)
-            
-//            if( !snapshot.value.exists() ) {
-//                
-//            } else {
-//            let postIDsSnap = snapshot.value as! NSDictionary
-//            
-//
-//            let enumerator = postIDsSnap.keyEnumerator()
-//            while let key = enumerator.nextObject() {
-//                let postID = postIDsSnap[String(key)] as! String
-//                //self.postIDs.append( postID )
-//                
-//                //for post in postIDs {
-//                    let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + postID + "/title")
-//                    // Retrieve new posts as they are added to your database
-//                    postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
-//                        print( "second" )
-//                        print( snapshot.value )
-//                        let messageTitle = snapshot.value as! String
-//                        
-//                        self.messageTitles.append( messageTitle )
-//                        
-//                        dispatch_async(dispatch_get_main_queue()) {
-//                            self.tableView.reloadData()
-//                        }
-//                    })
-//                    
-//               // }
-//
-//                
-//                
-//            }
-//            /*dispatch_async(dispatch_get_main_queue()) {
-//                self.tableView.reloadData()
-//            }*/
-//            }
+            if !(snapshot.value is NSNull) {
+                let postIDsSnap = snapshot.value as! NSArray
+                for postID in 0...(postIDsSnap.count - 1) {
+                    
+                    let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(postIDsSnap[postID]))
+                    
+                    // Retrieve new posts as they are added to your database
+                    postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
+                        
+                        if !(snapshot.value is NSNull) {
+                            let postTitle = snapshot.value.valueForKey("title")!
+                            let messages = snapshot.value.valueForKey("messages")
+                            if messages != nil {
+                                let msgDict = messages as! NSDictionary
+                                let sortedKeys = (msgDict.allKeys as! [String]).sort(<)
+                                let lastKey = sortedKeys[(sortedKeys.count - 1)]
+                                let lastText = msgDict.valueForKey(lastKey)!["text"]!
+                                self.messageTitles.append(postTitle as! String)
+                                self.lastTexts.append(lastText as! String)
+                            }
+                        }
+                        
+                        print(self.messageTitles)
+                        print(self.lastTexts)
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.tableView.reloadData()
+                        }
+                    })
+                }
+            }
         })
-
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,7 +87,7 @@ class MyMessagesTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print( "num rows = " + String( self.messageTitles.count ) )
+        // print( "num rows = " + String( self.messageTitles.count ) )
         return messageTitles.count
     }
 
@@ -106,8 +97,8 @@ class MyMessagesTableViewController: UITableViewController {
 
         // Configure the cell...
         
-        cell.textLabel!.text = messageTitles[ indexPath.row ]
-        cell.detailTextLabel!.text = "<message>"
+        cell.textLabel!.text = self.messageTitles[ indexPath.row ]
+        cell.detailTextLabel!.text = self.lastTexts [indexPath.row ]
         
         return cell
     }
