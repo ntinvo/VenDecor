@@ -17,9 +17,16 @@ class MyMessagesTableViewController: UITableViewController {
     var postsID = [String]()
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //print( "inside viewDidLoad of myMessages")
+        
+        self.lastTexts.removeAll()
+        self.messageTitles.removeAll()
+        self.postsID.removeAll()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -47,7 +54,10 @@ class MyMessagesTableViewController: UITableViewController {
                     let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(postIDsSnap[postID]))
                     
                     // Retrieve new posts as they are added to your database
-                    postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
+                    postMessagesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+                        
+                        //print( "inside observeEvent in myMessages" )
+                        //print( snapshot.value.valueForKey("title") )
                         
                         if !(snapshot.value is NSNull) {
                             let postTitle = snapshot.value.valueForKey("title")!
@@ -63,9 +73,12 @@ class MyMessagesTableViewController: UITableViewController {
                             }
                         }
                         
-                        dispatch_async(dispatch_get_main_queue()) {
+                        self.tableView.reloadData()
+                        
+                       /* dispatch_async(dispatch_get_main_queue()) {
+                            print( "in dispatch reload- myMessages")
                             self.tableView.reloadData()
-                        }
+                        }*/
                     })
                 }
             }

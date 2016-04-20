@@ -189,10 +189,18 @@ class MessageViewController: JSQMessagesViewController {
             }
             dispatch_async(dispatch_get_main_queue()) {
                 self.homeTableViewController?.tableView.reloadData()
+                //print( "inside dispatch")
+                self.myMessagesViewController?.tableView.reloadData()
             }
+            
+            //print("inside snapshot")
+            
+            
+            
         })
-
-
+        //print( "out of snapshot" )
+        
+        self.myMessagesViewController?.viewDidLoad()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
