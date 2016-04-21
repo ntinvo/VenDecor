@@ -18,8 +18,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
 
     @IBOutlet weak var emailTxtField: UITextField!
-    
     @IBOutlet weak var passwordTxtField: UITextField!
+    var emailAddress: UITextField? = nil
     
     var alertController: UIAlertController? = nil
     var forgotAlertController: UIAlertController? = nil
@@ -110,23 +110,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func resetPassword(sender: AnyObject) {
         //myRootRef.resetPasswordForUser(email: r_frock@yahoo.com", withCompletionBlock: ((NSError!) -> Void)! )
+//        let email: String? = nil
         
-        //TODO- get users email
-        
-        let email: String? = nil
-        
-        self.forgotAlertController = UIAlertController(title: "Error", message: "Invalid email or email was already taken!", preferredStyle: UIAlertControllerStyle.Alert)
+        self.forgotAlertController = UIAlertController(title: "Reset Password", message: "", preferredStyle: UIAlertControllerStyle.Alert)
         
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
-            //print("Ok Button Pressed 1");
+
+            self.myRootRef.resetPasswordForUser("kk@yahoo.com") { (error) -> Void in
+    
+            }
         }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (action:UIAlertAction) in }
         self.forgotAlertController!.addAction(okAction)
+        self.forgotAlertController!.addAction(cancelAction)
+        
+        self.forgotAlertController!.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            self.emailAddress = textField
+            self.emailAddress?.placeholder = "Enter your email address"
+        }
         
         self.presentViewController(self.forgotAlertController!, animated: true, completion:nil)
-        
-        myRootRef.resetPasswordForUser("r_frock@yahoo.com") { (error) -> Void in
-            print("sent")
-        }
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
