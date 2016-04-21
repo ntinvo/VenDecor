@@ -79,6 +79,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginBtn(sender: AnyObject) {
         myRootRef.authUser(emailTxtField!.text, password: passwordTxtField.text,
             withCompletionBlock: { (error, auth) in
+                
+            if(self.myRootRef.authData.providerData["isTemporaryPassword"]! as? Bool != true) {
+                
                 if error != nil {
                     self.alertController = UIAlertController(title: "Error", message: "Wrong email or password", preferredStyle: UIAlertControllerStyle.Alert)
                     
@@ -105,6 +108,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 } else {
                     self.performSegueWithIdentifier("completedLogin", sender: sender)
                 }
+            } else {
+                print("Reset password handelr")
+            }
         })
     }
     
@@ -115,10 +121,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.forgotAlertController = UIAlertController(title: "Reset Password", message: "", preferredStyle: UIAlertControllerStyle.Alert)
         
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
-
-            self.myRootRef.resetPasswordForUser("kk@yahoo.com") { (error) -> Void in
-    
-            }
+            self.myRootRef.resetPasswordForUser(self.emailAddress!.text!) { (error) -> Void in }
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (action:UIAlertAction) in }
