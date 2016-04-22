@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var password1TxtField: UITextField!
     @IBOutlet weak var password2TxtField: UITextField!
     var alertController: UIAlertController? = nil
+    var viewController: ViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +28,29 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func saveBtn(sender: AnyObject) {
         if (self.password1TxtField.text != "" && self.password2TxtField.text != "" && (self.password1TxtField.text! == self.password2TxtField.text!)) {
-            self.dismissViewControllerAnimated(true, completion: nil)
+            let ref = Firebase(url: "https://vendecor.firebaseio.com")
+            let email = ref.authData.providerData["email"] as! String
+            let passWord = self.viewController?.passwordTxtField.text!
+            dispatch_sync(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
+            ref.changePasswordForUser(email, fromOld: passWord!,
+                    toNew: self.password1TxtField.text!, withCompletionBlock: { error in
+                    
+
+                    if error != nil {
+                        print("Wrong")
+                    } else {
+                        
+                        
+                        
+                        print("Password changed successfully")
+                        self.dismissViewControllerAnimated(true, completion: nil)
+        
+
+                }
+            })
+            }
+            self.viewController?.passwordTxtField.text = ""
+            
         } else {
             self.alertController = UIAlertController(title: "Error", message: "Please re-check your inputs", preferredStyle: UIAlertControllerStyle.Alert)
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }

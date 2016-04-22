@@ -106,8 +106,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                 } else {
-                    self.performSegueWithIdentifier("resetPassword", sender: sender)
-                    //self.performSegueWithIdentifier("completedLogin", sender: sender)
+                    //self.performSegueWithIdentifier("resetPassword", sender: sender)
+                    self.performSegueWithIdentifier("completedLogin", sender: sender)
                 }
             } else {
                 self.performSegueWithIdentifier("resetPassword", sender: sender)
@@ -131,7 +131,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         self.forgotAlertController!.addTextFieldWithConfigurationHandler { (textField) -> Void in
             self.emailAddress = textField
-            self.emailAddress?.placeholder = "Enter your email address"
+            if self.emailTxtField?.text! == "" {
+                self.emailAddress?.placeholder = "Enter your email address"
+            } else {
+                self.emailAddress?.text = self.emailTxtField.text
+            }
         }
         
         self.presentViewController(self.forgotAlertController!, animated: true, completion:nil)
@@ -141,15 +145,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
-//   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!){
-//        super.prepareForSegue(segue, sender: sender)
-//        if( segue.identifier == "completedLogin" ) {
-//            let messageVC = segue.destinationViewController as! MessageViewController
-//            messageVC.senderId = myRootRef.authData.uid
-//            print(myRootRef.authData.uid)
-//            messageVC.senderDisplayName = ""
-//        }
-//    }
+   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!){
+        super.prepareForSegue(segue, sender: sender)
+        if( segue.identifier == "resetPassword" ) {
+            let navVC = segue.destinationViewController as! UINavigationController
+            let resetVC = navVC.viewControllers.first as! ResetPasswordViewController
+            resetVC.viewController = self
+        }
+    }
     
     
 }
