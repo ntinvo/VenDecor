@@ -106,10 +106,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                 } else {
-                    self.performSegueWithIdentifier("completedLogin", sender: sender)
+                    self.performSegueWithIdentifier("resetPassword", sender: sender)
+                    //self.performSegueWithIdentifier("completedLogin", sender: sender)
                 }
             } else {
-                print("Reset password handelr")
                 self.performSegueWithIdentifier("resetPassword", sender: sender)
             }
         })

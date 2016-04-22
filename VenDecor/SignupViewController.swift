@@ -85,7 +85,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                         let user = ["email" : String(self.email.text!),"username": String(self.username.text!), "zipcode" : String(self.zipcode.text!), "datejoined" : monthStr + " " + year, "numPosts": 0, "profilePic": ""]
                         self.myRootRef.childByAppendingPath(uid).setValue(user)
                         self.dismissViewControllerAnimated(true, completion: nil)
-
                     }
             })
         }

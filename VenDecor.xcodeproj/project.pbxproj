@@ -133,8 +133,8 @@
 		4C2B27691CCAAF3100E6D3B6 /* authentication */ = {
 			isa = PBXGroup;
 			children = (
-				4C977A431C9248810000A985 /* SignupViewController.swift */,
 				4C977A331C9240680000A985 /* ViewController.swift */,
+				4C977A431C9248810000A985 /* SignupViewController.swift */,
 				4C2B27661CCAAEDF00E6D3B6 /* ResetPasswordViewController.swift */,
 			);
 			name = authentication;

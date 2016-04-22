@@ -12,7 +12,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var password1TxtField: UITextField!
     @IBOutlet weak var password2TxtField: UITextField!
-    
+    var alertController: UIAlertController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,14 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func saveBtn(sender: AnyObject) {
-        
+        if (self.password1TxtField.text != "" && self.password2TxtField.text != "" && (self.password2TxtField.text! == self.password2TxtField.text!)) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            self.alertController = UIAlertController(title: "Error", message: "Please re-check your inputs", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
+            self.alertController!.addAction(okAction)
+            self.presentViewController(self.alertController!, animated: true, completion:nil)
+        }
     }
 
     
