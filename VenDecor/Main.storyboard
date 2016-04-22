@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -503,10 +503,10 @@
             </objects>
             <point key="canvasLocation" x="-1664" y="-645"/>
         </scene>
-        <!--View Controller-->
+        <!--Reset Password View Controller-->
         <scene sceneID="Pgp-I4-JY3">
             <objects>
-                <viewController id="KNX-gn-yrl" sceneMemberID="viewController">
+                <viewController id="KNX-gn-yrl" customClass="ResetPasswordViewController" customModule="VenDecor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="swW-2J-kGD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -518,6 +518,9 @@
                                 <state key="normal" title="Save Changes">
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveBtn:" destination="KNX-gn-yrl" eventType="touchUpInside" id="cxP-Ew-SPg"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" textAlignment="natural" minimumFontSize="17" id="prk-FC-hPM">
                                 <rect key="frame" x="65" y="260" width="284" height="30"/>
@@ -540,6 +543,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="VFS-LE-4gz"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="password2TxtField" destination="gvu-4G-H2J" id="eBq-PS-Igh"/>
+                        <outlet property="passwordTxtField" destination="prk-FC-hPM" id="Bsy-hP-nSs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Rk-SY-kxx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
