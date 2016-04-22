@@ -544,8 +544,8 @@
                     <navigationItem key="navigationItem" id="VFS-LE-4gz"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="password1TxtField" destination="prk-FC-hPM" id="668-Jr-vHr"/>
                         <outlet property="password2TxtField" destination="gvu-4G-H2J" id="eBq-PS-Igh"/>
-                        <outlet property="passwordTxtField" destination="prk-FC-hPM" id="Bsy-hP-nSs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Rk-SY-kxx" userLabel="First Responder" sceneMemberID="firstResponder"/>
