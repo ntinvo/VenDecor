@@ -11,12 +11,13 @@ import Firebase
 
 class SettingsTableViewController: UITableViewController, UITextFieldDelegate {
 
-    var inputUserInfoText = [String]()
+
     
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
-    var userInfo: [String] = [ "USERNAME", "EMAIL", "ZIP CODE", "" ]
+    var userInfo: [String] = [ "", "USERNAME", "ZIP CODE", "" ]
+    var inputUserInfoText: Dictionary<String, AnyObject> = [:]
     var username:String? = nil
-    var email:String? = nil
+    var profilePicture:UIImage? = nil
     var zipcode:String? = nil
     
     override func viewDidLoad() {
@@ -27,6 +28,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    
         
         // navigation bar
         let logo = UIImage(named: "Sample.png")
@@ -39,14 +41,24 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate {
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
+        
         let myRootRef = Firebase( url: "https://vendecor.firebaseio.com/users/" )
         let uid = myRootRef.authData.uid
         let userAccount = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid )
         
         userAccount.observeEventType(.Value, withBlock: { snapshot in
             self.username = snapshot.value.valueForKey( "username" ) as? String
-            self.email = snapshot.value.valueForKey( "email" ) as? String
             self.zipcode = snapshot.value.valueForKey( "zipcode" ) as? String
+            //self.email = snapshot.value.valueForKey( "email" ) as? String
+            
+            
+            let decodedData = NSData(base64EncodedString: String(snapshot.value.valueForKey("profilePic")!), options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+            
+            self.profilePicture = UIImage(data: decodedData!)
+            
+            self.inputUserInfoText["username"] = self.username
+            self.inputUserInfoText["profile"] = self.profilePicture
+            self.inputUserInfoText["zipcode"] = self.zipcode
             
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadData()
@@ -68,12 +80,14 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: (NSIndexPath!)) -> CGFloat {
         
         // Toggle the cell height - alternating between rows.
-        
-        if( indexPath.row % 2 != 0 && indexPath.section != 3 ) {
+        if(indexPath.row == 0 && indexPath.section == 0) {
+          return 230
+        } else if( indexPath.row % 2 != 0 && indexPath.section != 3 ) {
             return 35
         } else {
            return 75
         }
+        
         
     }
 
@@ -94,14 +108,17 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate {
         return userInfo[ section ]
     }
 
+    
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         //print( indexPath.row )
         
         if( indexPath.section == 3 && indexPath.row == 0 ) {
-            let cell = tableView.dequeueReusableCellWithIdentifier("saveCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier("saveCell", forIndexPath: indexPath) as! SaveSettingsTableViewCell
             // Configure the cell...
-            
+            cell.settingsTableVC = self
             return cell
             
         } else if( (indexPath.row % 2 != 0) || indexPath.section == 3 ) {
@@ -109,6 +126,12 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate {
             // Configure the cell...
             return cell
         
+        } else if (indexPath.section == 0 && indexPath.row == 0) {
+            let cell = tableView.dequeueReusableCellWithIdentifier("profilePicture", forIndexPath: indexPath)
+            // Configure the cell...
+            return cell
+
+            
         } else {
             
             //let index = indexPath.row
@@ -118,11 +141,8 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate {
             
             // TODO: can we access that label? Or do we need custom cells? Or could we manually add each cell in the storyboard? 
             
-                if( indexPath.section == 0 ) {
+                if( indexPath.section == 1 ) {
                     cell.userInfoTxtField.text = username
-                    cell.userInfoTxtField.delegate = self
-                } else if( indexPath.section == 1 ) {
-                    cell.userInfoTxtField.text = email
                     cell.userInfoTxtField.delegate = self
                 } else {
                     cell.userInfoTxtField.text = zipcode
@@ -134,17 +154,17 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        let indexPath = self.tableView.indexPathForSelectedRow
-        
-        //print( "indexPath = \(indexPath), section = \(indexPath?.section), row = \(indexPath!.row)" )
-    }
+//    func textFieldDidBeginEditing(textField: UITextField) {
+//        let indexPath = self.tableView.indexPathForSelectedRow
+//        
+//        //print( "indexPath = \(indexPath), section = \(indexPath?.section), row = \(indexPath!.row)" )
+//    }
     
     func textFieldDidEndEditing(textField: UITextField) {
         //let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath!) as! SettingsTableViewCell
         
-        self.inputUserInfoText.append(textField.text!)
-        print(self.inputUserInfoText)
+        //self.inputUserInfoText.append(textField.text!)
+        //print(self.inputUserInfoText)
     }
 
 

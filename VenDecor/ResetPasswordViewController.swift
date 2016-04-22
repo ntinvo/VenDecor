@@ -39,9 +39,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
                     if error != nil {
                         print("Wrong")
                     } else {
-                        
-                        
-                        
+                    
                         print("Password changed successfully")
                         self.dismissViewControllerAnimated(true, completion: nil)
         

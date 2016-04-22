@@ -421,7 +421,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oxx-L8-FxB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2291" y="1286"/>
+            <point key="canvasLocation" x="-2279" y="1286"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="rZ8-NB-Idr">
@@ -526,7 +526,7 @@
                                 <rect key="frame" x="65" y="260" width="284" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SingleLineLogo.png" id="2EA-iW-s7q">
                                 <rect key="frame" x="36" y="91" width="342" height="128"/>
@@ -536,7 +536,7 @@
                                 <rect key="frame" x="65" y="328" width="284" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -918,7 +918,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9jr-3J-sDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3771" y="4668"/>
+            <point key="canvasLocation" x="-3771" y="4759"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="LFY-53-S7D">
@@ -932,8 +932,27 @@
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <color key="sectionIndexBackgroundColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="profilePicture" rowHeight="229" id="okC-k2-VPP" customClass="ProfileTableViewCell" customModule="VenDecor" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="414" height="229"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="okC-k2-VPP" id="ncM-lw-jLl">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="229"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="d0D-h1-rkG">
+                                            <rect key="frame" x="102" y="10" width="210" height="210"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="profilePicture" destination="d0D-h1-rkG" id="wgw-Ey-EX0"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cellid" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellid" textLabel="9jv-bj-TcB" detailTextLabel="k3N-Ud-Op8" rowHeight="70" style="IBUITableViewCellStyleValue1" id="BQa-GS-sBM" customClass="SettingsTableViewCell" customModule="VenDecor" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="414" height="70"/>
+                                <rect key="frame" x="0.0" y="321" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BQa-GS-sBM" id="TO4-71-dGO">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -965,8 +984,8 @@
                                     <outlet property="userInfoTxtField" destination="pzu-b9-lm9" id="9QX-yd-iyo"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="fillerCell" rowHeight="48" id="UYC-aG-jYb">
-                                <rect key="frame" x="0.0" y="162" width="414" height="48"/>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="fillerCell" rowHeight="48" id="UYC-aG-jYb">
+                                <rect key="frame" x="0.0" y="391" width="414" height="48"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UYC-aG-jYb" id="Jal-hK-LrH">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
@@ -974,8 +993,8 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="saveCell" rowHeight="65" id="lIm-hu-ftl" customClass="SaveSettingsTableViewCell" customModule="VenDecor" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="210" width="414" height="65"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="saveCell" rowHeight="65" id="lIm-hu-ftl" customClass="SaveSettingsTableViewCell" customModule="VenDecor" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="439" width="414" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lIm-hu-ftl" id="zoc-UV-iJQ">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
@@ -994,12 +1013,14 @@
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="B8Q-UI-1v5" id="iLo-95-ztc"/>
+                            <outlet property="dataSource" destination="B8Q-UI-1v5" id="eqa-VN-fpX"/>
                             <outlet property="delegate" destination="B8Q-UI-1v5" id="xmh-P6-vp6"/>
                         </connections>
                     </tableView>
@@ -1015,7 +1036,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="frP-ps-ldj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3242" y="4716"/>
+            <point key="canvasLocation" x="-3146" y="4764"/>
         </scene>
         <!--SignUp-->
         <scene sceneID="BK2-L1-OZj">
@@ -1093,7 +1114,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ROa-eX-9le" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3771" y="3651"/>
+            <point key="canvasLocation" x="-3771" y="3699"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2tk-5E-WOV">
@@ -1187,7 +1208,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="va3-09-HEF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3242" y="3699"/>
+            <point key="canvasLocation" x="-3146" y="3699"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3mA-ky-eFh">
@@ -1282,7 +1303,7 @@
         <image name="sell.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l2o-Z9-JmT"/>
-        <segue reference="xKR-cd-RC6"/>
+        <segue reference="NlP-zJ-xga"/>
+        <segue reference="24U-38-7XY"/>
     </inferredMetricsTieBreakers>
 </document>

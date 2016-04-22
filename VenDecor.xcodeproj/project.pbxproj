@@ -17,6 +17,7 @@
 		4C1CCD281CA7770D002C39E2 /* Sample.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C1CCD271CA7770D002C39E2 /* Sample.png */; };
 		4C1CCD2A1CA781A0002C39E2 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1CCD291CA781A0002C39E2 /* MessageViewController.swift */; };
 		4C2B27671CCAAEDF00E6D3B6 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B27661CCAAEDF00E6D3B6 /* ResetPasswordViewController.swift */; };
+		4C2B276B1CCAD0EF00E6D3B6 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B276A1CCAD0EF00E6D3B6 /* ProfileTableViewCell.swift */; };
 		4C4079031CA5F6EE001CDA64 /* burgerMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C4079021CA5F6EE001CDA64 /* burgerMenu.png */; };
 		4C51E1F61C9F628900622B71 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51E1F51C9F628900622B71 /* HomeTableViewController.swift */; };
 		4C51E1F81C9F62DE00622B71 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51E1F71C9F62DE00622B71 /* HomeTableViewCell.swift */; };
@@ -56,6 +57,7 @@
 		4C1CCD271CA7770D002C39E2 /* Sample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sample.png; sourceTree = "<group>"; };
 		4C1CCD291CA781A0002C39E2 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		4C2B27661CCAAEDF00E6D3B6 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		4C2B276A1CCAD0EF00E6D3B6 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		4C4079021CA5F6EE001CDA64 /* burgerMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = burgerMenu.png; sourceTree = "<group>"; };
 		4C51E1F51C9F628900622B71 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		4C51E1F71C9F62DE00622B71 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				9CB6AB481CB4266700687EED /* SettingsTableViewCell.swift */,
 				9CB6AB4A1CB4289800687EED /* SaveSettingsTableViewCell.swift */,
 				9C84825F1CAB4D0A00ABE9B2 /* SettingsTableViewController.swift */,
+				4C2B276A1CCAD0EF00E6D3B6 /* ProfileTableViewCell.swift */,
 			);
 			name = settings;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				4C977A341C9240680000A985 /* ViewController.swift in Sources */,
 				4C1CCD111CA6E9CD002C39E2 /* SWRevealViewController.m in Sources */,
 				9C8E58361CB8743000A85205 /* SavedPostsTableViewController.swift in Sources */,
+				4C2B276B1CCAD0EF00E6D3B6 /* ProfileTableViewCell.swift in Sources */,
 				4CF0105B1C9C8F0B00F01F33 /* AccountViewController.swift in Sources */,
 				9C56BBB11CB32C95003723C9 /* MyMessagesTableViewController.swift in Sources */,
 				4C977A321C9240680000A985 /* AppDelegate.swift in Sources */,
