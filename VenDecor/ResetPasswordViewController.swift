@@ -25,7 +25,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func saveBtn(sender: AnyObject) {
-        if (self.password1TxtField.text != "" && self.password2TxtField.text != "" && (self.password2TxtField.text! == self.password2TxtField.text!)) {
+        if (self.password1TxtField.text != "" && self.password2TxtField.text != "" && (self.password1TxtField.text! == self.password2TxtField.text!)) {
             self.dismissViewControllerAnimated(true, completion: nil)
         } else {
             self.alertController = UIAlertController(title: "Error", message: "Please re-check your inputs", preferredStyle: UIAlertControllerStyle.Alert)
