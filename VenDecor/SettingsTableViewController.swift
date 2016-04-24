@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SettingsTableViewController: UITableViewController, UITextFieldDelegate {
+class SettingsTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
 
     
@@ -55,7 +55,6 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate {
             let decodedData = NSData(base64EncodedString: String(snapshot.value.valueForKey("profilePic")!), options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
             
             self.profilePicture = UIImage(data: decodedData!)
-            
             self.inputUserInfoText["username"] = self.username
             self.inputUserInfoText["profile"] = self.profilePicture
             self.inputUserInfoText["zipcode"] = self.zipcode
@@ -127,11 +126,10 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate {
             return cell
         
         } else if (indexPath.section == 0 && indexPath.row == 0) {
-            let cell = tableView.dequeueReusableCellWithIdentifier("profilePicture", forIndexPath: indexPath)
-            // Configure the cell...
+            let cell = tableView.dequeueReusableCellWithIdentifier("profilePicture", forIndexPath: indexPath) as! ProfileTableViewCell
+            //cell.profilePicture.image = self.profilePicture
+            cell.settingsTableVC = self
             return cell
-
-            
         } else {
             
             //let index = indexPath.row

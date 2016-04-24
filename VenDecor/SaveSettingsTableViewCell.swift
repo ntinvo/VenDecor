@@ -27,12 +27,18 @@ class SaveSettingsTableViewCell: UITableViewCell {
     @IBAction func saveSettingsBtn(sender: AnyObject) {
         print( "saving settings" )
         
-//        let usernameCell = self.settingsTableVC?.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! ProfileTableViewCell
-//        let username = usernameCell.userInfoTxtField.text!
-//        let emailCell = self.settingsTableVC?.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) as! SettingsTableViewCell
-//        let email = emailCell.userInfoTxtField.text!
-//        let zipcodeCell = self.settingsTableVC?.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as! SettingsTableViewCell
-//        let zipcode = zipcodeCell.userInfoTxtField.text!
+        let profile = self.settingsTableVC?.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! ProfileTableViewCell
+        let profilePicture = profile.profilePicture.image
+        
+        
+        
+        let usernameCell = self.settingsTableVC?.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) as! SettingsTableViewCell
+        let username = usernameCell.userInfoTxtField.text!
+        let zipcodeCell = self.settingsTableVC?.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as! SettingsTableViewCell
+        let zipcode = zipcodeCell.userInfoTxtField.text!
+        
+        
+        
         
         
         
