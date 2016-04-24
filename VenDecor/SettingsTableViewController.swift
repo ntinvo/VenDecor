@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+
 class SettingsTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
 
@@ -19,9 +20,18 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
     var username:String? = nil
     var profilePicture:UIImage? = nil
     var zipcode:String? = nil
+    var usernametextField:UITextField?
+    var zipcodetextField:UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(SettingsTableViewController.hideKeyboard))
+        tapGesture.cancelsTouchesInView = true
+        tableView.addGestureRecognizer(tapGesture)
+
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -67,20 +77,47 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
 
     }
 
+    //Somewhere else in your class
+    func hideKeyboard() {
+    
+        tableView.endEditing(true)
+    }
+    
+
+    // UITextFieldDelegate delegate method
+    //
+    // This method is called when the user touches the Return key on the
+    // keyboard. The 'textField' passed in is a pointer to the textField
+    // widget the cursor was in at the time they touched the Return key on
+    // the keyboard.
+    //
+    // From the Apple documentation: Asks the delegate if the text field
+    // should process the pressing of the return button.
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        // A responder is an object that can respond to events and handle them.
+        // Resigning first responder here means this text field will no longer be the first
+        // UI element to receive an event from this apps UI - you can think of it as giving
+        // up input 'focus'.
+        self.usernametextField!.resignFirstResponder()
+        self.zipcodetextField!.resignFirstResponder()
+        return true
+    }
+    
+
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func loadDataModel() {
-        // get user info to fill cells
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: (NSIndexPath!)) -> CGFloat {
         
         // Toggle the cell height - alternating between rows.
         if(indexPath.row == 0 && indexPath.section == 0) {
-          return 230
+          return 250
+        } else if( indexPath.section == 0 && indexPath.row == 1 ) {
+            return 10
         } else if( indexPath.row % 2 != 0 && indexPath.section != 3 ) {
             return 35
         } else {
@@ -128,7 +165,12 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
         } else if (indexPath.section == 0 && indexPath.row == 0) {
             let cell = tableView.dequeueReusableCellWithIdentifier("profilePicture", forIndexPath: indexPath) as! ProfileTableViewCell
             //cell.profilePicture.image = self.profilePicture
+            print( "profilePicture in DB = \(self.profilePicture)")
+            if( self.profilePicture != nil ) {
+                cell.profilePicture.image = self.profilePicture
+            }
             cell.settingsTableVC = self
+            print( "set settingsVC to self")
             return cell
         } else {
             
@@ -138,19 +180,25 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
             // Configure the cell...
             
             // TODO: can we access that label? Or do we need custom cells? Or could we manually add each cell in the storyboard? 
+            cell.settingsTableVC = self
+            
+            
             
                 if( indexPath.section == 1 ) {
                     cell.userInfoTxtField.text = username
                     cell.userInfoTxtField.delegate = self
+                    self.usernametextField = cell.userInfoTxtField
                 } else {
                     cell.userInfoTxtField.text = zipcode
                     cell.userInfoTxtField.delegate = self
+                    self.zipcodetextField = cell.userInfoTxtField
                 }
             
             
             return cell
         }
     }
+
     
 //    func textFieldDidBeginEditing(textField: UITextField) {
 //        let indexPath = self.tableView.indexPathForSelectedRow
@@ -163,8 +211,16 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
         
         //self.inputUserInfoText.append(textField.text!)
         //print(self.inputUserInfoText)
+        
     }
-
+    
+    // Called when the user touches on the main view (outside the UITextField).
+    // This causes the keyboard to go away also - but handles all situations when
+    // the user touches anywhere outside the keyboard.
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view!.endEditing(true)
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.

@@ -25,6 +25,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
     var numPosts:Int? = nil
     var homeTableViewController: HomeTableViewController? = nil
+    var photoAlertController: UIAlertController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,10 +51,34 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     }
 
     @IBAction func takePictureBtn(sender: AnyObject) {
-        imagePicker =  UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .Camera
-        presentViewController(imagePicker, animated: true, completion: nil)
+        self.photoAlertController = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet )
+        
+        let uploadPhoto = UIAlertAction(title: "Upload a Photo", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            print("upload Button Pressed")
+            //self.getPhoto("upload")
+            let imagePicker =  UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .PhotoLibrary
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        })
+        let takePhoto = UIAlertAction(title: "Take a Photo", style: UIAlertActionStyle.Default) { (action) -> Void in
+            print("take photo Button Pressed")
+            let imagePicker =  UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .Camera
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in
+            print("Cancel Button Pressed")
+        })
+        
+        self.photoAlertController!.addAction(uploadPhoto)
+        self.photoAlertController!.addAction(takePhoto)
+        self.photoAlertController!.addAction(cancelAction)
+        
+        self.presentViewController(self.photoAlertController!, animated: true, completion: nil)
+
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {

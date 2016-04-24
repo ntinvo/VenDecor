@@ -8,11 +8,14 @@
 
 import UIKit
 
-class ProfileTableViewCell: UITableViewCell {
+
+class ProfileTableViewCell: UITableViewCell, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var button: UIButton!
     var settingsTableVC: SettingsTableViewController? = nil
+    var imagePicker: UIImagePickerController!
+    var alertController: UIAlertController? = nil
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,31 +34,52 @@ class ProfileTableViewCell: UITableViewCell {
     }
     
     @IBAction func takePictureBtn(sender: AnyObject) {
-        let imagePicker =  UIImagePickerController()
-        imagePicker.delegate = self.settingsTableVC
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        print("before present")
-        self.settingsTableVC!.presentViewController(imagePicker, animated: true, completion: nil)
-        print("after present")
+        self.alertController = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet )
+       
+        
+        let uploadPhoto = UIAlertAction(title: "Upload a Photo", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            print("upload Button Pressed")
+            //self.getPhoto("upload")
+            let imagePicker =  UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .PhotoLibrary
+            self.settingsTableVC!.presentViewController(imagePicker, animated: true, completion: nil)
+        })
+        let takePhoto = UIAlertAction(title: "Take a Photo", style: UIAlertActionStyle.Default) { (action) -> Void in
+            print("take photo Button Pressed")
+            let imagePicker =  UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .Camera
+            self.settingsTableVC!.presentViewController(imagePicker, animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in
+            print("Cancel Button Pressed")
+        })
+        
+        self.alertController!.addAction(uploadPhoto)
+        self.alertController!.addAction(takePhoto)
+        self.alertController!.addAction(cancelAction)
+        
+        self.settingsTableVC!.presentViewController(self.alertController!, animated: true, completion: nil)
     }
-
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         print("GOT HERE")
         self.profilePicture.image = info[ UIImagePickerControllerOriginalImage ] as? UIImage
-        //self.compressImage()
-        
+        self.compressImage()
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
-//    private func compressImage() {
-//        //let rect = CGRectMake(0, 0, self.postImage.image!.size.width / 6 , self.postImage.image!.size.height / 6)
-//        //UIGraphicsBeginImageContext(rect.size)
-//        //self.postImage.image?.drawInRect(rect)
-//        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//        let compressedImageData = UIImageJPEGRepresentation(resizedImage, 0.1)
-//        //self.postImage.image = UIImage(data: compressedImageData!)
-//    }
+    private func compressImage() {
+        let rect = CGRectMake(0, 0, self.profilePicture.image!.size.width / 6 , self.profilePicture.image!.size.height / 6)
+        UIGraphicsBeginImageContext(rect.size)
+        self.profilePicture.image?.drawInRect(rect)
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        let compressedImageData = UIImageJPEGRepresentation(resizedImage, 0.1)
+        self.profilePicture.image = UIImage(data: compressedImageData!)
+    }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         print("cancel")
