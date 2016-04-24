@@ -47,25 +47,18 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signUp(sender: AnyObject) {
-        
         if( self.password.text != self.repeatPassword.text ) {
             self.alertController = UIAlertController(title: "Error", message: "Passwords do not match", preferredStyle: UIAlertControllerStyle.Alert)
-            
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
             self.alertController!.addAction(okAction)
-            
             self.presentViewController(self.alertController!, animated: true, completion:nil)
         } else {
-        
             myRootRef.createUser(email?.text, password: password?.text,
                 withValueCompletionBlock: { error, result in
                     if error != nil {
-                    
                         self.alertController = UIAlertController(title: "Error", message: "Invalid email or email was already taken!", preferredStyle: UIAlertControllerStyle.Alert)
                     
-                        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
-                            //print("Ok Button Pressed 1");
-                        }
+                        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
                         self.alertController!.addAction(okAction)
                         
                         self.presentViewController(self.alertController!, animated: true, completion:nil)
@@ -107,11 +100,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     // From the Apple documentation: Asks the delegate if the text field
     // should process the pressing of the return button.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        // A responder is an object that can respond to events and handle them.
-        // Resigning first responder here means this text field will no longer be the first
-        // UI element to receive an event from this apps UI - you can think of it as giving
-        // up input 'focus'.
         self.username.resignFirstResponder()
         self.email.resignFirstResponder()
         self.zipcode.resignFirstResponder()

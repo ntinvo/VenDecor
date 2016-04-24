@@ -32,20 +32,15 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
             let email = ref.authData.providerData["email"] as! String
             let passWord = self.viewController?.passwordTxtField.text!
             dispatch_sync(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
-            ref.changePasswordForUser(email, fromOld: passWord!,
+                ref.changePasswordForUser(email, fromOld: passWord!,
                     toNew: self.password1TxtField.text!, withCompletionBlock: { error in
-                    
-
                     if error != nil {
                         print("Wrong")
                     } else {
-                    
                         print("Password changed successfully")
                         self.dismissViewControllerAnimated(true, completion: nil)
-        
-
-                }
-            })
+                        }
+                })
             }
             self.viewController?.passwordTxtField.text = ""
             
@@ -76,11 +71,6 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     // From the Apple documentation: Asks the delegate if the text field
     // should process the pressing of the return button.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        // A responder is an object that can respond to events and handle them.
-        // Resigning first responder here means this text field will no longer be the first
-        // UI element to receive an event from this apps UI - you can think of it as giving
-        // up input 'focus'.
         self.password1TxtField.resignFirstResponder()
         self.password2TxtField.resignFirstResponder()
         return true
