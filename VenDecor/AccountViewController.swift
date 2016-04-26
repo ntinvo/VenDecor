@@ -44,7 +44,6 @@ class AccountViewController: UIViewController {
         let userAccount = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid )
         
         userAccount.observeEventType(.Value, withBlock: { snapshot in
-            print( "snapshot >>> \(snapshot.value.valueForKey("profilePic")!)" )
             if( String(snapshot.value.valueForKey("profilePic")!) != "" ) {
                 let decodedData = NSData(base64EncodedString: String(snapshot.value.valueForKey("profilePic")!), options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
                 self.profileImageView.image = UIImage(data: decodedData!)

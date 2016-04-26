@@ -120,8 +120,10 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         cell.datePostedLabel.text = String( dict.valueForKey("datePosted")! )
         cell.postID = String(dict.valueForKey("id")!)
         let decodedData = NSData(base64EncodedString: String(dict.valueForKey("image")!), options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-        
         let decodedImage = UIImage(data: decodedData!)
+        if((dict.valueForKey("claimed") != nil && (dict.valueForKey("claimed")! as! Bool) == true)) {
+            cell.claimLabel.text = "CLAIMED"
+        }
         cell.postImage.image = decodedImage
 
         return cell
