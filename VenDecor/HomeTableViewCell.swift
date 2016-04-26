@@ -123,25 +123,25 @@ class HomeTableViewCell: UITableViewCell {
     
     
     @IBAction func claimBtn(sender: AnyObject) {
-        let postRef = Firebase(url:"https://vendecor.firebaseio.com/posts/" + self.postID!)
-        postRef.childByAppendingPath("claimed").setValue(true)
-        print(self.postID!)
+//        let postRef = Firebase(url:"https://vendecor.firebaseio.com/posts/" + self.postID!)
+//        postRef.childByAppendingPath("claimed").setValue(true)
+//        print(self.postID!)
+        print(self.claimLabel.text!)
+        if (self.claimLabel.text! == "") {
+            print("GOT INSIDE")
+            let postRef = Firebase(url:"https://vendecor.firebaseio.com/posts/" + self.postID!)
+            postRef.childByAppendingPath("claimed").setValue(true)
+            self.alertController = UIAlertController(title: "Claim Item", message: "Pick up the item within 24 hours. Contact the seller for more details.", preferredStyle: UIAlertControllerStyle.Alert)
         
-        self.alertController = UIAlertController(title: "Claim Item", message: "Pick up the item within 24 hours. Contact the seller for more details.", preferredStyle: UIAlertControllerStyle.Alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
-            //print("Ok Button Pressed 1");
-            self.claimLabel.text = "CLAIMED"
-            // get post info and add it to claimed posts... should we have that also in our menu? Also, need to send notification/alert to seller
-            // just flag their post in their personal post storage?
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
-            //print("Ok Button Pressed 1");
-        }
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+                self.claimLabel.text = "CLAIMED"
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
 
-        self.alertController!.addAction(okAction)
-        self.alertController!.addAction(cancelAction)
-        self.homeTableViewController!.presentViewController(self.alertController!, animated: true, completion:nil)
+            self.alertController!.addAction(okAction)
+            self.alertController!.addAction(cancelAction)
+            self.homeTableViewController!.presentViewController(self.alertController!, animated: true, completion:nil)
+        }
     }
     
 }
