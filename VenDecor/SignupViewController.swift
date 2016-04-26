@@ -11,40 +11,35 @@ import Firebase
 
 class SignupViewController: UIViewController, UITextFieldDelegate {
 
-    
-    // Create a reference to a Firebase location
-    var myRootRef = Firebase(url:"https://vendecor.firebaseio.com/users")
-    
+    // properties
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var zipcode: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var repeatPassword: UITextField!
-    
+    var myRootRef = Firebase(url:"https://vendecor.firebaseio.com/users")
     var alertController: UIAlertController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.username.delegate = self
         self.email.delegate = self
         self.zipcode.delegate = self
         self.password.delegate = self
         self.repeatPassword.delegate = self
-        // Do any additional setup after loading the view.
     }
     
+    // cancel button
     @IBAction func cancelBtn(sender: AnyObject) {
-        //performSegueWithIdentifier("toLogin", sender: sender )
        self.dismissViewControllerAnimated(true, completion: nil)
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    // sign up button
     @IBAction func signUp(sender: AnyObject) {
         if( self.password.text != self.repeatPassword.text ) {
             self.alertController = UIAlertController(title: "Error", message: "Passwords do not match", preferredStyle: UIAlertControllerStyle.Alert)

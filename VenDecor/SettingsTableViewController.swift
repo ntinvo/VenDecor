@@ -13,7 +13,7 @@ import Firebase
 class SettingsTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
 
-    
+    // properties
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
     var userInfo: [String] = [ "", "USERNAME", "ZIP CODE", "" ]
     var inputUserInfoText: Dictionary<String, AnyObject> = [:]
@@ -30,12 +30,6 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(SettingsTableViewController.hideKeyboard))
         tapGesture.cancelsTouchesInView = true
         tableView.addGestureRecognizer(tapGesture)
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    
         
         // navigation bar
         let logo = UIImage(named: "Sample.png")
@@ -47,7 +41,6 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
             self.burgerBtn.action = "revealToggle:"
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        
         
         let myRootRef = Firebase( url: "https://vendecor.firebaseio.com/users/" )
         let uid = myRootRef.authData.uid
@@ -135,41 +128,27 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
         return userInfo[ section ]
     }
 
-    
-    
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        //print( indexPath.row )
-        
         if( indexPath.section == 3 && indexPath.row == 0 ) {
             let cell = tableView.dequeueReusableCellWithIdentifier("saveCell", forIndexPath: indexPath) as! SaveSettingsTableViewCell
-            // Configure the cell...
             cell.settingsTableVC = self
             return cell
             
         } else if( (indexPath.row % 2 != 0) || indexPath.section == 3 ) {
             let cell = tableView.dequeueReusableCellWithIdentifier("fillerCell", forIndexPath: indexPath)
-            // Configure the cell...
             return cell
         
         } else if (indexPath.section == 0 && indexPath.row == 0) {
             let cell = tableView.dequeueReusableCellWithIdentifier("profilePicture", forIndexPath: indexPath) as! ProfileTableViewCell
-            //cell.profilePicture.image = self.profilePicture
-            print( "profilePicture in DB = \(self.profilePicture)")
             if( self.profilePicture != nil ) {
                 cell.profilePicture.image = self.profilePicture
             }
             cell.settingsTableVC = self
-            print( "set settingsVC to self")
             return cell
         } else {
-            
             //let index = indexPath.row
             let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath) as! SettingsTableViewCell
-            // Configure the cell...
-            
-            // TODO: can we access that label? Or do we need custom cells? Or could we manually add each cell in the storyboard? 
+
             cell.settingsTableVC = self
                 if( indexPath.section == 1 ) {
                     cell.userInfoTxtField.text = username
@@ -180,8 +159,6 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
                     cell.userInfoTxtField.delegate = self
                     self.zipcodetextField = cell.userInfoTxtField
                 }
-            
-            
             return cell
         }
     }
@@ -191,7 +168,6 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
         //let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath!) as! SettingsTableViewCell
         //self.inputUserInfoText.append(textField.text!)
         //print(self.inputUserInfoText)
-        
     }
     
     // Called when the user touches on the main view (outside the UITextField).

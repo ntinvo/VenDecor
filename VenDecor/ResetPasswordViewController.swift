@@ -11,6 +11,7 @@ import Firebase
 
 class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
 
+    // properties
     @IBOutlet weak var password1TxtField: UITextField!
     @IBOutlet weak var password2TxtField: UITextField!
     var alertController: UIAlertController? = nil
@@ -26,6 +27,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
     
+    // save button
     @IBAction func saveBtn(sender: AnyObject) {
         if (self.password1TxtField.text != "" && self.password2TxtField.text != "" && (self.password1TxtField.text! == self.password2TxtField.text!)) {
             let ref = Firebase(url: "https://vendecor.firebaseio.com")
@@ -39,7 +41,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
                     } else {
                         print("Password changed successfully")
                         self.dismissViewControllerAnimated(true, completion: nil)
-                        }
+                    }
                 })
             }
             self.viewController?.passwordTxtField.text = ""

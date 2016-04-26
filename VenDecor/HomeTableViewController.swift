@@ -11,8 +11,8 @@ import Firebase
 
 class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     
+    // properties
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
-//  @IBOutlet weak var searchBar: UISearchBar!
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
     var postings = [NSDictionary]()
     var temp: Int? = nil
@@ -20,12 +20,6 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        //self.searchBar.delegate = self
         
         // navigation bar
         let logo = UIImage(named: "Sample.png")
@@ -52,8 +46,9 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             }
         })
     }
+    
+    // sort button pressed
     @IBAction func sortBtn(sender: AnyObject) {
-        print( "sorted")
         let descriptor: NSSortDescriptor = NSSortDescriptor(key: "datePosted", ascending: true)
         let sortedResults: NSArray = (self.postings as NSArray).sortedArrayUsingDescriptors([descriptor])
         self.postings = sortedResults as! [NSDictionary]
@@ -62,7 +57,6 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
   /*  // Called when the user touches on the main view (outside the UITextField).
@@ -104,7 +98,6 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         return self.postings.count
     }
 
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath) as! HomeTableViewCell
         
@@ -131,6 +124,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         return cell
     }
 
+    // post an item
     @IBAction func sellBtn(sender: AnyObject) {
         self.performSegueWithIdentifier("postItem", sender: sender)
     }

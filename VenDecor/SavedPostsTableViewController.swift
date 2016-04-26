@@ -11,6 +11,7 @@ import Firebase
 
 class SavedPostsTableViewController: UITableViewController {
 
+    // properties
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
     var myRootRef = Firebase( url:"https://vendecor.firebaseio.com")
     var messageTitles = [String]()
@@ -19,12 +20,6 @@ class SavedPostsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         // navigation bar
         let logo = UIImage(named: "Sample.png")

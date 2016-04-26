@@ -9,14 +9,16 @@
 import UIKit
 import Firebase
 
-class AccountViewController: UIViewController {    
+class AccountViewController: UIViewController {
+    
+    // properties
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var dateJoinedLabel: UILabel!
     @IBOutlet weak var zipLabel: UILabel!
-    
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
@@ -35,6 +37,7 @@ class AccountViewController: UIViewController {
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
+        // tap gesture
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         profileImageView.userInteractionEnabled = true
         profileImageView.addGestureRecognizer(tapGestureRecognizer)

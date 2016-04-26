@@ -10,21 +10,17 @@ import UIKit
 
 class SettingsTableViewCell: UITableViewCell, UITextFieldDelegate {
 
+    // properties
     @IBOutlet weak var userInfoTxtField: UITextField!
     var settingsTableVC: SettingsTableViewController?
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         userInfoTxtField.delegate = self.settingsTableVC
-        
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

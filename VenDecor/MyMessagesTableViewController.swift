@@ -11,18 +11,15 @@ import Firebase
 
 class MyMessagesTableViewController: UITableViewController {
 
+    // properties
+    @IBOutlet weak var burgerBtn: UIBarButtonItem!
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
     var lastTexts = [String]()
     var messageTitles = [String]()
     var postsID = [String]()
-    @IBOutlet weak var burgerBtn: UIBarButtonItem!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //print( "inside viewDidLoad of myMessages")
-        
         self.lastTexts.removeAll()
         self.messageTitles.removeAll()
         self.postsID.removeAll()
@@ -55,10 +52,6 @@ class MyMessagesTableViewController: UITableViewController {
                     
                     // Retrieve new posts as they are added to your database
                     postMessagesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-                        
-                        //print( "inside observeEvent in myMessages" )
-                        //print( snapshot.value.valueForKey("title") )
-                        
                         if !(snapshot.value is NSNull) {
                             let postTitle = snapshot.value.valueForKey("title")!
                             let messages = snapshot.value.valueForKey("messages")
@@ -72,13 +65,7 @@ class MyMessagesTableViewController: UITableViewController {
                                 self.postsID.append(String(postIDsSnap[postID]))
                             }
                         }
-                        
                         self.tableView.reloadData()
-                        
-                       /* dispatch_async(dispatch_get_main_queue()) {
-                            print( "in dispatch reload- myMessages")
-                            self.tableView.reloadData()
-                        }*/
                     })
                 }
             }
@@ -87,19 +74,15 @@ class MyMessagesTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        // print( "num rows = " + String( self.messageTitles.count ) )
         return messageTitles.count
     }
 
@@ -108,7 +91,6 @@ class MyMessagesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
         // Configure the cell...
-        
         cell.textLabel!.text = self.messageTitles[ indexPath.row ]
         cell.detailTextLabel!.text = self.lastTexts [indexPath.row ]
         
