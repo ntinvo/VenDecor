@@ -123,6 +123,8 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         let decodedImage = UIImage(data: decodedData!)
         if((dict.valueForKey("claimed") != nil && (dict.valueForKey("claimed")! as! Bool) == true)) {
             cell.claimLabel.text = "CLAIMED"
+        } else {
+            cell.claimLabel.text = ""
         }
         cell.postImage.image = decodedImage
 
