@@ -26,16 +26,13 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        // tap gesture
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(SettingsTableViewController.hideKeyboard))
         tapGesture.cancelsTouchesInView = true
         tableView.addGestureRecognizer(tapGesture)
 
-        
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     
@@ -59,9 +56,6 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
         userAccount.observeEventType(.Value, withBlock: { snapshot in
             self.username = snapshot.value.valueForKey( "username" ) as? String
             self.zipcode = snapshot.value.valueForKey( "zipcode" ) as? String
-            //self.email = snapshot.value.valueForKey( "email" ) as? String
-            
-            
             let decodedData = NSData(base64EncodedString: String(snapshot.value.valueForKey("profilePic")!), options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
             
             self.profilePicture = UIImage(data: decodedData!)
@@ -72,14 +66,11 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadData()
             }
-            
         })
-
     }
 
-    //Somewhere else in your class
+    // hide the keyboard
     func hideKeyboard() {
-    
         tableView.endEditing(true)
     }
     
@@ -175,15 +166,11 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
         } else {
             
             //let index = indexPath.row
-            
             let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath) as! SettingsTableViewCell
             // Configure the cell...
             
             // TODO: can we access that label? Or do we need custom cells? Or could we manually add each cell in the storyboard? 
             cell.settingsTableVC = self
-            
-            
-            
                 if( indexPath.section == 1 ) {
                     cell.userInfoTxtField.text = username
                     cell.userInfoTxtField.delegate = self
@@ -200,15 +187,8 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
     }
 
     
-//    func textFieldDidBeginEditing(textField: UITextField) {
-//        let indexPath = self.tableView.indexPathForSelectedRow
-//        
-//        //print( "indexPath = \(indexPath), section = \(indexPath?.section), row = \(indexPath!.row)" )
-//    }
-    
     func textFieldDidEndEditing(textField: UITextField) {
         //let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath!) as! SettingsTableViewCell
-        
         //self.inputUserInfoText.append(textField.text!)
         //print(self.inputUserInfoText)
         

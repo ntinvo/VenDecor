@@ -106,7 +106,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                 } else {
-                    //self.performSegueWithIdentifier("resetPassword", sender: sender)
                     self.performSegueWithIdentifier("completedLogin", sender: sender)
                 }
             } else {
@@ -153,7 +152,5 @@ class ViewController: UIViewController, UITextFieldDelegate {
             resetVC.viewController = self
         }
     }
-    
-    
 }
 

@@ -171,7 +171,7 @@ class MessageViewController: JSQMessagesViewController {
     }
     
     override func didPressAccessoryButton(sender: UIButton!) {
-        //
+        // todo
     }
     
     @IBAction func finishedMessaging(sender: AnyObject) {
@@ -189,29 +189,16 @@ class MessageViewController: JSQMessagesViewController {
             }
             dispatch_async(dispatch_get_main_queue()) {
                 self.homeTableViewController?.tableView.reloadData()
-                //print( "inside dispatch")
                 self.myMessagesViewController?.tableView.reloadData()
             }
-            
-            //print("inside snapshot")
-            
-            
-            
         })
-        //print( "out of snapshot" )
-        
         self.myMessagesViewController?.viewDidLoad()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-
     
     private func setupBubbles() {
         let bubbleImageFactory = JSQMessagesBubbleImageFactory()
         outgoingBubbleImageView = bubbleImageFactory.outgoingMessagesBubbleImageWithColor(UIColor(red: 68/255, green: 105/255, blue: 140/255, alpha: 1.0))
         incomingBubbleImageView = bubbleImageFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     }
-    
-    
-    
 }

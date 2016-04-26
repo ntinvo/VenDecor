@@ -36,7 +36,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func cancelBtn(sender: AnyObject) {
         //performSegueWithIdentifier("toLogin", sender: sender )
-        
        self.dismissViewControllerAnimated(true, completion: nil)
         
     }
