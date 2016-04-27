@@ -257,7 +257,7 @@
 				TargetAttributes = {
 					4C977A2D1C9240680000A985 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 9ZLF8AXGEQ;
+						DevelopmentTeam = 76SZ5KGJ7K;
 					};
 				};
 			};
@@ -488,7 +488,7 @@
 				INFOPLIST_FILE = VenDecor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cs378.VenDecor;
+				PRODUCT_BUNDLE_IDENTIFIER = cs378.VenDecorTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "VenDecor/VenDecor-Bridging-Header.h";
@@ -507,7 +507,7 @@
 				INFOPLIST_FILE = VenDecor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cs378.VenDecor;
+				PRODUCT_BUNDLE_IDENTIFIER = cs378.VenDecorTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "VenDecor/VenDecor-Bridging-Header.h";
