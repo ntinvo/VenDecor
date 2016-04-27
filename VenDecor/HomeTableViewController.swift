@@ -66,49 +66,19 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-  /*  // Called when the user touches on the main view (outside the UITextField).
-    // This causes the keyboard to go away also - but handles all situations when
-    // the user touches anywhere outside the keyboard.
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.searchBar.endEditing(true)
-    }
-    
-    // UITextFieldDelegate delegate method
-    //
-    // This method is called when the user touches the Return key on the
-    // keyboard. The 'textField' passed in is a pointer to the textField
-    // widget the cursor was in at the time they touched the Return key on
-    // the keyboard.
-    //
-    // From the Apple documentation: Asks the delegate if the text field
-    // should process the pressing of the return button.
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        // A responder is an object that can respond to events and handle them.
-        // Resigning first responder here means this text field will no longer be the first
-        // UI element to receive an event from this apps UI - you can think of it as giving
-        // up input 'focus'.
-        self.searchBar.resignFirstResponder()
-        return true
-    }*/
 
 
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.postings.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath) as! HomeTableViewCell
-        
         cell.homeTableViewController = self
         cell.cellNum = indexPath.row
         
@@ -128,7 +98,6 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
             cell.claimLabel.text = ""
         }
         cell.postImage.image = decodedImage
-
         return cell
     }
 
