@@ -193,7 +193,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
             // Restore starting insets.
-            self.scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
+            self.scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
             }, completion: nil)
     }
     

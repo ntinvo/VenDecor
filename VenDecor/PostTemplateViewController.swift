@@ -11,7 +11,7 @@ import Firebase
 
 class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    // Properties
+    // properties
     @IBOutlet weak var titleTxtField: UITextField!
     @IBOutlet weak var descriptionTxtField: UITextView!
     @IBOutlet weak var priceTxtField: UITextField!
@@ -21,6 +21,8 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     @IBOutlet weak var zipTxtField: UITextField!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var postItemBtn: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     var alertController: UIAlertController?
     var imagePicker: UIImagePickerController!
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
@@ -40,20 +42,49 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         self.zipTxtField.delegate = self
         self.postItemBtn.layer.cornerRadius = 5
         
+        // Register for keyboard notifications.
+        let notificationCenter: NSNotificationCenter = NSNotificationCenter.defaultCenter()
+        // Register for when the keyboard is shown.
+        notificationCenter.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        // Register for when the keyboard is hidden.
+        notificationCenter.addObserver(self, selector: #selector(ViewController.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
+        
+        // tap gesture
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(SettingsTableViewController.hideKeyboard))
+        tapGesture.cancelsTouchesInView = true
+        view.addGestureRecognizer(tapGesture)
+        
+        self.scrollView.frame = self.view.frame
+        self.scrollView.contentSize = self.view.frame.size
+        
+        // remove white space on top of contents
+        self.automaticallyAdjustsScrollViewInsets = false
+        
         self.descriptionTxtField.text = "Description"
         self.descriptionTxtField.textColor = UIColor.lightGrayColor()
     
         let logo = UIImage(named: "Sample.png")
         let imageView = UIImageView(image: logo)
         self.navigationItem.titleView = imageView
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    // hide the keyboard
+    func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
 
     @IBAction func takePictureBtn(sender: AnyObject) {
-        self.photoAlertController = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet )
+        self.photoAlertController = UIAlertController(title: "Choose photo source", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet )
         
         let uploadPhoto = UIAlertAction(title: "Upload a Photo", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
             print("upload Button Pressed")
@@ -106,9 +137,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     
     
     @IBAction func postItem(sender: AnyObject) {
-        if( self.myRootRef.authData != nil ) {
-        }
-        
+        if( self.myRootRef.authData != nil ) { }
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let components = calendar.components([.Day , .Month , .Year], fromDate: date)
@@ -165,29 +194,35 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         self.view.endEditing(true)
     }
     
-    // UITextFieldDelegate delegate method
-    //
     // This method is called when the user touches the Return key on the
     // keyboard. The 'textField' passed in is a pointer to the textField
     // widget the cursor was in at the time they touched the Return key on
     // the keyboard.
-    //
-    // From the Apple documentation: Asks the delegate if the text field
-    // should process the pressing of the return button.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        // A responder is an object that can respond to events and handle them.
-        // Resigning first responder here means this text field will no longer be the first
-        // UI element to receive an event from this apps UI - you can think of it as giving
-        // up input 'focus'.
-        self.titleTxtField.resignFirstResponder()
-        //self.descriptionTxtField.resignFirstResponder()
-        self.priceTxtField.resignFirstResponder()
-        self.conditionTxtField.resignFirstResponder()
-        self.streetTxtField.resignFirstResponder()
-        self.stateTextField.resignFirstResponder()
-        self.zipTxtField.resignFirstResponder()
+        textField.resignFirstResponder()
         return true
+    }
+    
+    // called when keyboard shows
+    func keyboardWillShow(notification: NSNotification) {
+        // Get keyboard frame from notification object.
+        let info:NSDictionary = notification.userInfo!
+        let keyboardFrame = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+        
+        // Pad for some space between the field and the keyboard.
+        let pad:CGFloat = 5.0;
+        UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            // Set inset bottom, which will cause the scroll view to move up.
+            self.scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardFrame.size.height + pad, 0.0);
+            }, completion: nil)
+    }
+    
+    // call when keyboard hides
+    func keyboardDidHide(notification: NSNotification) {
+        UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            // Restore starting insets.
+            self.scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+            }, completion: nil)
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
@@ -203,14 +238,6 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
             textView.textColor = UIColor.lightGrayColor()
         }
     }
-
-    /*func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        if(text == "\n") {
-            descriptionTxtField.resignFirstResponder()
-            return false
-        }
-        return true
-    }*/
     
     @IBAction func cancelBtn(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
