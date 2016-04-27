@@ -127,8 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				9C8E58351CB8743000A85205 /* SavedPostsTableViewController.swift */,
-				9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */,
 				9C8E58331CB8741D00A85205 /* MyPostsTableViewController.swift */,
+				9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */,
 			);
 			name = posts;
 			sourceTree = "<group>";

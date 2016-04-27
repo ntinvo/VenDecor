@@ -133,25 +133,27 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     }
 
     func keyboardWillShow(notification: NSNotification) {
-        // Get keyboard frame from notification object.
-        let info:NSDictionary = notification.userInfo!
-        let keyboardFrame = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
-        
-        // Pad for some space between the field and the keyboard.
-        let pad:CGFloat = 5.0;
-        
-        UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            // Set inset bottom, which will cause the scroll view to move up.
-            self.scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardFrame.size.height + pad, 0.0);
-            }, completion: nil)
+//        // Get keyboard frame from notification object.
+//        let info:NSDictionary = notification.userInfo!
+//        let keyboardFrame = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+//        
+//        // Pad for some space between the field and the keyboard.
+//        let pad:CGFloat = 5.0;
+//        
+//        print(keyboardFrame.size.height)
+//        //UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+//            // Set inset bottom, which will cause the scroll view to move up.
+//            //self.scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardFrame.size.height, 0.0);
+//            //}, completion: nil)
     }
     
     func keyboardDidHide(notification: NSNotification) {
         
-        UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            // Restore starting insets.
-            self.scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
-            }, completion: nil)
+//        UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+//            // Restore starting insets.
+//            print("GOT here")
+//            self.scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, -200.0, 0.0);
+//            }, completion: nil)
     }
     
     /*
