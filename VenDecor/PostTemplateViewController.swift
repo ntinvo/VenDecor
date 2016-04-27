@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import Firebase 
+import Firebase
+import Foundation
 
 class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     

@@ -49,8 +49,17 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     
     // sort button pressed
     @IBAction func sortBtn(sender: AnyObject) {
-        let descriptor: NSSortDescriptor = NSSortDescriptor(key: "datePosted", ascending: false)
+        let descriptor: NSSortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         let sortedResults: NSArray = (self.postings as NSArray).sortedArrayUsingDescriptors([descriptor])
+        
+        for i in 0 ..< self.postings.count {
+            let dict = self.postings[i]
+            let stringDate = dict.valueForKey("datePosted")!
+            let formatter = NSDateFormatter()
+            formatter.dateStyle = NSDateFormatterStyle.LongStyle
+            let date = formatter.dateFromString(stringDate as! String)
+            dict.setValue(date, forKey: "date")
+        }
         self.postings = sortedResults as! [NSDictionary]
         self.tableView.reloadData()
     }
