@@ -96,9 +96,15 @@ class MyPostsTableViewController: UITableViewController {
         let image = postImages[indexPath.row]
         let decodedData = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
         let decodedImage = UIImage(data: decodedData!)
-        cell.imageView!.image = decodedImage
+        //cell.imageView!.image = decodedImage
         
         cell.detailTextLabel!.text = postDates[ indexPath.row ]
+        
+        let imageView = UIImageView(image: decodedImage )
+        imageView.frame = CGRectMake(0, 0, 40, 40)
+        imageView.contentMode = .ScaleAspectFit
+        cell.accessoryView = imageView
+        
         
         return cell
     }

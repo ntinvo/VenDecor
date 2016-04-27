@@ -43,6 +43,14 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         self.zipTxtField.delegate = self
         self.postItemBtn.layer.cornerRadius = 5
         
+        self.titleTxtField.tag = 1
+        self.priceTxtField.tag = 2
+        self.conditionTxtField.tag = 3
+        self.streetTxtField.tag = 4
+        self.stateTextField.tag = 5
+        self.zipTxtField.tag = 6
+
+        
         // Register for keyboard notifications.
         let notificationCenter: NSNotificationCenter = NSNotificationCenter.defaultCenter()
         // Register for when the keyboard is shown.
@@ -69,6 +77,31 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         self.navigationItem.titleView = imageView
         
     }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        guard let text = textField.text else { return true }
+        let newLength = text.characters.count + string.characters.count - range.length
+        if( textField.tag == 1 ) {
+            return newLength <= 35
+        } else if( textField.tag == 2 ) {
+            return newLength <= 6
+        } else if( textField.tag == 3 ) {
+            return newLength <= 25
+        } else if( textField.tag == 4 ) {
+            return newLength <= 40
+        } else if( textField.tag == 5 ) {
+            return newLength <= 2
+        } else {
+            return newLength <= 5
+        }
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        return textView.text.characters.count + (text.characters.count - range.length) <= 80
+    }
+
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
