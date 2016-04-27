@@ -11,6 +11,7 @@ import Firebase
 
 class SaveSettingsTableViewCell: UITableViewCell {
 
+    var alertController: UIAlertController?
     // properties
     @IBOutlet weak var saveSettingBtn: UIButton!
     var myRootRef = Firebase( url:"https://vendecor.firebaseio.com/users" )
@@ -27,6 +28,12 @@ class SaveSettingsTableViewCell: UITableViewCell {
 
     // save settings button
     @IBAction func saveSettingsBtn(sender: AnyObject) {
+        
+        self.alertController = UIAlertController(title: "", message: "Account settings have been updated", preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
+        self.alertController!.addAction(okAction)
+        self.settingsTableVC?.presentViewController(self.alertController!, animated: true, completion:nil)
+        
         let profile = self.settingsTableVC?.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! ProfileTableViewCell
         let profilePicture = profile.profilePicture.image
         
