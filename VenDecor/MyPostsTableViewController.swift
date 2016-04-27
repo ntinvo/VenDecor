@@ -49,16 +49,18 @@ class MyPostsTableViewController: UITableViewController {
                 
                     // Retrieve new posts as they are added to your database
                     postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
-                        let messageTitle = snapshot.value.valueForKey("title") as! String
-                        let postImage = snapshot.value.valueForKey("image") as! String
-                        let datePosted = snapshot.value.valueForKey("datePosted") as! String
+                        if !(snapshot.value is NSNull) {
+                            let messageTitle = snapshot.value.valueForKey("title") as! String
+                            let postImage = snapshot.value.valueForKey("image") as! String
+                            let datePosted = snapshot.value.valueForKey("datePosted") as! String
                     
-                        self.messageTitles.append( messageTitle )
-                        self.postImages.append( postImage )
-                        self.postDates.append( datePosted )
+                            self.messageTitles.append( messageTitle )
+                            self.postImages.append( postImage )
+                            self.postDates.append( datePosted )
                     
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.tableView.reloadData()
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.tableView.reloadData()
+                            }
                         }
                     })
                 }
