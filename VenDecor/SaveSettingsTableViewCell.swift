@@ -12,11 +12,13 @@ import Firebase
 class SaveSettingsTableViewCell: UITableViewCell {
 
     // properties
+    @IBOutlet weak var saveSettingBtn: UIButton!
     var myRootRef = Firebase( url:"https://vendecor.firebaseio.com/users" )
     var settingsTableVC: SettingsTableViewController? = nil
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.saveSettingBtn.layer.cornerRadius = 5
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

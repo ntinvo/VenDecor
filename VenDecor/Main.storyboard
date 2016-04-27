@@ -503,6 +503,7 @@
                         <outlet property="email" destination="CVK-r6-47F" id="JEq-jP-khX"/>
                         <outlet property="password" destination="OpP-eI-wUb" id="TT9-4c-0Mn"/>
                         <outlet property="repeatPassword" destination="GkZ-2c-PcP" id="L7g-NF-iOX"/>
+                        <outlet property="signupBtn" destination="pxy-0H-Qbu" id="P1I-vO-oKO"/>
                         <outlet property="username" destination="VOB-bQ-m7g" id="4Z3-9p-RPA"/>
                         <outlet property="zipcode" destination="Nh9-Jz-AlO" id="UI7-Wj-Sfl"/>
                     </connections>
@@ -554,6 +555,7 @@
                     <connections>
                         <outlet property="password1TxtField" destination="prk-FC-hPM" id="668-Jr-vHr"/>
                         <outlet property="password2TxtField" destination="gvu-4G-H2J" id="eBq-PS-Igh"/>
+                        <outlet property="saveChangesBtn" destination="tPV-dr-xpH" id="737-Ll-Zxc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Rk-SY-kxx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -581,7 +583,7 @@
                         </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellid" rowHeight="293" id="YJ6-Kn-BfI" customClass="HomeTableViewCell" customModule="VenDecor" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="414" height="293"/>
+                                <rect key="frame" x="0.0" y="123" width="414" height="293"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YJ6-Kn-BfI" id="0P8-hy-lw2">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="292"/>
@@ -824,6 +826,7 @@
                         <outlet property="conditionTxtField" destination="HbT-7e-QUP" id="TAR-UK-ix7"/>
                         <outlet property="descriptionTxtField" destination="AAn-1N-dQg" id="ZuS-49-fCu"/>
                         <outlet property="postImage" destination="Tuh-vO-Wkq" id="GcL-kN-6qv"/>
+                        <outlet property="postItemBtn" destination="RMg-nP-5WF" id="y3s-DI-UAb"/>
                         <outlet property="priceTxtField" destination="9hG-ys-v6U" id="c4K-uJ-AoM"/>
                         <outlet property="stateTextField" destination="wY5-Qt-Y5f" id="QdM-7v-CSC"/>
                         <outlet property="streetTxtField" destination="9E3-qG-4qQ" id="t2c-cA-I6l"/>
@@ -880,7 +883,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="B7i-Rh-gHU">
-                                <rect key="frame" x="136" y="554" width="143" height="30"/>
+                                <rect key="frame" x="136" y="554" width="143" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.68159577770000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Delete Account">
@@ -918,6 +921,7 @@
                     <connections>
                         <outlet property="burgerBtn" destination="2AN-l5-JzZ" id="iuN-5J-9hw"/>
                         <outlet property="dateJoinedLabel" destination="k9H-9Z-f7Q" id="OlY-ba-SEv"/>
+                        <outlet property="deleteAccountBtn" destination="B7i-Rh-gHU" id="Z7X-HS-WkA"/>
                         <outlet property="emailLabel" destination="PLE-JW-w8A" id="BzK-Fs-wle"/>
                         <outlet property="profileImageView" destination="WA8-97-b7e" id="AQf-wq-49y"/>
                         <outlet property="usernameLabel" destination="07u-Oy-mw3" id="jGt-GS-w1L"/>
@@ -1037,7 +1041,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mie-pT-s61">
-                                            <rect key="frame" x="109" y="12" width="196" height="40"/>
+                                            <rect key="frame" x="109" y="7" width="196" height="52"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="0.68159577770000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title="Save Changes">
@@ -1053,6 +1057,9 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="saveSettingBtn" destination="mie-pT-s61" id="LPV-CO-qex"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1181,7 +1188,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" textLabel="OAq-qp-Oie" detailTextLabel="n5u-dm-vPX" rowHeight="65" style="IBUITableViewCellStyleSubtitle" id="o2I-VF-fNq">
-                                <rect key="frame" x="0.0" y="28" width="414" height="65"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o2I-VF-fNq" id="Tbt-Eq-ADy">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>

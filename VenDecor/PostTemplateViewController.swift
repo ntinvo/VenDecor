@@ -20,6 +20,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     @IBOutlet weak var stateTextField: UITextField!
     @IBOutlet weak var zipTxtField: UITextField!
     @IBOutlet weak var postImage: UIImageView!
+    @IBOutlet weak var postItemBtn: UIButton!
     var alertController: UIAlertController?
     var imagePicker: UIImagePickerController!
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
@@ -37,6 +38,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         self.streetTxtField.delegate = self
         self.stateTextField.delegate = self
         self.zipTxtField.delegate = self
+        self.postItemBtn.layer.cornerRadius = 5
         
         self.descriptionTxtField.text = "Description"
         self.descriptionTxtField.textColor = UIColor.lightGrayColor()

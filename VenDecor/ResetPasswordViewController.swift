@@ -14,6 +14,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     // properties
     @IBOutlet weak var password1TxtField: UITextField!
     @IBOutlet weak var password2TxtField: UITextField!
+    @IBOutlet weak var saveChangesBtn: UIButton!
     var alertController: UIAlertController? = nil
     var viewController: ViewController? = nil
     
@@ -21,6 +22,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.password1TxtField.delegate = self
         self.password2TxtField.delegate = self
+        self.saveChangesBtn.layer.cornerRadius = 5
     }
 
     override func didReceiveMemoryWarning() {

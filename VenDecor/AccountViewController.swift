@@ -18,11 +18,13 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var dateJoinedLabel: UILabel!
     @IBOutlet weak var zipLabel: UILabel!
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
+    @IBOutlet weak var deleteAccountBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
         self.profileImageView.clipsToBounds = true;
+        self.deleteAccountBtn.layer.cornerRadius = 5
 //      profileImageView.frame = CGRectMake(0, 0, 50, 50)
 //      self.btnPicture.layer.cornerRadius = self.btnPicture.frame.size.width / 2;
 //      self.btnPicture.clipsToBounds = true;

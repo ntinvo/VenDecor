@@ -17,6 +17,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var zipcode: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var repeatPassword: UITextField!
+    @IBOutlet weak var signupBtn: UIButton!
+    
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com/users")
     var alertController: UIAlertController? = nil
     
@@ -27,6 +29,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         self.zipcode.delegate = self
         self.password.delegate = self
         self.repeatPassword.delegate = self
+        self.signupBtn.layer.cornerRadius = 5
     }
     
     // cancel button
