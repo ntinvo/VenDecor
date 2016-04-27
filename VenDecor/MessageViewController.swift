@@ -189,11 +189,12 @@ class MessageViewController: JSQMessagesViewController {
             }
             dispatch_async(dispatch_get_main_queue()) {
                 self.homeTableViewController?.tableView.reloadData()
-                self.myMessagesViewController?.tableView.reloadData()
+                //self.myMessagesViewController?.tableView.reloadData()
+                self.myMessagesViewController?.viewDidLoad()
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
         })
-        self.myMessagesViewController?.viewDidLoad()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
     
     private func setupBubbles() {
