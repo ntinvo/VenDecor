@@ -94,6 +94,24 @@ class HomeTableViewCell: UITableViewCell {
             self.alertController!.addAction(okAction)
             self.alertController!.addAction(cancelAction)
             self.homeTableViewController!.presentViewController(self.alertController!, animated: true, completion:nil)
+            
+            self.homeTableViewController?.postings.removeAll()
+            let postsRef = Firebase(url: "https://vendecor.firebaseio.com/posts")
+            
+            // Retrieve new posts as they are added to your database
+            postsRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+                self.homeTableViewController?.postings.removeAll()
+                let posts = snapshot.value as! NSDictionary
+                let enumerator = posts.keyEnumerator()
+                while let key = enumerator.nextObject() {
+                    let post = posts[String(key)] as! NSDictionary
+                    self.homeTableViewController?.postings.append(post)
+                }
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.homeTableViewController?.tableView.reloadData()
+                }
+            })
+            self.homeTableViewController?.tableView.reloadData()
         }
     }
 }
