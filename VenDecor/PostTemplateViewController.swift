@@ -23,7 +23,6 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var postItemBtn: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    
     var alertController: UIAlertController?
     var imagePicker: UIImagePickerController!
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
@@ -75,11 +74,9 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         let logo = UIImage(named: "Sample.png")
         let imageView = UIImageView(image: logo)
         self.navigationItem.titleView = imageView
-        
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        
         guard let text = textField.text else { return true }
         let newLength = text.characters.count + string.characters.count - range.length
         if( textField.tag == 1 ) {
@@ -101,8 +98,6 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         return textView.text.characters.count + (text.characters.count - range.length) <= 80
     }
 
-
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -116,38 +111,15 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
-
-    @IBAction func takePictureBtn(sender: AnyObject) {
-        self.photoAlertController = UIAlertController(title: "Choose photo source", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet )
-        let uploadPhoto = UIAlertAction(title: "Upload a Photo", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
-                let imagePicker =  UIImagePickerController()
-                imagePicker.delegate = self
-                imagePicker.sourceType = .PhotoLibrary
-                self.presentViewController(imagePicker, animated: true, completion: nil)
-            }
-        })
-        let takePhoto = UIAlertAction(title: "Take a Photo", style: UIAlertActionStyle.Default) { (action) -> Void in
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-                let imagePicker =  UIImagePickerController()
-                imagePicker.delegate = self
-                imagePicker.sourceType = .Camera
-                self.presentViewController(imagePicker, animated: true, completion: nil)
-            }
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in })
-        self.photoAlertController!.addAction(uploadPhoto)
-        self.photoAlertController!.addAction(takePhoto)
-        self.photoAlertController!.addAction(cancelAction)
-        self.presentViewController(self.photoAlertController!, animated: true, completion: nil)
-    }
     
+    // finish with photo source
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         self.postImage.image = info[ UIImagePickerControllerOriginalImage ] as? UIImage
         self.compressImage()
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // compress image
     private func compressImage() {
         let rect = CGRectMake(0, 0, self.postImage.image!.size.width / 6 , self.postImage.image!.size.height / 6)
         UIGraphicsBeginImageContext(rect.size)
@@ -175,12 +147,91 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         self.automaticallyAdjustsScrollViewInsets = false
     }
     
+    // cancel image picker
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    // Called when the user touches on the main view (outside the UITextField).
+    // This causes the keyboard to go away also - but handles all situations when
+    // the user touches anywhere outside the keyboard.
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    // This method is called when the user touches the Return key on the
+    // keyboard. The 'textField' passed in is a pointer to the textField
+    // widget the cursor was in at the time they touched the Return key on
+    // the keyboard.
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // called when keyboard shows
+    func keyboardWillShow(notification: NSNotification) {
+        // get keyboard frame from notification object.
+        let info:NSDictionary = notification.userInfo!
+        let keyboardFrame = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+        
+        // pad for some space between the field and the keyboard.
+        let pad:CGFloat = 5.0;
+        UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            // set inset bottom, which will cause the scroll view to move up.
+            self.scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardFrame.size.height + pad, 0.0);
+            }, completion: nil)
+    }
+    
+    // call when keyboard hides
+    func keyboardDidHide(notification: NSNotification) {
+        UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            self.scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+            }, completion: nil)
+    }
+    
+    // begin editting
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.textColor == UIColor.lightGrayColor() {
+            textView.text = ""
+            textView.textColor = UIColor.blackColor()
+        }
+    }
+    
+    // end editting
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Description"
+            textView.textColor = UIColor.lightGrayColor()
+        }
+    }
 
-    
-    
+    // take/upload picture
+    @IBAction func takePictureBtn(sender: AnyObject) {
+        self.photoAlertController = UIAlertController(title: "Choose photo source", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet )
+        let uploadPhoto = UIAlertAction(title: "Upload a Photo", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+                let imagePicker =  UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = .PhotoLibrary
+                self.presentViewController(imagePicker, animated: true, completion: nil)
+            }
+        })
+        let takePhoto = UIAlertAction(title: "Take a Photo", style: UIAlertActionStyle.Default) { (action) -> Void in
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+                let imagePicker =  UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = .Camera
+                self.presentViewController(imagePicker, animated: true, completion: nil)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in })
+        self.photoAlertController!.addAction(uploadPhoto)
+        self.photoAlertController!.addAction(takePhoto)
+        self.photoAlertController!.addAction(cancelAction)
+        self.presentViewController(self.photoAlertController!, animated: true, completion: nil)
+    }
+
+    // post item
     @IBAction func postItem(sender: AnyObject) {
         if( self.myRootRef.authData != nil ) { }
         let date = NSDate()
@@ -232,58 +283,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // Called when the user touches on the main view (outside the UITextField).
-    // This causes the keyboard to go away also - but handles all situations when
-    // the user touches anywhere outside the keyboard.
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
-    // This method is called when the user touches the Return key on the
-    // keyboard. The 'textField' passed in is a pointer to the textField
-    // widget the cursor was in at the time they touched the Return key on
-    // the keyboard.
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    // called when keyboard shows
-    func keyboardWillShow(notification: NSNotification) {
-        // Get keyboard frame from notification object.
-        let info:NSDictionary = notification.userInfo!
-        let keyboardFrame = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
-        
-        // Pad for some space between the field and the keyboard.
-        let pad:CGFloat = 5.0;
-        UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            // Set inset bottom, which will cause the scroll view to move up.
-            self.scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardFrame.size.height + pad, 0.0);
-            }, completion: nil)
-    }
-    
-    // call when keyboard hides
-    func keyboardDidHide(notification: NSNotification) {
-        UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            // Restore starting insets.
-            self.scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
-            }, completion: nil)
-    }
-    
-    func textViewDidBeginEditing(textView: UITextView) {
-        if textView.textColor == UIColor.lightGrayColor() {
-            textView.text = ""
-            textView.textColor = UIColor.blackColor()
-        }
-    }
-    
-    func textViewDidEndEditing(textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "Description"
-            textView.textColor = UIColor.lightGrayColor()
-        }
-    }
-    
+    // cancel button
     @IBAction func cancelBtn(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -297,5 +297,4 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         // Pass the selected object to the new view controller.
     }
     */
-
 }
