@@ -155,7 +155,15 @@ class MyPostsTableViewController: UITableViewController {
         let navVC = segue.destinationViewController as! UINavigationController
         let postTemplateVC = navVC.viewControllers.first as! PostTemplateViewController
         let indexPath = tableView.indexPathForSelectedRow!
+        postTemplateVC.myPostsTableVC = self
+        postTemplateVC.postID = self.postIDs[indexPath.row]
+        postTemplateVC.postTitle = self.messageTitles[indexPath.row]
+        postTemplateVC.postDescription = self.postDescriptions[indexPath.row]
+        postTemplateVC.postPrice = self.postPrices[indexPath.row]
+        postTemplateVC.postCondition = self.postConditions[indexPath.row]
+        postTemplateVC.postStreet = self.postStreets[indexPath.row]
+        postTemplateVC.postState = self.postStates[indexPath.row]
+        postTemplateVC.postZip = self.postZipcodes[indexPath.row]
+        postTemplateVC.postImageString = self.postImages[indexPath.row]
     }
-    
-
 }
