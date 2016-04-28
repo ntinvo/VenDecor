@@ -82,8 +82,6 @@ class MyPostsTableViewController: UITableViewController {
                             self.postStreets.append(street)
                             self.postStates.append(state)
                             self.postZipcodes.append(zipcode)
-                            
-                            print("update")
                     
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.tableView.reloadData()
@@ -177,7 +175,13 @@ class MyPostsTableViewController: UITableViewController {
         postTemplateVC.postState = self.postStates[indexPath.row]
         postTemplateVC.postZip = self.postZipcodes[indexPath.row]
         postTemplateVC.postImageString = self.postImages[indexPath.row]
-        postTemplateVC.claimed = self.claims[indexPath.row]
-        postTemplateVC.messages = self.messages[indexPath.row]
+        
+        if self.claims.count > 0 {
+            postTemplateVC.claimed = self.claims[indexPath.row]
+        }
+        
+        if self.messages.count > indexPath.row {
+            postTemplateVC.messages = self.messages[indexPath.row]
+        }
     }
 }
