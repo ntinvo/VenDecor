@@ -19,7 +19,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var repeatPassword: UITextField!
     @IBOutlet weak var signupBtn: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com/users")
     var alertController: UIAlertController? = nil
     

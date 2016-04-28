@@ -26,13 +26,11 @@ class ProfileTableViewCell: UITableViewCell, UINavigationControllerDelegate, UII
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
     }
     
     // take picture button
     @IBAction func takePictureBtn(sender: AnyObject) {
         self.alertController = UIAlertController(title: "Choose photo source", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet )
-       
         
         let uploadPhoto = UIAlertAction(title: "Upload a Photo", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
@@ -79,6 +77,4 @@ class ProfileTableViewCell: UITableViewCell, UINavigationControllerDelegate, UII
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
 }

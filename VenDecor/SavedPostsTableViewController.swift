@@ -20,7 +20,6 @@ class SavedPostsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // navigation bar
         let logo = UIImage(named: "Sample.png")
         let imageView = UIImageView(image: logo)
@@ -79,22 +78,15 @@ class SavedPostsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
         cell.textLabel!.text = messageTitles[ indexPath.row ]
-        
         let image = postImages[indexPath.row]
         let decodedData = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
         let decodedImage = UIImage(data: decodedData!)
-        //cell.imageView!.image = decodedImage
-        
         cell.detailTextLabel!.text = postDates[ indexPath.row ]
-        
         let imageView = UIImageView(image: decodedImage )
         imageView.frame = CGRectMake(0, 0, 40, 40)
         imageView.contentMode = .ScaleAspectFit
         cell.accessoryView = imageView
-
         return cell
     }
     

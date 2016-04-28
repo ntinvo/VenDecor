@@ -11,6 +11,7 @@ import Firebase
 
 class MyPostsTableViewController: UITableViewController {
 
+    // properties
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
     var myRootRef = Firebase( url:"https://vendecor.firebaseio.com")
     var messageTitles = [String]()
@@ -19,12 +20,6 @@ class MyPostsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         // navigation bar
         let logo = UIImage(named: "Sample.png")
@@ -38,16 +33,16 @@ class MyPostsTableViewController: UITableViewController {
         
         let uid = myRootRef.authData.uid
         let postsRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/postIDs/")
-        // Retrieve new posts as they are added to your database
+        // retrieve new posts as they are added to your database
         postsRef.observeEventType(.Value, withBlock: { snapshot in
             if !(snapshot.value is NSNull) {
                 let postIDsSnap = snapshot.value as! NSArray
                 for postID in 0...(postIDsSnap.count - 1) {
                 
-                    //for post in postIDs {
-                    let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(postIDsSnap[postID]) )
+                    // for post in postIDs {
+                    let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(postIDsSnap[postID]))
                 
-                    // Retrieve new posts as they are added to your database
+                    // retrieve new posts as they are added to your database
                     postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
                         if !(snapshot.value is NSNull) {
                             let messageTitle = snapshot.value.valueForKey("title") as! String
@@ -70,42 +65,28 @@ class MyPostsTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.messageTitles.count
     }
 
-
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
         cell.textLabel!.text = messageTitles[ indexPath.row ]
-        
         let image = postImages[indexPath.row]
         let decodedData = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
         let decodedImage = UIImage(data: decodedData!)
-        //cell.imageView!.image = decodedImage
-        
         cell.detailTextLabel!.text = postDates[ indexPath.row ]
-        
         let imageView = UIImageView(image: decodedImage )
         imageView.frame = CGRectMake(0, 0, 40, 40)
         imageView.contentMode = .ScaleAspectFit
         cell.accessoryView = imageView
-        
-        
         return cell
     }
 
