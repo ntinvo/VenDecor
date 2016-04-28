@@ -31,7 +31,7 @@ class ProfileTableViewCell: UITableViewCell, UINavigationControllerDelegate, UII
     
     // take picture button
     @IBAction func takePictureBtn(sender: AnyObject) {
-        self.alertController = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet )
+        self.alertController = UIAlertController(title: "Choose photo source", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet )
        
         
         let uploadPhoto = UIAlertAction(title: "Upload a Photo", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
