@@ -152,7 +152,8 @@ class MyPostsTableViewController: UITableViewController {
             let postReference = Firebase(url: "https://vendecor.firebaseio.com/posts/" + String(id))
             postReference.removeValue()
             
-            //let userPostIDsRef =
+            let userPostIDsRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + String(self.myRootRef.authData.uid) + "/postIDs/" + String(id))
+            userPostIDsRef.removeValue()
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }

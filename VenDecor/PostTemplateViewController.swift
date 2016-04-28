@@ -292,7 +292,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
                     // save post id to Firebase
                     let myUserRef = Firebase(url:"https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid)
                     let postIDsRef = myUserRef.childByAppendingPath("postIDs")
-                    postIDsRef.childByAppendingPath(String(self.numPosts!)).setValue(postID)
+                    postIDsRef.childByAppendingPath(String(postID)).setValue(postID)
                 
                     // save post info to Firebase
                     let myPostRef = Firebase(url:"https://vendecor.firebaseio.com/posts/")
@@ -418,9 +418,6 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
                                         
                                         dispatch_async(dispatch_get_main_queue()) {
                                             self.myPostsTableVC!.tableView.reloadData()
-//                                            print("INSIDE UPDATE")
-//                                            print(self.myPostsTableVC!.messages)
-//                                            print("EDN")
                                         }
                                     }
                                 })
