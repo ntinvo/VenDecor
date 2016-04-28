@@ -129,17 +129,29 @@ class MyPostsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
+            self.postIDs.removeAtIndex(indexPath.row)
+            self.messageTitles.removeAtIndex(indexPath.row)
+            self.postDescriptions.removeAtIndex(indexPath.row)
+            self.postPrices.removeAtIndex(indexPath.row)
+            self.postConditions.removeAtIndex(indexPath.row)
+            self.postStreets.removeAtIndex(indexPath.row)
+            self.postStates.removeAtIndex(indexPath.row)
+            self.postZipcodes.removeAtIndex(indexPath.row)
+            self.postImages.removeAtIndex(indexPath.row)
+            if self.claims.count > 0 {
+                self.claims.removeAtIndex(indexPath.row)
+            }
+            if self.messages.count > indexPath.row {
+                self.messages.removeAtIndex(indexPath.row)
+            }
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
