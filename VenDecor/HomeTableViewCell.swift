@@ -51,7 +51,6 @@ class HomeTableViewCell: UITableViewCell {
         postImage.layer.cornerRadius = postImage.frame.size.width/2
         postImage.clipsToBounds = true
         postImage.contentMode = .ScaleAspectFill
-        //postImage.backgroundColor = UIColor.whiteColor()
     }
     
     // set selected
@@ -85,16 +84,13 @@ class HomeTableViewCell: UITableViewCell {
             let postRef = Firebase(url:"https://vendecor.firebaseio.com/posts/" + self.postID!)
             postRef.childByAppendingPath("claimed").setValue(true)
             self.alertController = UIAlertController(title: "Claim Item", message: "Pick up the item within 24 hours. Contact the seller for more details.", preferredStyle: UIAlertControllerStyle.Alert)
-        
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
                 self.claimLabel.text = "CLAIMED"
             }
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
-
             self.alertController!.addAction(okAction)
             self.alertController!.addAction(cancelAction)
             self.homeTableViewController!.presentViewController(self.alertController!, animated: true, completion:nil)
-            
             self.homeTableViewController?.postings.removeAll()
             let postsRef = Firebase(url: "https://vendecor.firebaseio.com/posts")
             

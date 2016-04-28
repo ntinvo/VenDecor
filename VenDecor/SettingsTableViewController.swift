@@ -12,7 +12,6 @@ import Firebase
 
 class SettingsTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
-
     // properties
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
     var userInfo: [String] = [ "", "USERNAME", "ZIP CODE", "" ]
@@ -41,21 +40,17 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
             self.burgerBtn.action = "revealToggle:"
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        
         let myRootRef = Firebase( url: "https://vendecor.firebaseio.com/users/" )
         let uid = myRootRef.authData.uid
         let userAccount = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid )
-        
         userAccount.observeEventType(.Value, withBlock: { snapshot in
             self.username = snapshot.value.valueForKey( "username" ) as? String
             self.zipcode = snapshot.value.valueForKey( "zipcode" ) as? String
             let decodedData = NSData(base64EncodedString: String(snapshot.value.valueForKey("profilePic")!), options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-            
             self.profilePicture = UIImage(data: decodedData!)
             self.inputUserInfoText["username"] = self.username
             self.inputUserInfoText["profile"] = self.profilePicture
             self.inputUserInfoText["zipcode"] = self.zipcode
-            
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadData()
             }
@@ -68,36 +63,21 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
     }
     
 
-    // UITextFieldDelegate delegate method
-    //
     // This method is called when the user touches the Return key on the
     // keyboard. The 'textField' passed in is a pointer to the textField
     // widget the cursor was in at the time they touched the Return key on
     // the keyboard.
-    //
-    // From the Apple documentation: Asks the delegate if the text field
-    // should process the pressing of the return button.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        // A responder is an object that can respond to events and handle them.
-        // Resigning first responder here means this text field will no longer be the first
-        // UI element to receive an event from this apps UI - you can think of it as giving
-        // up input 'focus'.
         self.usernametextField!.resignFirstResponder()
         self.zipcodetextField!.resignFirstResponder()
         return true
     }
     
-
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: (NSIndexPath!)) -> CGFloat {
-        
-        // Toggle the cell height - alternating between rows.
         if(indexPath.row == 0 && indexPath.section == 0) {
           return 250
         } else if( indexPath.section == 0 && indexPath.row == 1 ) {
@@ -107,20 +87,14 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
         } else {
            return 75
         }
-        
-        
     }
 
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 4
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        //return ( userInfo.count * 2 ) + 1
         return 2
     }
     
@@ -146,9 +120,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
             cell.settingsTableVC = self
             return cell
         } else {
-            //let index = indexPath.row
             let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath) as! SettingsTableViewCell
-
             cell.settingsTableVC = self
                 if( indexPath.section == 1 ) {
                     cell.userInfoTxtField.text = username
@@ -163,11 +135,8 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, U
         }
     }
 
-    
     func textFieldDidEndEditing(textField: UITextField) {
-        //let cell = tableView.dequeueReusableCellWithIdentifier("cellid", forIndexPath: indexPath!) as! SettingsTableViewCell
-        //self.inputUserInfoText.append(textField.text!)
-        //print(self.inputUserInfoText)
+        //
     }
     
     // Called when the user touches on the main view (outside the UITextField).

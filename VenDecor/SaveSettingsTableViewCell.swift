@@ -10,12 +10,12 @@ import UIKit
 import Firebase
 
 class SaveSettingsTableViewCell: UITableViewCell {
-
-    var alertController: UIAlertController?
+    
     // properties
     @IBOutlet weak var saveSettingBtn: UIButton!
     var myRootRef = Firebase( url:"https://vendecor.firebaseio.com/users" )
     var settingsTableVC: SettingsTableViewController? = nil
+    var alertController: UIAlertController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,7 +45,6 @@ class SaveSettingsTableViewCell: UITableViewCell {
         let username = usernameCell.userInfoTxtField.text!
         let zipcodeCell = self.settingsTableVC?.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as! SettingsTableViewCell
         let zipcode = zipcodeCell.userInfoTxtField.text!
-        
         
         // save post id to Firebase
         let myUserRef = Firebase(url:"https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid )

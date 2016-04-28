@@ -25,9 +25,6 @@ class AccountViewController: UIViewController {
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
         self.profileImageView.clipsToBounds = true;
         self.deleteAccountBtn.layer.cornerRadius = 5
-//      profileImageView.frame = CGRectMake(0, 0, 50, 50)
-//      self.btnPicture.layer.cornerRadius = self.btnPicture.frame.size.width / 2;
-//      self.btnPicture.clipsToBounds = true;
         
         // navigation bar
         let logo = UIImage(named: "Sample.png")
@@ -43,7 +40,6 @@ class AccountViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         profileImageView.userInteractionEnabled = true
         profileImageView.addGestureRecognizer(tapGestureRecognizer)
-        
         let myRootRef = Firebase( url: "https://vendecor.firebaseio.com/users/" )
         let uid = myRootRef.authData.uid
         let userAccount = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid )
@@ -62,11 +58,10 @@ class AccountViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func imageTapped(img : AnyObject) {
-        // change profile image
+        //
     }
     
 

@@ -17,7 +17,6 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     var postings = [NSDictionary]()
     var temp: Int? = nil
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +31,6 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         }
         
         let postsRef = Firebase(url: "https://vendecor.firebaseio.com/posts")
-        // Retrieve new posts as they are added to your database
         postsRef.observeEventType(.Value, withBlock: { snapshot in
             let posts = snapshot.value as! NSDictionary
 

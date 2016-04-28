@@ -24,12 +24,6 @@ class MyMessagesTableViewController: UITableViewController {
         self.messageTitles.removeAll()
         self.postsID.removeAll()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
         // navigation bar
         let logo = UIImage(named: "Sample.png")
         let imageView = UIImageView(image: logo)
@@ -77,7 +71,6 @@ class MyMessagesTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -86,14 +79,10 @@ class MyMessagesTableViewController: UITableViewController {
         return messageTitles.count
     }
 
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
         cell.textLabel!.text = self.messageTitles[ indexPath.row ]
         cell.detailTextLabel!.text = self.lastTexts [indexPath.row ]
-        
         return cell
     }
     
