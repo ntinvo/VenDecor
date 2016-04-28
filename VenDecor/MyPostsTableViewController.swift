@@ -133,7 +133,7 @@ class MyPostsTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            self.postIDs.removeAtIndex(indexPath.row)
+            let id = self.postIDs.removeAtIndex(indexPath.row)
             self.messageTitles.removeAtIndex(indexPath.row)
             self.postDescriptions.removeAtIndex(indexPath.row)
             self.postPrices.removeAtIndex(indexPath.row)
@@ -148,6 +148,12 @@ class MyPostsTableViewController: UITableViewController {
             if self.messages.count > indexPath.row {
                 self.messages.removeAtIndex(indexPath.row)
             }
+
+            let postReference = Firebase(url: "https://vendecor.firebaseio.com/posts/" + String(id))
+            postReference.removeValue()
+            
+            //let userPostIDsRef =
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
