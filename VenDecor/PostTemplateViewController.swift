@@ -70,6 +70,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
             let decodedData = NSData(base64EncodedString: self.postImageString!, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
             self.postImage.image = UIImage(data: decodedData!)
             self.descriptionTxtField.textColor = UIColor.blackColor()
+            self.postItemBtn.setTitle("Update Item", forState: .Normal)
         } else {
             self.descriptionTxtField.text = "Description"
             self.descriptionTxtField.textColor = UIColor.lightGrayColor()
