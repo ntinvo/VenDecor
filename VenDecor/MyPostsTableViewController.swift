@@ -43,7 +43,7 @@ class MyPostsTableViewController: UITableViewController {
         let uid = myRootRef.authData.uid
         let postsRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/postIDs/")
         // retrieve new posts as they are added to your database
-        postsRef.observeEventType(.Value, withBlock: { snapshot in
+        postsRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             if !(snapshot.value is NSNull) {
 
                 let postIDsSnap = snapshot.value as! NSDictionary
