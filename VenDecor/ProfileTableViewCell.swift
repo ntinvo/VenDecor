@@ -35,21 +35,22 @@ class ProfileTableViewCell: UITableViewCell, UINavigationControllerDelegate, UII
        
         
         let uploadPhoto = UIAlertAction(title: "Upload a Photo", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-            //self.getPhoto("upload")
-            let imagePicker =  UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = .PhotoLibrary
-            self.settingsTableVC!.presentViewController(imagePicker, animated: true, completion: nil)
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+                let imagePicker =  UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = .PhotoLibrary
+                self.settingsTableVC!.presentViewController(imagePicker, animated: true, completion: nil)
+            }
         })
         let takePhoto = UIAlertAction(title: "Take a Photo", style: UIAlertActionStyle.Default) { (action) -> Void in
-            let imagePicker =  UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = .Camera
-            self.settingsTableVC!.presentViewController(imagePicker, animated: true, completion: nil)
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+                let imagePicker =  UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = .Camera
+                self.settingsTableVC!.presentViewController(imagePicker, animated: true, completion: nil)
+            }
         }
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in })
-        
         self.alertController!.addAction(uploadPhoto)
         self.alertController!.addAction(takePhoto)
         self.alertController!.addAction(cancelAction)
