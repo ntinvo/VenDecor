@@ -39,6 +39,8 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     var postState: String? = nil
     var postZip: String? = nil
     var postImageString: String? = nil
+    var claimed: Bool? = nil
+    var messages: NSDictionary? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -259,55 +261,122 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
 
     // post item
     @IBAction func postItem(sender: AnyObject) {
-        print(self.myPostsTableVC)
-//        if( self.myPostsTableVC == nil ) {
-//            let date = NSDate()
-//            let calendar = NSCalendar.currentCalendar()
-//            let components = calendar.components([.Day , .Month , .Year], fromDate: date)
-//            let year =  String(components.year)
-//            let month = components.month
-//            let dateFormatter: NSDateFormatter = NSDateFormatter()
-//            let months = dateFormatter.monthSymbols
-//            let monthStr = months[month - 1]
-//            let day = String(components.day)
-//        
-//            // convert images to base64 string
-//            let imageData:NSData = UIImagePNGRepresentation(postImage.image!)!
-//            let base64String = imageData.base64EncodedStringWithOptions( .EncodingEndLineWithCarriageReturn )
-//        
-//            dispatch_sync(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
-//                let numPostRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid + "/numPosts")
-//                numPostRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-//                    self.numPosts = snapshot.value as? Int
-//            
-//                    // generate the post id
-//                    let postID = self.myRootRef.authData.uid + "-" + String(self.numPosts!)
-//                
-//                    let datePosted = monthStr + " " + day + ", " + year
-//                
-//                    // create post info
-//                    let postInfo = ["id": postID,"title" : String(self.titleTxtField.text!),"image": base64String, "description" : self.descriptionTxtField.text!, "price" : String(self.priceTxtField.text!), "condition": String(self.conditionTxtField.text!), "street": String(self.streetTxtField.text!), "state": String(self.stateTextField.text!), "zip": String(self.zipTxtField.text!), "userID" : self.myRootRef.authData.uid, "datePosted" : datePosted, "claimed" : false ]
-//                
-//                    // save post id to Firebase
-//                    let myUserRef = Firebase(url:"https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid)
-//                    let postIDsRef = myUserRef.childByAppendingPath("postIDs")
-//                    postIDsRef.childByAppendingPath(String(self.numPosts!)).setValue(postID)
-//                
-//                    // save post info to Firebase
-//                    let myPostRef = Firebase(url:"https://vendecor.firebaseio.com/posts/")
-//                    myPostRef.childByAppendingPath(postID).setValue(postInfo)
-//                
-//                    // increment post number and saved
-//                    self.numPosts! += 1
-//                    numPostRef.setValue(self.numPosts)
-//                
-//                    self.homeTableViewController?.postings.removeAll()
-//                    self.homeTableViewController?.tableView.reloadData()
-//                    self.homeTableViewController?.postings.removeAll()
-//                    self.homeTableViewController?.tableView.reloadData()
-//                })
-//            }
-//        }
+        if( self.myPostsTableVC == nil ) {
+            let date = NSDate()
+            let calendar = NSCalendar.currentCalendar()
+            let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+            let year =  String(components.year)
+            let month = components.month
+            let dateFormatter: NSDateFormatter = NSDateFormatter()
+            let months = dateFormatter.monthSymbols
+            let monthStr = months[month - 1]
+            let day = String(components.day)
+        
+            // convert images to base64 string
+            let imageData:NSData = UIImagePNGRepresentation(postImage.image!)!
+            let base64String = imageData.base64EncodedStringWithOptions( .EncodingEndLineWithCarriageReturn )
+        
+            dispatch_sync(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
+                let numPostRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid + "/numPosts")
+                numPostRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+                    self.numPosts = snapshot.value as? Int
+            
+                    // generate the post id
+                    let postID = self.myRootRef.authData.uid + "-" + String(self.numPosts!)
+                
+                    let datePosted = monthStr + " " + day + ", " + year
+                
+                    // create post info
+                    let postInfo = ["id": postID,"title" : String(self.titleTxtField.text!),"image": base64String, "description" : self.descriptionTxtField.text!, "price" : String(self.priceTxtField.text!), "condition": String(self.conditionTxtField.text!), "street": String(self.streetTxtField.text!), "state": String(self.stateTextField.text!), "zip": String(self.zipTxtField.text!), "userID" : self.myRootRef.authData.uid, "datePosted" : datePosted, "claimed" : false ]
+                
+                    // save post id to Firebase
+                    let myUserRef = Firebase(url:"https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid)
+                    let postIDsRef = myUserRef.childByAppendingPath("postIDs")
+                    postIDsRef.childByAppendingPath(String(self.numPosts!)).setValue(postID)
+                
+                    // save post info to Firebase
+                    let myPostRef = Firebase(url:"https://vendecor.firebaseio.com/posts/")
+                    myPostRef.childByAppendingPath(postID).setValue(postInfo)
+                
+                    // increment post number and saved
+                    self.numPosts! += 1
+                    numPostRef.setValue(self.numPosts)
+                
+                    self.homeTableViewController?.postings.removeAll()
+                    self.homeTableViewController?.tableView.reloadData()
+                    self.homeTableViewController?.postings.removeAll()
+                    self.homeTableViewController?.tableView.reloadData()
+                })
+            }
+        } else {
+            let date = NSDate()
+            let calendar = NSCalendar.currentCalendar()
+            let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+            let year =  String(components.year)
+            let month = components.month
+            let dateFormatter: NSDateFormatter = NSDateFormatter()
+            let months = dateFormatter.monthSymbols
+            let monthStr = months[month - 1]
+            let day = String(components.day)
+            
+            // convert images to base64 string
+            let imageData:NSData = UIImagePNGRepresentation(postImage.image!)!
+            let base64String = imageData.base64EncodedStringWithOptions( .EncodingEndLineWithCarriageReturn )
+            
+            // attributes
+            let updatePostID = self.postID!
+            let updateTitle = String(self.titleTxtField.text!)
+            let updateDescription = String(self.descriptionTxtField.text!)
+            let updatePrice = String(self.priceTxtField.text!)
+            let updateCondition = String(self.conditionTxtField.text!)
+            let updateStreet = String(self.streetTxtField.text!)
+            let updateState = String(self.stateTextField.text!)
+            let updateZip = String(self.zipTxtField.text!)
+            
+            dispatch_sync(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
+                
+                // date posted
+                let datePosted = monthStr + " " + day + ", " + year
+                    
+                // create post info
+                
+                let postInfo: NSMutableDictionary = ["id": updatePostID, "title" : updateTitle, "image": base64String, "description" : updateDescription, "price" : updatePrice, "condition": updateCondition, "street": updateStreet, "state": updateState, "zip" : updateZip, "userID" : self.myRootRef.authData.uid, "datePosted" : datePosted]
+                
+                // update claimed
+                if (self.claimed != nil) {
+                    postInfo.setValue(self.claimed!, forKey: "claimed")
+                } else {
+                    postInfo.setValue(false, forKey: "claimed")
+                }
+                
+                // update messages
+                if (self.messages != nil) {
+                    postInfo.setValue(self.messages!, forKey: "messages")
+                }
+                
+                // save post info to Firebase
+                let myPostRef = Firebase(url:"https://vendecor.firebaseio.com/posts/")
+                myPostRef.childByAppendingPath(updatePostID).setValue(postInfo)
+
+                print(self.myPostsTableVC?.messageTitles)
+                // reload data
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                self.myPostsTableVC?.messageTitles.removeAll()
+                self.myPostsTableVC?.postImages.removeAll()
+                self.myPostsTableVC?.postDates.removeAll()
+                self.myPostsTableVC?.messageTitles.removeAll()
+                self.myPostsTableVC?.postImages.removeAll()
+                self.myPostsTableVC?.postDates.removeAll()
+                self.myPostsTableVC?.tableView.reloadData()
+                print(self.myPostsTableVC?.messageTitles)
+                    print("final")
+                }
+            }
+
+        }
+        print("after")
+        print(self.myPostsTableVC?.messageTitles)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

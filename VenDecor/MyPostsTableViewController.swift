@@ -24,6 +24,8 @@ class MyPostsTableViewController: UITableViewController {
     var postStates = [String]()
     var postZipcodes = [String]()
     var postIDs = [String]()
+    var claims = [Bool]()
+    var messages = [NSDictionary]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,12 +45,11 @@ class MyPostsTableViewController: UITableViewController {
         // retrieve new posts as they are added to your database
         postsRef.observeEventType(.Value, withBlock: { snapshot in
             if !(snapshot.value is NSNull) {
-                let postIDsSnap = snapshot.value as! NSArray
-                for postID in 0...(postIDsSnap.count - 1) {
-                
-                    // for post in postIDs {
-                    let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(postIDsSnap[postID]))
-                
+
+                let postIDsSnap = snapshot.value as! NSDictionary
+                for (_, val) in postIDsSnap {
+                    let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(val ))
+
                     // retrieve new posts as they are added to your database
                     postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
                         if !(snapshot.value is NSNull) {
@@ -63,6 +64,14 @@ class MyPostsTableViewController: UITableViewController {
                             let state = snapshot.value.valueForKey("state") as! String
                             let zipcode = snapshot.value.valueForKey("zip") as! String
                             
+                            if let claimed = snapshot.value.valueForKey("claimed") {
+                                self.claims.append(claimed as! Bool)
+                            }
+                            
+                            if let msgs = snapshot.value.valueForKey("messages") {
+                                self.messages.append(msgs as! NSDictionary)
+                            }
+                            
                             self.postIDs.append(postID)
                             self.messageTitles.append( messageTitle )
                             self.postImages.append( postImage )
@@ -73,6 +82,8 @@ class MyPostsTableViewController: UITableViewController {
                             self.postStreets.append(street)
                             self.postStates.append(state)
                             self.postZipcodes.append(zipcode)
+                            
+                            print("update")
                     
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.tableView.reloadData()
@@ -94,6 +105,7 @@ class MyPostsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(self.messageTitles)
         return self.messageTitles.count
     }
 
@@ -165,5 +177,7 @@ class MyPostsTableViewController: UITableViewController {
         postTemplateVC.postState = self.postStates[indexPath.row]
         postTemplateVC.postZip = self.postZipcodes[indexPath.row]
         postTemplateVC.postImageString = self.postImages[indexPath.row]
+        postTemplateVC.claimed = self.claims[indexPath.row]
+        postTemplateVC.messages = self.messages[indexPath.row]
     }
 }
