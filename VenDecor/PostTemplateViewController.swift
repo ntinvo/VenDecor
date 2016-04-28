@@ -358,25 +358,76 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
                 let myPostRef = Firebase(url:"https://vendecor.firebaseio.com/posts/")
                 myPostRef.childByAppendingPath(updatePostID).setValue(postInfo)
 
-                print(self.myPostsTableVC?.messageTitles)
+
                 // reload data
                 dispatch_async(dispatch_get_main_queue()) {
+                    self.myPostsTableVC!.postIDs.removeAll()
+                    self.myPostsTableVC!.messageTitles.removeAll()
+                    self.myPostsTableVC!.postImages.removeAll()
+                    self.myPostsTableVC!.postDates.removeAll()
+                    self.myPostsTableVC!.postDescriptions.removeAll()
+                    self.myPostsTableVC!.postPrices.removeAll()
+                    self.myPostsTableVC!.postConditions.removeAll()
+                    self.myPostsTableVC!.postStreets.removeAll()
+                    self.myPostsTableVC!.postStates.removeAll()
+                    self.myPostsTableVC!.postZipcodes.removeAll()
                     
-                self.myPostsTableVC?.messageTitles.removeAll()
-                self.myPostsTableVC?.postImages.removeAll()
-                self.myPostsTableVC?.postDates.removeAll()
-                self.myPostsTableVC?.messageTitles.removeAll()
-                self.myPostsTableVC?.postImages.removeAll()
-                self.myPostsTableVC?.postDates.removeAll()
-                self.myPostsTableVC?.tableView.reloadData()
-                print(self.myPostsTableVC?.messageTitles)
-                    print("final")
+                    let uid = self.myRootRef.authData.uid
+                    let postsRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/postIDs/")
+                    // retrieve new posts as they are added to your database
+                    postsRef.observeEventType(.Value, withBlock: { snapshot in
+                        if !(snapshot.value is NSNull) {
+                            
+                            let postIDsSnap = snapshot.value as! NSDictionary
+                            for (_, val) in postIDsSnap {
+                                let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(val))
+                                
+                                // retrieve new posts as they are added to your database
+                                postMessagesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+                                    if !(snapshot.value is NSNull) {
+                                        let postID = snapshot.value.valueForKey("id") as! String
+                                        let messageTitle = snapshot.value.valueForKey("title") as! String
+                                        let postImage = snapshot.value.valueForKey("image") as! String
+                                        let datePosted = snapshot.value.valueForKey("datePosted") as! String
+                                        let description = snapshot.value.valueForKey("description") as! String
+                                        let price = snapshot.value.valueForKey("price") as! String
+                                        let condition = snapshot.value.valueForKey("condition") as! String
+                                        let street = snapshot.value.valueForKey("street") as! String
+                                        let state = snapshot.value.valueForKey("state") as! String
+                                        let zipcode = snapshot.value.valueForKey("zip") as! String
+                                        
+                                        if let claimed = snapshot.value.valueForKey("claimed") {
+                                            self.myPostsTableVC!.claims.append(claimed as! Bool)
+                                        }
+                                        
+                                        if let msgs = snapshot.value.valueForKey("messages") {
+                                            self.myPostsTableVC!.messages.append(msgs as! NSDictionary)
+                                        }
+                                        
+                                        self.myPostsTableVC!.postIDs.append(postID)
+                                        self.myPostsTableVC!.messageTitles.append( messageTitle )
+                                        self.myPostsTableVC!.postImages.append( postImage )
+                                        self.myPostsTableVC!.postDates.append( datePosted )
+                                        self.myPostsTableVC!.postDescriptions.append(description)
+                                        self.myPostsTableVC!.postPrices.append(price)
+                                        self.myPostsTableVC!.postConditions.append(condition)
+                                        self.myPostsTableVC!.postStreets.append(street)
+                                        self.myPostsTableVC!.postStates.append(state)
+                                        self.myPostsTableVC!.postZipcodes.append(zipcode)
+                                        
+                                        dispatch_async(dispatch_get_main_queue()) {
+                                            self.myPostsTableVC!.tableView.reloadData()
+                                        }
+                                    }
+                                })
+                            }
+                        }
+                    })
+
                 }
             }
 
         }
-        print("after")
-        print(self.myPostsTableVC?.messageTitles)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

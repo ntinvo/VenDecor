@@ -51,7 +51,7 @@ class MyPostsTableViewController: UITableViewController {
                     let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(val ))
 
                     // retrieve new posts as they are added to your database
-                    postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
+                    postMessagesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
                         if !(snapshot.value is NSNull) {
                             let postID = snapshot.value.valueForKey("id") as! String
                             let messageTitle = snapshot.value.valueForKey("title") as! String
@@ -86,6 +86,8 @@ class MyPostsTableViewController: UITableViewController {
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.tableView.reloadData()
                             }
+                            
+                            print("HERERERERERERererererere")
                         }
                     })
                 }
@@ -179,7 +181,7 @@ class MyPostsTableViewController: UITableViewController {
         if self.claims.count > 0 {
             postTemplateVC.claimed = self.claims[indexPath.row]
         }
-        
+        print(postTemplateVC.messages)
         if self.messages.count > indexPath.row {
             postTemplateVC.messages = self.messages[indexPath.row]
         }
