@@ -29,6 +29,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     var numPosts:Int? = nil
     var homeTableViewController: HomeTableViewController? = nil
     var photoAlertController: UIAlertController?
+    var myPostsTableVC: MyPostsTableViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()

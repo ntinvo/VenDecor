@@ -17,6 +17,13 @@ class MyPostsTableViewController: UITableViewController {
     var messageTitles = [String]()
     var postImages = [String]()
     var postDates = [String]()
+    var postDescriptions = [String]()
+    var postPrices = [String]()
+    var postConditions = [String]()
+    var postStreets = [String]()
+    var postStates = [String]()
+    var postZipcodes = [String]()
+    var postIDs = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,13 +52,27 @@ class MyPostsTableViewController: UITableViewController {
                     // retrieve new posts as they are added to your database
                     postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
                         if !(snapshot.value is NSNull) {
+                            let postID = snapshot.value.valueForKey("id") as! String
                             let messageTitle = snapshot.value.valueForKey("title") as! String
                             let postImage = snapshot.value.valueForKey("image") as! String
                             let datePosted = snapshot.value.valueForKey("datePosted") as! String
-                    
+                            let description = snapshot.value.valueForKey("description") as! String
+                            let price = snapshot.value.valueForKey("price") as! String
+                            let condition = snapshot.value.valueForKey("condition") as! String
+                            let street = snapshot.value.valueForKey("street") as! String
+                            let state = snapshot.value.valueForKey("state") as! String
+                            let zipcode = snapshot.value.valueForKey("zip") as! String
+                            
+                            self.postIDs.append(postID)
                             self.messageTitles.append( messageTitle )
                             self.postImages.append( postImage )
                             self.postDates.append( datePosted )
+                            self.postDescriptions.append(description)
+                            self.postPrices.append(price)
+                            self.postConditions.append(condition)
+                            self.postStreets.append(street)
+                            self.postStates.append(state)
+                            self.postZipcodes.append(zipcode)
                     
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.tableView.reloadData()
@@ -126,14 +147,15 @@ class MyPostsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let navVC = segue.destinationViewController as! UINavigationController
+        let postTemplateVC = navVC.viewControllers.first as! PostTemplateViewController
+        let indexPath = tableView.indexPathForSelectedRow!
     }
-    */
+    
 
 }
