@@ -69,6 +69,10 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
             self.zipTxtField.text = self.postZip
             let decodedData = NSData(base64EncodedString: self.postImageString!, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
             self.postImage.image = UIImage(data: decodedData!)
+            self.descriptionTxtField.textColor = UIColor.blackColor()
+        } else {
+            self.descriptionTxtField.text = "Description"
+            self.descriptionTxtField.textColor = UIColor.lightGrayColor()
         }
         
         // Register for keyboard notifications.
@@ -89,8 +93,8 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         // remove white space on top of contents
         self.automaticallyAdjustsScrollViewInsets = false
         
-        self.descriptionTxtField.text = "Description"
-        self.descriptionTxtField.textColor = UIColor.lightGrayColor()
+        
+        
     
         let logo = UIImage(named: "Sample.png")
         let imageView = UIImageView(image: logo)
