@@ -86,8 +86,6 @@ class MyPostsTableViewController: UITableViewController {
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.tableView.reloadData()
                             }
-                            
-                            print("HERERERERERERererererere")
                         }
                     })
                 }
@@ -105,7 +103,6 @@ class MyPostsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(self.messageTitles)
         return self.messageTitles.count
     }
 
@@ -181,7 +178,6 @@ class MyPostsTableViewController: UITableViewController {
         if self.claims.count > 0 {
             postTemplateVC.claimed = self.claims[indexPath.row]
         }
-        print(postTemplateVC.messages)
         if self.messages.count > indexPath.row {
             postTemplateVC.messages = self.messages[indexPath.row]
         }

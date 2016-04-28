@@ -358,6 +358,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
                 let myPostRef = Firebase(url:"https://vendecor.firebaseio.com/posts/")
                 myPostRef.childByAppendingPath(updatePostID).setValue(postInfo)
 
+                
 
                 // reload data
                 dispatch_async(dispatch_get_main_queue()) {
@@ -371,6 +372,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
                     self.myPostsTableVC!.postStreets.removeAll()
                     self.myPostsTableVC!.postStates.removeAll()
                     self.myPostsTableVC!.postZipcodes.removeAll()
+                    self.myPostsTableVC!.messages.removeAll()
                     
                     let uid = self.myRootRef.authData.uid
                     let postsRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/postIDs/")
@@ -381,7 +383,6 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
                             let postIDsSnap = snapshot.value as! NSDictionary
                             for (_, val) in postIDsSnap {
                                 let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(val))
-                                
                                 // retrieve new posts as they are added to your database
                                 postMessagesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
                                     if !(snapshot.value is NSNull) {
@@ -417,6 +418,9 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
                                         
                                         dispatch_async(dispatch_get_main_queue()) {
                                             self.myPostsTableVC!.tableView.reloadData()
+//                                            print("INSIDE UPDATE")
+//                                            print(self.myPostsTableVC!.messages)
+//                                            print("EDN")
                                         }
                                     }
                                 })
