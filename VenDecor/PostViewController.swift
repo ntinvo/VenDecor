@@ -11,10 +11,13 @@ import UIKit
 class PostViewController: UIViewController {
 
     // properties
-    @IBOutlet weak var postTitle: UILabel!
     @IBOutlet weak var postPrice: UILabel!
     @IBOutlet weak var postLocation: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var messageBtn: UIButton!
+    @IBOutlet weak var claimBtn: UIButton!
+    
+    
     var postTitleString: String? = nil
     var postPriceString: String? = nil
     var postLocationString: String? = nil
@@ -27,7 +30,12 @@ class PostViewController: UIViewController {
         let logo = UIImage(named: "Sample.png")
         let imageView = UIImageView(image: logo)
         self.navigationItem.titleView = imageView
-        self.postTitle.text = self.postTitleString
+        
+        self.messageBtn.layer.cornerRadius = 5
+        self.claimBtn.layer.cornerRadius = 5
+        
+        postPrice.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_4))
+        
         self.postPrice.text = self.postPriceString
         self.postLocation.text = self.postLocationString
         let decodedData = NSData(base64EncodedString: self.imageString!, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
