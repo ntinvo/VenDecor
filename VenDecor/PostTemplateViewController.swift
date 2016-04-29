@@ -178,6 +178,23 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     // cancel image picker
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
+        // Register for keyboard notifications.
+        let notificationCenter: NSNotificationCenter = NSNotificationCenter.defaultCenter()
+        // Register for when the keyboard is shown.
+        notificationCenter.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        // Register for when the keyboard is hidden.
+        notificationCenter.addObserver(self, selector: #selector(ViewController.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
+        
+        // tap gesture
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(SettingsTableViewController.hideKeyboard))
+        tapGesture.cancelsTouchesInView = true
+        view.addGestureRecognizer(tapGesture)
+        
+        self.scrollView.frame = self.view.frame
+        self.scrollView.contentSize = self.view.frame.size
+        
+        // remove white space on top of contents
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     // Called when the user touches on the main view (outside the UITextField).
