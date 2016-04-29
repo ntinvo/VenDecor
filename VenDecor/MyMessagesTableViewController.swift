@@ -131,7 +131,6 @@ class MyMessagesTableViewController: UITableViewController {
         let messageVC = navVC.viewControllers.first as! MessageViewController
         let indexPath = tableView.indexPathForSelectedRow!
         messageVC.postID = self.postsID[indexPath.row]
-        print(postsID)
         messageVC.senderId = myRootRef.authData.uid
         messageVC.senderDisplayName = ""
         messageVC.myMessagesViewController = self
