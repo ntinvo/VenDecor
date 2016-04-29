@@ -26,6 +26,8 @@
 		4C977A341C9240680000A985 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C977A331C9240680000A985 /* ViewController.swift */; };
 		4C977A391C9240680000A985 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C977A381C9240680000A985 /* Assets.xcassets */; };
 		4C977A441C9248810000A985 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C977A431C9248810000A985 /* SignupViewController.swift */; };
+		4CBEB5411CD32D2E00BD4C3D /* price-tag.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CBEB5401CD32D2E00BD4C3D /* price-tag.png */; };
+		4CBEB5431CD32EE200BD4C3D /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBEB5421CD32EE200BD4C3D /* PostViewController.swift */; };
 		4CF0105B1C9C8F0B00F01F33 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0105A1C9C8F0B00F01F33 /* AccountViewController.swift */; };
 		71EE4A681C9F415100A37B51 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 71EE4A661C9F415100A37B51 /* profile.png */; };
 		71EE4A6B1C9F438400A37B51 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 71EE4A691C9F438400A37B51 /* Logo.png */; };
@@ -90,6 +92,8 @@
 		4C977A381C9240680000A985 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C977A3D1C9240680000A985 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C977A431C9248810000A985 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		4CBEB5401CD32D2E00BD4C3D /* price-tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "price-tag.png"; sourceTree = "<group>"; };
+		4CBEB5421CD32EE200BD4C3D /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		4CF0105A1C9C8F0B00F01F33 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		71EE4A661C9F415100A37B51 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		71EE4A691C9F438400A37B51 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 				9C8E58351CB8743000A85205 /* SavedPostsTableViewController.swift */,
 				9C8E58331CB8741D00A85205 /* MyPostsTableViewController.swift */,
 				9CFA7DE41CA208A3009D7FB2 /* PostTemplateViewController.swift */,
+				4CBEB5421CD32EE200BD4C3D /* PostViewController.swift */,
 			);
 			name = posts;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 		9C0D05321CA3815000AF897C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4CBEB5401CD32D2E00BD4C3D /* price-tag.png */,
 				9C84825B1CAB474600ABE9B2 /* cogwheel.png */,
 				4C1CCD231CA706FA002C39E2 /* my-account.png */,
 				9C0D05301CA379E600AF897C /* photo.png */,
@@ -385,6 +391,7 @@
 				71EE4A6B1C9F438400A37B51 /* Logo.png in Resources */,
 				4C1CCD281CA7770D002C39E2 /* Sample.png in Resources */,
 				9C20CE781CA34A3E0061AC7F /* Main.storyboard in Resources */,
+				4CBEB5411CD32D2E00BD4C3D /* price-tag.png in Resources */,
 				749EDF471CD2597900449591 /* Icon-76.png in Resources */,
 				749EDF481CD2597900449591 /* Icon-76@2x.png in Resources */,
 				4C4079031CA5F6EE001CDA64 /* burgerMenu.png in Resources */,
@@ -456,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CBEB5431CD32EE200BD4C3D /* PostViewController.swift in Sources */,
 				9C8E58341CB8741D00A85205 /* MyPostsTableViewController.swift in Sources */,
 				4C51E1F81C9F62DE00622B71 /* HomeTableViewCell.swift in Sources */,
 				4C1CCD2A1CA781A0002C39E2 /* MessageViewController.swift in Sources */,

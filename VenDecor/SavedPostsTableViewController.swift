@@ -33,14 +33,14 @@ class SavedPostsTableViewController: UITableViewController {
         let uid = myRootRef.authData.uid
         let postsRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/savedIDs/")
         // Retrieve new posts as they are added to your database
-        postsRef.observeEventType(.Value, withBlock: { snapshot in
+        postsRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             if !(snapshot.value is NSNull) {
                 let postIDsSnap = snapshot.value as! NSDictionary
                 for (key, _) in postIDsSnap {
                     let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(key))
                 
                     // Retrieve new posts as they are added to your database
-                    postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
+                    postMessagesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
                         if !(snapshot.value is NSNull) {
                             let messageTitle = snapshot.value.valueForKey("title") as! String
                             let postImage = snapshot.value.valueForKey("image") as! String
@@ -126,14 +126,15 @@ class SavedPostsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let navVC = segue.destinationViewController as! UINavigationController
+        let postVC = navVC.viewControllers.first as! PostViewController
+        let indexPath = tableView.indexPathForSelectedRow!
     }
-    */
+    
 
 }
