@@ -149,7 +149,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     
     // compress image
     private func compressImage() {
-        let rect = CGRectMake(0, 0, self.postImage.image!.size.width / 6 , self.postImage.image!.size.height / 6)
+        let rect = CGRectMake(0, 0, self.postImage.image!.size.width / 2 , self.postImage.image!.size.height / 2)
         UIGraphicsBeginImageContext(rect.size)
         self.postImage.image?.drawInRect(rect)
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
