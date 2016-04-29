@@ -39,10 +39,9 @@ class MyMessagesTableViewController: UITableViewController {
         // Retrieve new posts as they are added to your database
         postsRef.observeEventType(.Value, withBlock: { snapshot in
             if !(snapshot.value is NSNull) {
-                let postIDsSnap = snapshot.value as! NSArray
-                for postID in 0...(postIDsSnap.count - 1) {
-                    
-                    let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(postIDsSnap[postID]))
+                let postIDsSnap = snapshot.value as! NSDictionary
+                for (key, _) in postIDsSnap {
+                    let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(key))
                     
                     // Retrieve new posts as they are added to your database
                     postMessagesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
@@ -56,7 +55,7 @@ class MyMessagesTableViewController: UITableViewController {
                                 let lastText = msgDict.valueForKey(lastKey)!["text"]!
                                 self.messageTitles.append(postTitle as! String)
                                 self.lastTexts.append(lastText as! String)
-                                self.postsID.append(String(postIDsSnap[postID]))
+                                self.postsID.append(String(postIDsSnap.valueForKey(key as! String)))
                             }
                         }
                         self.tableView.reloadData()

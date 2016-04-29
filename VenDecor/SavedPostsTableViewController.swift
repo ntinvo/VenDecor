@@ -37,7 +37,7 @@ class SavedPostsTableViewController: UITableViewController {
             if !(snapshot.value is NSNull) {
                 let postIDsSnap = snapshot.value as! NSDictionary
                 for (key, _) in postIDsSnap {
-                    let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(key ))
+                    let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(key))
                 
                     // Retrieve new posts as they are added to your database
                     postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
