@@ -19,6 +19,7 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var zipLabel: UILabel!
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
     @IBOutlet weak var deleteAccountBtn: UIButton!
+    var alertController: UIAlertController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,19 @@ class AccountViewController: UIViewController {
             self.zipLabel.text = snapshot.value.valueForKey( "zipcode" ) as? String
             self.dateJoinedLabel.text = snapshot.value.valueForKey( "datejoined" ) as? String
         })
+    }
+    
+    // Destroy the account along with its posts
+    @IBAction func deleteAccountBtn(sender: AnyObject) {
+        self.alertController = UIAlertController(title: "Delete Account", message: "This action will delete your account along with all of your posts. Do you want to continue?", preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+            self.performSegueWithIdentifier("deleteAccount", sender: nil)
+        }
+        let cancelAction = UIAlertAction(title: "No", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
+        self.alertController!.addAction(okAction)
+        self.alertController!.addAction(cancelAction)
+        self.presentViewController(self.alertController!, animated: true, completion:nil)
+
     }
 
     override func didReceiveMemoryWarning() {

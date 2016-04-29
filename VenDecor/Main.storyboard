@@ -998,6 +998,10 @@
                                 <state key="normal" title="Delete Account">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="deleteAccountBtn:" destination="tuf-gz-UaA" eventType="touchUpInside" id="jdB-2C-Ifw"/>
+                                    <segue destination="BYZ-38-t0r" kind="modal" identifier="deleteAccount" id="JPA-Ft-aYJ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;username&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="07u-Oy-mw3">
                                 <rect key="frame" x="114" y="379" width="186" height="21"/>
@@ -1476,6 +1480,7 @@
         <image name="sell.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="JPA-Ft-aYJ"/>
         <segue reference="NlP-zJ-xga"/>
         <segue reference="tKY-lW-dsu"/>
         <segue reference="rZq-KB-kpV"/>
