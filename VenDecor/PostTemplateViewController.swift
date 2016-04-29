@@ -358,8 +358,6 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
                 let myPostRef = Firebase(url:"https://vendecor.firebaseio.com/posts/")
                 myPostRef.childByAppendingPath(updatePostID).setValue(postInfo)
 
-                
-
                 // reload data
                 dispatch_async(dispatch_get_main_queue()) {
                     self.myPostsTableVC!.postIDs.removeAll()
