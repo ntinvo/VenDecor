@@ -109,7 +109,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginBtn(sender: AnyObject) {
         myRootRef.authUser(emailTxtField!.text, password: passwordTxtField.text,
             withCompletionBlock: { (error, auth) in
-            if(self.myRootRef.authData.providerData["isTemporaryPassword"]! as? Bool != true) {
+            if error != nil {
+                self.alertController = UIAlertController(title: "Error", message: "Wrong email or password", preferredStyle: UIAlertControllerStyle.Alert)
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
+                self.alertController!.addAction(okAction)
+                self.presentViewController(self.alertController!, animated: true, completion:nil)
+            } else if(self.myRootRef.authData.providerData["isTemporaryPassword"]! as? Bool != true) {
                 if error != nil {
                     self.alertController = UIAlertController(title: "Error", message: "Wrong email or password", preferredStyle: UIAlertControllerStyle.Alert)
                     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }

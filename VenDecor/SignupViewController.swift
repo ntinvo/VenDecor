@@ -97,7 +97,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                         let months = dateFormatter.monthSymbols
                         let monthStr = months[month - 1]
                         let uid = result["uid"] as? String
-                        let user = ["email" : String(self.email.text!),"username": String(self.username.text!), "zipcode" : String(self.zipcode.text!), "datejoined" : monthStr + " " + year, "numPosts": 0, "profilePic": ""]
+                        let user = ["email" : String(self.email.text!),"username": String(self.username.text!), "zipcode" : String(self.zipcode.text!), "datejoined" : monthStr + " " + year, "numPosts": 0, "profilePic": "", "password" : String(self.password.text!)]
                         self.myRootRef.childByAppendingPath(uid).setValue(user)
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }
