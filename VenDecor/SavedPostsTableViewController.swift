@@ -19,6 +19,7 @@ class SavedPostsTableViewController: UITableViewController {
     var postDates = [String]()
     var postPrices = [String]()
     var postLocations = [String]()
+    var postIDs = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,7 @@ class SavedPostsTableViewController: UITableViewController {
                             self.postDates.append( snapshot.value.valueForKey("datePosted") as! String )
                             self.postPrices.append( snapshot.value.valueForKey("price") as! String )
                             self.postLocations.append( String(snapshot.value.valueForKey("street")!) + ", " + String(snapshot.value.valueForKey("state")!) + " " + String(snapshot.value.valueForKey("zip")!))
+                            self.postIDs.append(snapshot.value.valueForKey("id") as! String)
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.tableView.reloadData()
                             }
@@ -137,5 +139,6 @@ class SavedPostsTableViewController: UITableViewController {
         postVC.postPriceString = self.postPrices[indexPath.row]
         postVC.postLocationString = self.postLocations[indexPath.row]
         postVC.imageString = self.postImages[indexPath.row]
+        postVC.postID = self.postIDs[indexPath.row]
     }
 }

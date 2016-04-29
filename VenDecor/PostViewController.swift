@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class PostViewController: UIViewController {
 
@@ -16,12 +17,11 @@ class PostViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var messageBtn: UIButton!
     @IBOutlet weak var claimBtn: UIButton!
-    
-    
     var postTitleString: String? = nil
     var postPriceString: String? = nil
     var postLocationString: String? = nil
     var imageString: String? = nil
+    var postID: String? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +53,8 @@ class PostViewController: UIViewController {
     
     // claim button
     @IBAction func claimBtn(sender: AnyObject) {
-        
+        let postRef = Firebase(url: "https://vendecor.firebaseio.com/posts/" + self.postID!)
+        postRef.childByAppendingPath("claimed").setValue(true)
     }
     
     // cancel button
