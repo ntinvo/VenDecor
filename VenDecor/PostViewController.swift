@@ -22,6 +22,11 @@ class PostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // navigation bar
+        let logo = UIImage(named: "Sample.png")
+        let imageView = UIImageView(image: logo)
+        self.navigationItem.titleView = imageView
         self.postTitle.text = self.postTitleString
         self.postPrice.text = self.postPriceString
         self.postLocation.text = self.postLocationString
