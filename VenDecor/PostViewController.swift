@@ -17,6 +17,7 @@ class PostViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var messageBtn: UIButton!
     @IBOutlet weak var claimBtn: UIButton!
+    var alertController: UIAlertController? = nil
     var postTitleString: String? = nil
     var postPriceString: String? = nil
     var postLocationString: String? = nil
@@ -55,6 +56,11 @@ class PostViewController: UIViewController {
     @IBAction func claimBtn(sender: AnyObject) {
         let postRef = Firebase(url: "https://vendecor.firebaseio.com/posts/" + self.postID!)
         postRef.childByAppendingPath("claimed").setValue(true)
+        self.alertController = UIAlertController(title: "Claim Item", message: "Pick up the item within 24 hours. Contact the seller for more details.", preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+        }
+        self.alertController!.addAction(okAction)
+        self.presentViewController(self.alertController!, animated: true, completion:nil)
     }
     
     // cancel button
