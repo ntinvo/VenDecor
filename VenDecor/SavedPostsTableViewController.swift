@@ -17,6 +17,8 @@ class SavedPostsTableViewController: UITableViewController {
     var messageTitles = [String]()
     var postImages = [String]()
     var postDates = [String]()
+    var postPrices = [String]()
+    var postLocations = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,14 +44,11 @@ class SavedPostsTableViewController: UITableViewController {
                     // Retrieve new posts as they are added to your database
                     postMessagesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
                         if !(snapshot.value is NSNull) {
-                            let messageTitle = snapshot.value.valueForKey("title") as! String
-                            let postImage = snapshot.value.valueForKey("image") as! String
-                            let datePosted = snapshot.value.valueForKey("datePosted") as! String
-                
-                            self.messageTitles.append( messageTitle )
-                            self.postImages.append( postImage )
-                            self.postDates.append( datePosted )
-                        
+                            self.messageTitles.append( snapshot.value.valueForKey("title") as! String )
+                            self.postImages.append( snapshot.value.valueForKey("image") as! String )
+                            self.postDates.append( snapshot.value.valueForKey("datePosted") as! String )
+                            self.postPrices.append( snapshot.value.valueForKey("price") as! String )
+                            self.postLocations.append( String(snapshot.value.valueForKey("street")!) + ", " + String(snapshot.value.valueForKey("state")!) + " " + String(snapshot.value.valueForKey("zip")!))
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.tableView.reloadData()
                             }
@@ -134,7 +133,9 @@ class SavedPostsTableViewController: UITableViewController {
         let navVC = segue.destinationViewController as! UINavigationController
         let postVC = navVC.viewControllers.first as! PostViewController
         let indexPath = tableView.indexPathForSelectedRow!
+        postVC.postTitleString = self.messageTitles[indexPath.row]
+        postVC.postPriceString = self.postPrices[indexPath.row]
+        postVC.postLocationString = self.postLocations[indexPath.row]
+        postVC.imageString = self.postImages[indexPath.row]
     }
-    
-
 }

@@ -10,15 +10,42 @@ import UIKit
 
 class PostViewController: UIViewController {
 
+    // properties
+    @IBOutlet weak var postTitle: UILabel!
+    @IBOutlet weak var postPrice: UILabel!
+    @IBOutlet weak var postLocation: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    var postTitleString: String? = nil
+    var postPriceString: String? = nil
+    var postLocationString: String? = nil
+    var imageString: String? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.postTitle.text = self.postTitleString
+        self.postPrice.text = self.postPriceString
+        self.postLocation.text = self.postLocationString
+        let decodedData = NSData(base64EncodedString: self.imageString!, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+        self.imageView.image = UIImage(data: decodedData!)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    // message button
+    @IBAction func messageBtn(sender: AnyObject) {
+        
+    }
+    
+    // claim button
+    @IBAction func claimBtn(sender: AnyObject) {
+        
+    }
+    
+    // cancel button
+    @IBAction func cancelBtn(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
 
@@ -31,5 +58,4 @@ class PostViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
