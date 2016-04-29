@@ -151,7 +151,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" textLabel="wKo-hL-3vu" detailTextLabel="lJd-ed-gks" style="IBUITableViewCellStyleSubtitle" id="nTP-2s-H6A">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nTP-2s-H6A" id="toL-yH-ECF">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
@@ -596,7 +596,7 @@
                         </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellid" rowHeight="293" id="YJ6-Kn-BfI" customClass="HomeTableViewCell" customModule="VenDecor" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="414" height="293"/>
+                                <rect key="frame" x="0.0" y="123" width="414" height="293"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YJ6-Kn-BfI" id="0P8-hy-lw2">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="292"/>
@@ -952,7 +952,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="W1Y-FD-aQJ"/>
+                    <navigationItem key="navigationItem" id="W1Y-FD-aQJ">
+                        <barButtonItem key="backBarButtonItem" title="Saved Posts" id="MgW-dC-Jif"/>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="claimBtn" destination="XSZ-uJ-j8T" id="g7v-Iq-lnH"/>
@@ -960,11 +962,12 @@
                         <outlet property="messageBtn" destination="SHo-yq-BM0" id="DGO-hC-J0F"/>
                         <outlet property="postLocation" destination="mbg-US-6tB" id="d4H-s2-1FB"/>
                         <outlet property="postPrice" destination="mug-Fy-FcF" id="Bmr-jB-KCu"/>
+                        <segue destination="ZHo-2i-8bq" kind="modal" identifier="postMsg" id="tKY-lW-dsu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fR6-bo-p57" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2105" y="4834"/>
+            <point key="canvasLocation" x="2031" y="4834"/>
         </scene>
         <!--Account View Controller-->
         <scene sceneID="Gkr-vM-o5x">
@@ -1294,7 +1297,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" textLabel="OAq-qp-Oie" detailTextLabel="n5u-dm-vPX" rowHeight="65" style="IBUITableViewCellStyleSubtitle" id="o2I-VF-fNq">
-                                <rect key="frame" x="0.0" y="28" width="414" height="65"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o2I-VF-fNq" id="Tbt-Eq-ADy">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
@@ -1474,7 +1477,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NlP-zJ-xga"/>
+        <segue reference="tKY-lW-dsu"/>
         <segue reference="rZq-KB-kpV"/>
-        <segue reference="xKR-cd-RC6"/>
     </inferredMetricsTieBreakers>
 </document>

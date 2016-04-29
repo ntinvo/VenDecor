@@ -17,6 +17,7 @@ class PostViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var messageBtn: UIButton!
     @IBOutlet weak var claimBtn: UIButton!
+    var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
     var alertController: UIAlertController? = nil
     var postTitleString: String? = nil
     var postPriceString: String? = nil
@@ -49,7 +50,7 @@ class PostViewController: UIViewController {
     
     // message button
     @IBAction func messageBtn(sender: AnyObject) {
-        
+        self.performSegueWithIdentifier("postMsg", sender: self)
     }
     
     // claim button
@@ -69,13 +70,17 @@ class PostViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let navVC = segue.destinationViewController as! UINavigationController
+        let messageVC = navVC.viewControllers.first as! MessageViewController
+        messageVC.postID = self.postID
+        messageVC.senderId = myRootRef.authData.uid
+        messageVC.senderDisplayName = ""
+//        messageVC.myMessagesViewController = self
     }
-    */
+    
 }
