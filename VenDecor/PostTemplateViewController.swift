@@ -45,6 +45,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // init
         self.titleTxtField.delegate = self
         self.descriptionTxtField.delegate = self
         self.priceTxtField.delegate = self
@@ -61,6 +62,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         self.stateTextField.tag = 5
         self.zipTxtField.tag = 6
         
+        // check where it segued from
         if(self.myPostsTableVC != nil) {
             self.titleTxtField.text = self.postTitle
             self.descriptionTxtField.text = self.postDescription
@@ -90,15 +92,14 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         tapGesture.cancelsTouchesInView = true
         view.addGestureRecognizer(tapGesture)
         
+        // frame / content size
         self.scrollView.frame = self.view.frame
         self.scrollView.contentSize = self.view.frame.size
         
         // remove white space on top of contents
         self.automaticallyAdjustsScrollViewInsets = false
         
-        
-        
-    
+        // nav logo
         let logo = UIImage(named: "Sample.png")
         let imageView = UIImageView(image: logo)
         self.navigationItem.titleView = imageView
@@ -135,6 +136,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         view.endEditing(true)
     }
     
+    // view appears
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
@@ -451,14 +453,4 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     @IBAction func cancelBtn(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }

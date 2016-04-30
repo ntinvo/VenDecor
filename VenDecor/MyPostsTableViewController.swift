@@ -97,15 +97,17 @@ class MyPostsTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
 
-    // MARK: - Table view data source
+    // number of sections
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
+    // number of rows
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.messageTitles.count
     }
 
+    // returning cell
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
         cell.textLabel!.text = messageTitles[ indexPath.row ]
@@ -120,12 +122,12 @@ class MyPostsTableViewController: UITableViewController {
         return cell
     }
 
+    // cell's height
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: (NSIndexPath!)) -> CGFloat {
         return 55
     }
-
     
-    // Override to support editing the table view.
+    // removing
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let id = self.postIDs.removeAtIndex(indexPath.row)
@@ -153,27 +155,8 @@ class MyPostsTableViewController: UITableViewController {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
-    
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // in a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let navVC = segue.destinationViewController as! UINavigationController
         let postTemplateVC = navVC.viewControllers.first as! PostTemplateViewController

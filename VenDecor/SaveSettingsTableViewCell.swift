@@ -28,7 +28,6 @@ class SaveSettingsTableViewCell: UITableViewCell {
 
     // save settings button
     @IBAction func saveSettingsBtn(sender: AnyObject) {
-        
         self.alertController = UIAlertController(title: "", message: "Account settings have been updated", preferredStyle: UIAlertControllerStyle.Alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
         self.alertController!.addAction(okAction)

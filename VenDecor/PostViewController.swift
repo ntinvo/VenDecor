@@ -33,9 +33,11 @@ class PostViewController: UIViewController {
         let imageView = UIImageView(image: logo)
         self.navigationItem.titleView = imageView
         
+        // rounded corner
         self.messageBtn.layer.cornerRadius = 5
         self.claimBtn.layer.cornerRadius = 5
         
+        // transfor price label
         postPrice.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_4))
         
         self.postPrice.text = self.postPriceString
@@ -70,9 +72,6 @@ class PostViewController: UIViewController {
     }
     
 
-    
-    // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let navVC = segue.destinationViewController as! UINavigationController
@@ -80,7 +79,7 @@ class PostViewController: UIViewController {
         messageVC.postID = self.postID
         messageVC.senderId = myRootRef.authData.uid
         messageVC.senderDisplayName = ""
-//        messageVC.myMessagesViewController = self
+        //messageVC.myMessagesViewController = self
     }
     
 }

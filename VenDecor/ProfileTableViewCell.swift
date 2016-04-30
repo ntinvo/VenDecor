@@ -32,6 +32,7 @@ class ProfileTableViewCell: UITableViewCell, UINavigationControllerDelegate, UII
     @IBAction func takePictureBtn(sender: AnyObject) {
         self.alertController = UIAlertController(title: "Choose photo source", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet )
         
+        // upload from photo library
         let uploadPhoto = UIAlertAction(title: "Upload a Photo", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
                 let imagePicker =  UIImagePickerController()
@@ -40,6 +41,8 @@ class ProfileTableViewCell: UITableViewCell, UINavigationControllerDelegate, UII
                 self.settingsTableVC!.presentViewController(imagePicker, animated: true, completion: nil)
             }
         })
+        
+        // take a new photo
         let takePhoto = UIAlertAction(title: "Take a Photo", style: UIAlertActionStyle.Default) { (action) -> Void in
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
                 let imagePicker =  UIImagePickerController()

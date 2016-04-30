@@ -77,7 +77,6 @@ class AccountViewController: UIViewController {
                     }
                 }
             })
-            
         
             // remove user
             dispatch_sync(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
@@ -97,7 +96,6 @@ class AccountViewController: UIViewController {
                 })
                 userRef.removeValue()
             }
-        
             self.performSegueWithIdentifier("deleteAccount", sender: nil)
         }
         let cancelAction = UIAlertAction(title: "No", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
@@ -111,7 +109,7 @@ class AccountViewController: UIViewController {
     }
     
     func imageTapped(img : AnyObject) {
-        //
+        // not implemented
     }
 
 }
