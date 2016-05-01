@@ -63,8 +63,8 @@ class MessageViewController: JSQMessagesViewController {
         typingRef = Firebase(url: "https://vendecor.firebaseio.com/posts/" + self.postID!)
     
         // No avatars
-//        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
-//        collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
+        //collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
+        //collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -98,8 +98,29 @@ class MessageViewController: JSQMessagesViewController {
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
-        
         let message = messages[indexPath.item]
+        
+        let uid = message.senderId
+        let userAccount = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid )
+        //cell.avatarImageView.frame = CGSize( width: 40, height: 40 )
+        cell.avatarImageView.layer.cornerRadius = cell.avatarImageView.frame.size.width / 2
+        cell.avatarImageView.clipsToBounds = true
+        
+        print( "uid = \(uid)" )
+        
+        userAccount.observeEventType(.Value, withBlock: { snapshot in
+            if( String(snapshot.value.valueForKey("profilePic")!) != "" ) {
+                let decodedData = NSData(base64EncodedString: String(snapshot.value.valueForKey("profilePic")!), options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                cell.avatarImageView.image = UIImage(data: decodedData!)
+                print( "test" )
+            }
+        })
+        
+        if( cell.avatarImageView.image == nil ) {
+            print("here")
+            cell.avatarImageView.backgroundColor = UIColor.lightGrayColor()
+            cell.avatarImageView.image = UIImage( named: "profile.png" )
+        }
         
         if message.senderId == senderId {
             cell.textView!.textColor = UIColor.whiteColor()
@@ -112,6 +133,7 @@ class MessageViewController: JSQMessagesViewController {
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
         /// SET AVATAR HERE
+        
         return nil
     }
     

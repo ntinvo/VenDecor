@@ -69,7 +69,7 @@
                                 </subviews>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.26666666666666666" green="0.41176470588235292" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.26496009149999999" green="0.4106908769" blue="0.54709201389999995" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="ymh-Xo-1X2"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
@@ -151,7 +151,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" textLabel="wKo-hL-3vu" detailTextLabel="lJd-ed-gks" style="IBUITableViewCellStyleSubtitle" id="nTP-2s-H6A">
-                                <rect key="frame" x="0.0" y="92" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nTP-2s-H6A" id="toL-yH-ECF">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
@@ -1301,7 +1301,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" textLabel="OAq-qp-Oie" detailTextLabel="n5u-dm-vPX" rowHeight="65" style="IBUITableViewCellStyleSubtitle" id="o2I-VF-fNq">
-                                <rect key="frame" x="0.0" y="92" width="414" height="65"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o2I-VF-fNq" id="Tbt-Eq-ADy">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
