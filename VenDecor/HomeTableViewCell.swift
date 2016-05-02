@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import JSQMessagesViewController
 
 class HomeTableViewCell: UITableViewCell {
 
@@ -94,6 +95,12 @@ class HomeTableViewCell: UITableViewCell {
         
         if (self.claimLabel.text! == "") {
             let postRef = Firebase(url:"https://vendecor.firebaseio.com/posts/" + self.postID!)
+            // TODO: somehow send a message??????
+            //postRef.childByAppendingPath("messages" )
+            //addMessage( "sender", "I have claimed this item." )
+            //let msg:JSQMessage = JSQMessage(senderId: "test", displayName: "test", text: "test")
+            //postRef.childByAppendingPath( "messages" ).setValue( msg )
+            
             postRef.childByAppendingPath("claimed").setValue(true)
             self.alertController = UIAlertController(title: "Claim Item", message: "Pick up the item within 24 hours. Contact the seller for more details.", preferredStyle: UIAlertControllerStyle.Alert)
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
@@ -119,6 +126,7 @@ class HomeTableViewCell: UITableViewCell {
                     self.homeTableViewController?.tableView.reloadData()
                 }
             })
+            
             self.homeTableViewController?.tableView.reloadData()
         } else {
             

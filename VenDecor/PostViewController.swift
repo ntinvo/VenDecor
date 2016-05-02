@@ -11,6 +11,7 @@ import Firebase
 
 class PostViewController: UIViewController {
 
+    @IBOutlet weak var claimLabel: UILabel!
     // properties
     @IBOutlet weak var postPrice: UILabel!
     @IBOutlet weak var postLocation: UILabel!
@@ -24,6 +25,7 @@ class PostViewController: UIViewController {
     var postLocationString: String? = nil
     var imageString: String? = nil
     var postID: String? = nil
+    var claimed: Bool? 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,12 @@ class PostViewController: UIViewController {
         let logo = UIImage(named: "Sample.png")
         let imageView = UIImageView(image: logo)
         self.navigationItem.titleView = imageView
+        
+        if( claimed! ) {
+            self.claimLabel.text = "CLAIMED"
+        } else {
+            self.claimLabel.text = ""
+        }
         
         // rounded corner
         self.messageBtn.layer.cornerRadius = 5
@@ -57,6 +65,7 @@ class PostViewController: UIViewController {
     
     // claim button
     @IBAction func claimBtn(sender: AnyObject) {
+        if( !claimed! ) {
         let postRef = Firebase(url: "https://vendecor.firebaseio.com/posts/" + self.postID!)
         postRef.childByAppendingPath("claimed").setValue(true)
         self.alertController = UIAlertController(title: "Claim Item", message: "Pick up the item within 24 hours. Contact the seller for more details.", preferredStyle: UIAlertControllerStyle.Alert)
@@ -64,6 +73,13 @@ class PostViewController: UIViewController {
         }
         self.alertController!.addAction(okAction)
         self.presentViewController(self.alertController!, animated: true, completion:nil)
+        } else {
+            self.alertController = UIAlertController(title: "Claim Item", message: "Item has already been claimed.", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+            }
+            self.alertController!.addAction(okAction)
+            self.presentViewController(self.alertController!, animated: true, completion:nil)
+        }
     }
     
     // cancel button

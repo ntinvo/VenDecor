@@ -125,6 +125,7 @@ class MyPostsTableViewController: UITableViewController {
         imageView.frame = CGRectMake(0, 0, 70, 70)
         imageView.contentMode = .ScaleAspectFit
         cell.accessoryView = imageView
+        
         return cell
     }
 
