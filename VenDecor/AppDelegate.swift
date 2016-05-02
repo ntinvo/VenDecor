@@ -13,9 +13,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    func initializeNotificationServices() -> Void {
+        let settings = UIUserNotificationSettings( forTypes: [.Sound, .Alert, .Badge], categories: nil )
+        UIApplication.sharedApplication().registerUserNotificationSettings( settings )
+    
+    // THIS IS AN ASYNCHRONOUS METHOD TO RETRIEVE A DEVICE TOKEN
+    // CALLBACKS ARE IN APPDELEGATE.SWIFT
+    // SUCCESS = DIDREGISTERFORREMOTENOTIFICATIONSWITHDEVICETOKEN
+    // FAIL = DIDFAILTOREGISTERFORREMOTENOTIFICATIONSWITHERROR
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+    }
+    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //( UIUserNotificationType.Alert ||  UIUserNotificationType.Badge ||  UIUserNotificationType.Sound )
+        
+       // application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil) )
+        
         return true
     }
 

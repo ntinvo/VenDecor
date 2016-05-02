@@ -11,6 +11,7 @@ import Firebase
 
 class SavedPostsTableViewController: UITableViewController {
 
+    @IBOutlet weak var noPostsLabel: UILabel!
     // properties
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
     var myRootRef = Firebase( url:"https://vendecor.firebaseio.com")
@@ -53,12 +54,19 @@ class SavedPostsTableViewController: UITableViewController {
                             self.postIDs.append(snapshot.value.valueForKey("id") as! String)
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.tableView.reloadData()
+                                if( self.messageTitles.count == 0 ) {
+                                    self.noPostsLabel.text = "No posts have been saved"
+                                } else {
+                                    self.noPostsLabel.text = ""
+                                }
                             }
                         }
                     })
                 }
             }
         })
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,7 +92,7 @@ class SavedPostsTableViewController: UITableViewController {
         let decodedImage = UIImage(data: decodedData!)
         cell.detailTextLabel!.text = postDates[ indexPath.row ]
         let imageView = UIImageView(image: decodedImage )
-        imageView.frame = CGRectMake(0, 0, 40, 40)
+        imageView.frame = CGRectMake(0, 0, 70, 70)
         imageView.contentMode = .ScaleAspectFit
         cell.accessoryView = imageView
         return cell
@@ -102,12 +110,13 @@ class SavedPostsTableViewController: UITableViewController {
             let userPostIDsRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + String(self.myRootRef.authData.uid) + "/savedIDs/" + String(id))
             userPostIDsRef.removeValue()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            //reload to check if there are now no posts
         }
     }
     
     // cell's height
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: (NSIndexPath!)) -> CGFloat {
-        return 55
+        return 90
     }
     
 

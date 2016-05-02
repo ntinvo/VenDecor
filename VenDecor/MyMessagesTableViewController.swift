@@ -11,6 +11,7 @@ import Firebase
 
 class MyMessagesTableViewController: UITableViewController {
 
+    @IBOutlet weak var noMessages: UILabel!
     // properties
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
     var myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
@@ -60,6 +61,11 @@ class MyMessagesTableViewController: UITableViewController {
                             
                         }
                         self.tableView.reloadData()
+                        if( self.messageTitles.count == 0 ) {
+                            self.noMessages.text = "No posts have been saved"
+                        } else {
+                            self.noMessages.text = ""
+                        }
                     })
                 }
             }
@@ -70,6 +76,12 @@ class MyMessagesTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
 
+    // cell's height
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: (NSIndexPath!)) -> CGFloat {
+        return 85
+    }
+    
+    
     // number of sections
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -85,6 +97,9 @@ class MyMessagesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
         cell.textLabel!.text = self.messageTitles[ indexPath.row ]
         cell.detailTextLabel!.text = self.lastTexts [indexPath.row ]
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        
+        
         return cell
     }
 

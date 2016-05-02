@@ -11,6 +11,7 @@ import Firebase
 
 class MyPostsTableViewController: UITableViewController {
 
+    @IBOutlet weak var noPosts: UILabel!
     // properties
     @IBOutlet weak var burgerBtn: UIBarButtonItem!
     var myRootRef = Firebase( url:"https://vendecor.firebaseio.com")
@@ -85,6 +86,11 @@ class MyPostsTableViewController: UITableViewController {
                     
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.tableView.reloadData()
+                                if( self.messageTitles.count == 0 ) {
+                                    self.noPosts.text = "No posts have been saved"
+                                } else {
+                                    self.noPosts.text = ""
+                                }
                             }
                         }
                     })
@@ -116,7 +122,7 @@ class MyPostsTableViewController: UITableViewController {
         let decodedImage = UIImage(data: decodedData!)
         cell.detailTextLabel!.text = postDates[ indexPath.row ]
         let imageView = UIImageView(image: decodedImage )
-        imageView.frame = CGRectMake(0, 0, 40, 40)
+        imageView.frame = CGRectMake(0, 0, 70, 70)
         imageView.contentMode = .ScaleAspectFit
         cell.accessoryView = imageView
         return cell
@@ -124,7 +130,7 @@ class MyPostsTableViewController: UITableViewController {
 
     // cell's height
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: (NSIndexPath!)) -> CGFloat {
-        return 55
+        return 90
     }
     
     // removing
@@ -153,6 +159,8 @@ class MyPostsTableViewController: UITableViewController {
             userPostIDsRef.removeValue()
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+            //reload to check if there are now no posts
         }
     }
 

@@ -61,6 +61,7 @@
 		9C0D05341CA3828100AF897C /* GROUP11README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9C0D05331CA3828100AF897C /* GROUP11README.rtf */; };
 		9C20CE781CA34A3E0061AC7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C20CE771CA34A3E0061AC7F /* Main.storyboard */; };
 		9C56BBB11CB32C95003723C9 /* MyMessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C56BBB01CB32C95003723C9 /* MyMessagesTableViewController.swift */; };
+		9C6FE09D1CD7FB6500CCFAE7 /* no picture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C6FE09C1CD7FB6500CCFAE7 /* no picture.jpg */; };
 		9C84825C1CAB474600ABE9B2 /* cogwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C84825B1CAB474600ABE9B2 /* cogwheel.png */; };
 		9C8482601CAB4D0A00ABE9B2 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C84825F1CAB4D0A00ABE9B2 /* SettingsTableViewController.swift */; };
 		9C8E58341CB8741D00A85205 /* MyPostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8E58331CB8741D00A85205 /* MyPostsTableViewController.swift */; };
@@ -130,6 +131,7 @@
 		9C0D05331CA3828100AF897C /* GROUP11README.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = GROUP11README.rtf; sourceTree = "<group>"; };
 		9C20CE771CA34A3E0061AC7F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9C56BBB01CB32C95003723C9 /* MyMessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMessagesTableViewController.swift; sourceTree = "<group>"; };
+		9C6FE09C1CD7FB6500CCFAE7 /* no picture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "no picture.jpg"; sourceTree = SOURCE_ROOT; };
 		9C84825B1CAB474600ABE9B2 /* cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cogwheel.png; sourceTree = SOURCE_ROOT; };
 		9C84825F1CAB4D0A00ABE9B2 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9C8E58331CB8741D00A85205 /* MyPostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostsTableViewController.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 		9C0D05321CA3815000AF897C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9C6FE09C1CD7FB6500CCFAE7 /* no picture.jpg */,
 				4CBEB5461CD3A76A00BD4C3D /* location-pin.png */,
 				4CBEB5401CD32D2E00BD4C3D /* price-tag.png */,
 				9C84825B1CAB474600ABE9B2 /* cogwheel.png */,
@@ -340,7 +343,7 @@
 				TargetAttributes = {
 					4C977A2D1C9240680000A985 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 76SZ5KGJ7K;
+						DevelopmentTeam = 9ZLF8AXGEQ;
 					};
 				};
 			};
@@ -395,6 +398,7 @@
 				4C1CCD281CA7770D002C39E2 /* Sample.png in Resources */,
 				9C20CE781CA34A3E0061AC7F /* Main.storyboard in Resources */,
 				4CBEB5411CD32D2E00BD4C3D /* price-tag.png in Resources */,
+				9C6FE09D1CD7FB6500CCFAE7 /* no picture.jpg in Resources */,
 				749EDF471CD2597900449591 /* Icon-76.png in Resources */,
 				749EDF481CD2597900449591 /* Icon-76@2x.png in Resources */,
 				4C4079031CA5F6EE001CDA64 /* burgerMenu.png in Resources */,

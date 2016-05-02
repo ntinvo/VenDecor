@@ -61,7 +61,12 @@ class MessageViewController: JSQMessagesViewController {
         setupBubbles()
         messageRef = rootRef.childByAppendingPath(self.postID! + "/messages")
         typingRef = Firebase(url: "https://vendecor.firebaseio.com/posts/" + self.postID!)
-    
+        
+        
+        // messages from someone else
+        //addMessage( "VenDecor", text: "<item title> has been claimed!" )
+        
+        
         // No avatars
         //collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
         //collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
