@@ -21,7 +21,7 @@ class SavedPostsTableViewController: UITableViewController {
     var postPrices = [String]()
     var postLocations = [String]()
     var postIDs = [String]()
-    var claimed = Bool()
+    var claims = [Bool]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +53,7 @@ class SavedPostsTableViewController: UITableViewController {
                             self.postPrices.append( snapshot.value.valueForKey("price") as! String )
                             self.postLocations.append( String(snapshot.value.valueForKey("street")!) + ", " + String(snapshot.value.valueForKey("state")!) + " " + String(snapshot.value.valueForKey("zip")!))
                             self.postIDs.append(snapshot.value.valueForKey("id") as! String)
-                            self.claimed = snapshot.value.valueForKey( "claimed" ) as! Bool 
+                            self.claims.append( snapshot.value.valueForKey( "claimed" ) as! Bool )
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.tableView.reloadData()
                                 if( self.messageTitles.count == 0 ) {
@@ -88,7 +88,6 @@ class SavedPostsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-        cell.textLabel!.text = messageTitles[ indexPath.row ]
         let image = postImages[indexPath.row]
         let decodedData = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
         let decodedImage = UIImage(data: decodedData!)
@@ -96,6 +95,20 @@ class SavedPostsTableViewController: UITableViewController {
         let imageView = UIImageView(image: decodedImage )
         imageView.frame = CGRectMake(0, 0, 70, 70)
         imageView.contentMode = .ScaleAspectFit
+        if( self.claims[indexPath.row] ) {
+            let color = UIColor(red: 1, green: 174/255, blue: 0, alpha: 1)
+            let claimText = "[CLAIMED] \r\n" + messageTitles[ indexPath.row ]
+            let myMutableString = NSMutableAttributedString(string: claimText, attributes: nil)
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location:0,length:10))
+            
+            // set label Attribute
+            cell.textLabel!.attributedText = myMutableString
+            cell.textLabel!.lineBreakMode = NSLineBreakMode.ByWordWrapping
+            cell.textLabel!.numberOfLines = 3
+            
+        } else {
+            cell.textLabel!.text = messageTitles[ indexPath.row ]
+        }
         cell.accessoryView = imageView
         return cell
     }
@@ -132,6 +145,6 @@ class SavedPostsTableViewController: UITableViewController {
         postVC.postLocationString = self.postLocations[indexPath.row]
         postVC.imageString = self.postImages[indexPath.row]
         postVC.postID = self.postIDs[indexPath.row]
-        postVC.claimed = self.claimed
+        postVC.claimed = self.claims[ indexPath.row ]
     }
 }

@@ -116,7 +116,6 @@ class MyPostsTableViewController: UITableViewController {
     // returning cell
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-        cell.textLabel!.text = messageTitles[ indexPath.row ]
         let image = postImages[indexPath.row]
         let decodedData = NSData(base64EncodedString: image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
         let decodedImage = UIImage(data: decodedData!)
@@ -125,7 +124,20 @@ class MyPostsTableViewController: UITableViewController {
         imageView.frame = CGRectMake(0, 0, 70, 70)
         imageView.contentMode = .ScaleAspectFit
         cell.accessoryView = imageView
-        
+        if( self.claims[ indexPath.row ] ) {
+            let color = UIColor(red: 1, green: 174/255, blue: 0, alpha: 1)
+            let claimText = "[CLAIMED] \r\n" + messageTitles[ indexPath.row ]
+            let myMutableString = NSMutableAttributedString(string: claimText, attributes: nil)
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location:0,length:10))
+            
+            // set label Attribute
+            cell.textLabel!.attributedText = myMutableString
+            cell.textLabel!.lineBreakMode = NSLineBreakMode.ByWordWrapping
+            cell.textLabel!.numberOfLines = 3
+            
+        } else {
+            cell.textLabel!.text = messageTitles[ indexPath.row ]
+        }
         return cell
     }
 
