@@ -20,15 +20,18 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         var postIDsSnap = NSDictionary()
-        // claimed notification
+        
+        // claimed/msg notification
         let uid = myRootRef.authData.uid
         let postsRefForNotification = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/postIDs/")
         postsRefForNotification.observeEventType(.Value, withBlock: { snapshot in
+            var claimCount = 0
             if !(snapshot.value is NSNull) {
                 postIDsSnap = snapshot.value as! NSDictionary
                 for (_, val) in postIDsSnap {
                     let postMessagesRefForNotification = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(val ))
                     let postClaimedRefForNotification = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(val ) + "/claimed/")
+                    let messageRefForNotification = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(val ) + "/messages/")
                     var postTitle = ""
                     var postIDNotification = ""
                     
@@ -40,13 +43,14 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
                         }
                     })
                     
+                    
+                    
                     // listen to changes in claimed atribute of the post
                     postClaimedRefForNotification.observeEventType(.Value, withBlock: { snapshot in
                         if !(snapshot.value is NSNull) {
-                            print(postIDsSnap)
+//                            claimCount += 1
                             let temp = postIDsSnap.valueForKey(postIDNotification)
-                            print(temp)
-                            if temp != nil {
+                            if temp != nil  {
                                 let date = NSDate()
                                 let calendar = NSCalendar.currentCalendar()
                                 let components = calendar.components([.Hour, .Minute, .Second], fromDate: date)
@@ -58,13 +62,37 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
                                 notification.alertBody = "Your " + postTitle + " has been claimed."
                                 notification.fireDate = date
                                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                                claimCount += 1
+                            }
+                        }
+//                        print(claimCount)
+                    })
+                    
+                    // listen to changes in messages atribute of the post
+                    messageRefForNotification.observeEventType(.Value, withBlock: { snapshot in
+                        if !(snapshot.value is NSNull) {
+                            let temp = postIDsSnap.valueForKey(postIDNotification)
+                            if temp != nil {
+                                let date = NSDate()
+                                let calendar = NSCalendar.currentCalendar()
+                                let components = calendar.components([.Hour, .Minute, .Second], fromDate: date)
+                                _ = components.hour
+                                _ = components.minute
+                                _ = components.second + 3
+                                let notification = UILocalNotification()
+                                notification.category = "message"
+                                notification.alertBody = "You have a new message"
+                                notification.fireDate = date
+                                UIApplication.sharedApplication().scheduleLocalNotification(notification)
                                 
                             }
                         }
                     })
+
                 }
             }
         })
+
         
         
         // navigation bar
