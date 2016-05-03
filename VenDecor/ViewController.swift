@@ -23,6 +23,36 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        
+        // Testing notification
+//        var dateComp = NSDateComponents()
+//        dateComp.year = 2016
+//        dateComp.month = 05
+//        dateComp.day = 3
+//        dateComp.hour = 12
+//        dateComp.minute = 59
+//        dateComp.timeZone = NSTimeZone.systemTimeZone()
+//        
+//        var calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+//        var date = calendar?.dateFromComponents(dateComp)
+//        
+//        var notification = UILocalNotification()
+//        notification.category = "claimed"
+//        notification.alertBody = "Your item has been claimed!!!"
+//        notification.fireDate = date
+//        
+//        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
+        
+        
+        
+        
+        
+        
+        
         self.emailTxtField.delegate = self
         self.passwordTxtField.delegate = self
         self.loginBtn.layer.cornerRadius = 5

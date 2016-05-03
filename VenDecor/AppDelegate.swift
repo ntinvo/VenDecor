@@ -13,24 +13,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func initializeNotificationServices() -> Void {
-        let settings = UIUserNotificationSettings( forTypes: [.Sound, .Alert, .Badge], categories: nil )
-        UIApplication.sharedApplication().registerUserNotificationSettings( settings )
     
-    // THIS IS AN ASYNCHRONOUS METHOD TO RETRIEVE A DEVICE TOKEN
-    // CALLBACKS ARE IN APPDELEGATE.SWIFT
-    // SUCCESS = DIDREGISTERFORREMOTENOTIFICATIONSWITHDEVICETOKEN
-    // FAIL = DIDFAILTOREGISTERFORREMOTENOTIFICATIONSWITHERROR
-        UIApplication.sharedApplication().registerForRemoteNotifications()
-    }
-    
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
         
-        //( UIUserNotificationType.Alert ||  UIUserNotificationType.Badge ||  UIUserNotificationType.Sound )
+
         
-       // application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil) )
+        // actions
+        let action = UIMutableUserNotificationAction()
+        action.identifier = "claimed"
+        action.title = "Claimed"
+        action.activationMode = UIUserNotificationActivationMode.Foreground
+        
+        // categories
+        let category = UIMutableUserNotificationCategory()
+        category.identifier = "claimed"
+        
+        // set default action
+        let defaultActions:NSArray = [action]
+        let minimalActions:NSArray = [action]
+        category.setActions(defaultActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Default)
+        category.setActions(minimalActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Minimal)
+
+        // NSSet of all our category
+        let categories = NSSet(objects: category)
+        
+        // settings
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: categories as? Set<UIUserNotificationCategory>)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        
         
         return true
     }
