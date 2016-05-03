@@ -27,16 +27,10 @@ class HomeTableViewCell: UITableViewCell {
     var postID: String? = nil
     var cellNum: Int? = nil
     
-    //var timer = NSTimer
-    //var time = 10
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        //timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector( "notification" ), userInfo: nil, repeats: true)
-        
     }
-
+    
     override func layoutSubviews() {
         self.postSetup()
         self.imageSetup()
@@ -64,7 +58,7 @@ class HomeTableViewCell: UITableViewCell {
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
     // save button pressed
     @IBAction func saveBtn(sender: AnyObject) {
         // save post id to Firebase
@@ -87,30 +81,8 @@ class HomeTableViewCell: UITableViewCell {
     
     // claim button pressed
     @IBAction func claimBtn(sender: AnyObject) {
-//        self.sender = UIDevice.currentDevice().identifierForVendor?.UUIDString
-//        
-//        messages += [JSQMessage(text: "hello", sender: self.sender)]
-//        messages += [JSQMessage(text: "hello", sender: "other")]
-        
-        
         if (self.claimLabel.text! == "") {
             let postRef = Firebase(url:"https://vendecor.firebaseio.com/posts/" + self.postID!)
-            // TODO: somehow send a message??????
-            //postRef.childByAppendingPath("messages" )
-            //addMessage( "sender", "I have claimed this item." )
-            //let msg:JSQMessage = JSQMessage(senderId: "test", displayName: "test", text: "test")
-            //postRef.childByAppendingPath( "messages" ).setValue( msg )
-            
-            
-//            let myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
-//            let messageVC = MessageViewController()
-
-//            messageVC.postID = self.postID
-//            messageVC.senderId = myRootRef.authData.uid
-//            messageVC.senderDisplayName = ""
-//            messageVC.addMessage(myRootRef.authData.uid as String, text: "Hi, I've just claimed your item")
-//            messageVC.finishSendingMessage()
-            
             postRef.childByAppendingPath("claimed").setValue(true)
             self.alertController = UIAlertController(title: "Claim Item", message: "Pick up the item within 24 hours. Contact the seller for more details.", preferredStyle: UIAlertControllerStyle.Alert)
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
@@ -136,32 +108,7 @@ class HomeTableViewCell: UITableViewCell {
                     self.homeTableViewController?.tableView.reloadData()
                 }
             })
-            
             self.homeTableViewController?.tableView.reloadData()
-        } else {
-            
-            self.alertController = UIAlertController(title: "Claim Item", message: "This item has already been claimed.", preferredStyle: UIAlertControllerStyle.Alert)
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in }
-            self.alertController!.addAction(okAction)
-            self.homeTableViewController!.presentViewController(self.alertController!, animated: true, completion:nil)
         }
     }
-    
-    
-    /*func notification() {
-        
-        time -= 1
-        
-        if( time <= 0 ) {
-        
-        let notification = UILocalNotification()
-        notification.alertAction = "hey"
-        notification.alertBody = "Something claimed!"
-        notification.fireDate = NSDate( timeIntervalSinceNow: 0 )
-        UIApplication.sharedApplication().scheduleLocalNotification( notification )
-            
-            timer.invalidate()
-        }
-    }*/
-    
 }

@@ -19,82 +19,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var postIDsSnap = NSDictionary()
-        
-        // claimed/msg notification
-        let uid = myRootRef.authData.uid
-        let postsRefForNotification = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/postIDs/")
-        postsRefForNotification.observeEventType(.Value, withBlock: { snapshot in
-            var claimCount = 0
-            print("listen on postID changes")
-            if !(snapshot.value is NSNull) {
-                postIDsSnap = snapshot.value as! NSDictionary
-                for (_, val) in postIDsSnap {
-                    let postMessagesRefForNotification = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(val ))
-                    let postClaimedRefForNotification = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(val ) + "/claimed/")
-                    let messageRefForNotification = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(val ) + "/messages/")
-                    var postTitle = ""
-                    var postIDNotification = ""
-                    
-                    // listen to changes in the post
-                    postMessagesRefForNotification.observeEventType(.Value, withBlock: { snapshot in
-                        if !(snapshot.value is NSNull) {
-                            postTitle = snapshot.value.valueForKey("title") as! String
-                            postIDNotification = snapshot.value.valueForKey("id") as! String
-                        }
-                    })
-                    
-                    
-                    
-                    // listen to changes in claimed atribute of the post
-                    postClaimedRefForNotification.observeEventType(.Value, withBlock: { snapshot in
-                        print("claimed changed")
-                        if !(snapshot.value is NSNull) {
-                            let temp = postIDsSnap.valueForKey(postIDNotification)
-                            if temp != nil  {
-                                print("claim count" + String(claimCount))
-                                let date = NSDate()
-                                let calendar = NSCalendar.currentCalendar()
-                                let components = calendar.components([.Hour, .Minute, .Second], fromDate: date)
-                                _ = components.hour
-                                _ = components.minute
-                                _ = components.second + 3
-                                let notification = UILocalNotification()
-                                notification.category = "claimed"
-                                notification.alertBody = "Your " + postTitle + " has been claimed."
-                                notification.fireDate = date
-                                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                                
-                            }
-                        }
-                        claimCount += 1
-                    })
-                    
-                    // listen to changes in messages atribute of the post
-                    messageRefForNotification.observeEventType(.Value, withBlock: { snapshot in
-                        print("messaged changed")
-                        if !(snapshot.value is NSNull) {
-                            let temp = postIDsSnap.valueForKey(postIDNotification)
-                            if temp != nil {
-                                let date = NSDate()
-                                let calendar = NSCalendar.currentCalendar()
-                                let components = calendar.components([.Hour, .Minute, .Second], fromDate: date)
-                                _ = components.hour
-                                _ = components.minute
-                                _ = components.second + 3
-                                let notification = UILocalNotification()
-                                notification.category = "message"
-                                notification.alertBody = "You have a new message"
-                                notification.fireDate = date
-                                UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                                
-                            }
-                        }
-                    })
 
-                }
-            }
-        })
 
         
         
@@ -109,7 +34,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         }
         
         let postsRef = Firebase(url: "https://vendecor.firebaseio.com/posts")
-        postsRef.observeEventType(.Value, withBlock: { snapshot in
+        postsRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             let posts = snapshot.value as! NSDictionary
 
             let enumerator = posts.keyEnumerator()

@@ -323,8 +323,22 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
                 
                     self.homeTableViewController?.postings.removeAll()
                     self.homeTableViewController?.tableView.reloadData()
-                    self.homeTableViewController?.postings.removeAll()
-                    self.homeTableViewController?.tableView.reloadData()
+                    let postsRef = Firebase(url: "https://vendecor.firebaseio.com/posts")
+                    postsRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+                        let posts = snapshot.value as! NSDictionary
+                        
+                        let enumerator = posts.keyEnumerator()
+                        while let key = enumerator.nextObject() {
+                            let post = posts[String(key)] as! NSDictionary
+                            self.homeTableViewController!.postings.append(post)
+                        }
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.homeTableViewController!.tableView.reloadData()
+                        }
+                    })
+
+
+
                 })
             }
         } else {

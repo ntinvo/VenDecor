@@ -14,52 +14,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-
-        
-        // claim actions
-        let claimAction = UIMutableUserNotificationAction()
-        claimAction.identifier = "claimed"
-        claimAction.title = "View"
-        claimAction.activationMode = UIUserNotificationActivationMode.Foreground
-        
-        // claim category
-        let claimCategory = UIMutableUserNotificationCategory()
-        claimCategory.identifier = "claimed"
-        
-        // set default action
-        let claimDefaultActions:NSArray = [claimAction]
-        let claimMinimalActions:NSArray = [claimAction]
-        claimCategory.setActions(claimDefaultActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Default)
-        claimCategory.setActions(claimMinimalActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Minimal)
-        
-        // message action
-        let messageAction = UIMutableUserNotificationAction()
-        messageAction.identifier = "message"
-        messageAction.title = "View"
-        messageAction.activationMode = UIUserNotificationActivationMode.Foreground
-        
-        // claim category
-        let messageCategory = UIMutableUserNotificationCategory()
-        messageCategory.identifier = "message"
-        
-        // set default action
-        let messageDefaultActions:NSArray = [messageAction]
-        let messageMinimalActions:NSArray = [messageAction]
-        claimCategory.setActions(messageDefaultActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Default)
-        claimCategory.setActions(messageMinimalActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Minimal)
-
-        // NSSet of all our category
-        let categories = NSSet(objects: claimCategory, messageCategory)
-        
-        // settings
-        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: categories as? Set<UIUserNotificationCategory>)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-        
-        
-        return true
-    }
+//    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+//        
+//
+//        
+//        // claim actions
+//        let claimAction = UIMutableUserNotificationAction()
+//        claimAction.identifier = "claimed"
+//        claimAction.title = "View"
+//        claimAction.activationMode = UIUserNotificationActivationMode.Foreground
+//        
+//        // claim category
+//        let claimCategory = UIMutableUserNotificationCategory()
+//        claimCategory.identifier = "claimed"
+//        
+//        // set default action
+//        let claimDefaultActions:NSArray = [claimAction]
+//        let claimMinimalActions:NSArray = [claimAction]
+//        claimCategory.setActions(claimDefaultActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Default)
+//        claimCategory.setActions(claimMinimalActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Minimal)
+//        
+//        // message action
+//        let messageAction = UIMutableUserNotificationAction()
+//        messageAction.identifier = "message"
+//        messageAction.title = "View"
+//        messageAction.activationMode = UIUserNotificationActivationMode.Foreground
+//        
+//        // claim category
+//        let messageCategory = UIMutableUserNotificationCategory()
+//        messageCategory.identifier = "message"
+//        
+//        // set default action
+//        let messageDefaultActions:NSArray = [messageAction]
+//        let messageMinimalActions:NSArray = [messageAction]
+//        claimCategory.setActions(messageDefaultActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Default)
+//        claimCategory.setActions(messageMinimalActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Minimal)
+//
+//        // NSSet of all our category
+//        let categories = NSSet(objects: claimCategory, messageCategory)
+//        
+//        // settings
+//        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: categories as? Set<UIUserNotificationCategory>)
+//        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+//        
+//        
+//        return true
+//    }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
