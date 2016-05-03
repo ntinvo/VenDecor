@@ -26,6 +26,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
         let postsRefForNotification = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/postIDs/")
         postsRefForNotification.observeEventType(.Value, withBlock: { snapshot in
             var claimCount = 0
+            print("listen on postID changes")
             if !(snapshot.value is NSNull) {
                 postIDsSnap = snapshot.value as! NSDictionary
                 for (_, val) in postIDsSnap {
@@ -47,10 +48,11 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
                     
                     // listen to changes in claimed atribute of the post
                     postClaimedRefForNotification.observeEventType(.Value, withBlock: { snapshot in
+                        print("claimed changed")
                         if !(snapshot.value is NSNull) {
-//                            claimCount += 1
                             let temp = postIDsSnap.valueForKey(postIDNotification)
                             if temp != nil  {
+                                print("claim count" + String(claimCount))
                                 let date = NSDate()
                                 let calendar = NSCalendar.currentCalendar()
                                 let components = calendar.components([.Hour, .Minute, .Second], fromDate: date)
@@ -62,14 +64,15 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
                                 notification.alertBody = "Your " + postTitle + " has been claimed."
                                 notification.fireDate = date
                                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                                claimCount += 1
+                                
                             }
                         }
-//                        print(claimCount)
+                        claimCount += 1
                     })
                     
                     // listen to changes in messages atribute of the post
                     messageRefForNotification.observeEventType(.Value, withBlock: { snapshot in
+                        print("messaged changed")
                         if !(snapshot.value is NSNull) {
                             let temp = postIDsSnap.valueForKey(postIDNotification)
                             if temp != nil {
