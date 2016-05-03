@@ -25,13 +25,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         
-        
-        
-
-        
+        // claimed notification
         let uid = myRootRef.authData.uid
         let postsRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/postIDs/")
-        // retrieve new posts as they are added to your database
         postsRef.observeEventType(.Value, withBlock: { snapshot in
             if !(snapshot.value is NSNull) {
                 let postIDsSnap = snapshot.value as! NSDictionary
@@ -40,16 +36,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     let postClaimedRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(val ) + "/claimed/")
                     var postTitle = ""
                     
-                    
-                    // retrieve new posts as they are added to your database
+                    // listen to changes in the post
                     postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
                         if !(snapshot.value is NSNull) {
                             postTitle = snapshot.value.valueForKey("title") as! String
                         }
                     })
                     
-                    
-                    // retrieve new posts as they are added to your database
+                    // listen to changes in claimed atribute of the post
                     postClaimedRef.observeEventType(.Value, withBlock: { snapshot in
                         if !(snapshot.value is NSNull) {
                             let date = NSDate()
@@ -58,23 +52,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
                             _ = components.hour
                             _ = components.minute
                             _ = components.second + 3
-                            
-                            
                             let notification = UILocalNotification()
                             notification.category = "claimed"
                             notification.alertBody = "Your " + postTitle + " has been claimed."
                             notification.fireDate = date
-                            
                             UIApplication.sharedApplication().scheduleLocalNotification(notification)
                         }
                     })
                 }
             }
         })
-        
-        
-        
-        
         
         
         self.emailTxtField.delegate = self
