@@ -18,24 +18,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 
         
-        // actions
-        let action = UIMutableUserNotificationAction()
-        action.identifier = "claimed"
-        action.title = "Claimed"
-        action.activationMode = UIUserNotificationActivationMode.Foreground
+        // claim actions
+        let claimAction = UIMutableUserNotificationAction()
+        claimAction.identifier = "claimed"
+        claimAction.title = "View"
+        claimAction.activationMode = UIUserNotificationActivationMode.Foreground
         
-        // categories
-        let category = UIMutableUserNotificationCategory()
-        category.identifier = "claimed"
+        // claim category
+        let claimCategory = UIMutableUserNotificationCategory()
+        claimCategory.identifier = "claimed"
         
         // set default action
-        let defaultActions:NSArray = [action]
-        let minimalActions:NSArray = [action]
-        category.setActions(defaultActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Default)
-        category.setActions(minimalActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Minimal)
+        let claimDefaultActions:NSArray = [claimAction]
+        let claimMinimalActions:NSArray = [claimAction]
+        claimCategory.setActions(claimDefaultActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Default)
+        claimCategory.setActions(claimMinimalActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Minimal)
+        
+        // message action
+        let messageAction = UIMutableUserNotificationAction()
+        messageAction.identifier = "message"
+        messageAction.title = "View"
+        messageAction.activationMode = UIUserNotificationActivationMode.Foreground
+        
+        // claim category
+        let messageCategory = UIMutableUserNotificationCategory()
+        messageCategory.identifier = "message"
+        
+        // set default action
+        let messageDefaultActions:NSArray = [messageAction]
+        let messageMinimalActions:NSArray = [messageAction]
+        claimCategory.setActions(messageDefaultActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Default)
+        claimCategory.setActions(messageMinimalActions as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Minimal)
 
         // NSSet of all our category
-        let categories = NSSet(objects: category)
+        let categories = NSSet(objects: claimCategory, messageCategory)
         
         // settings
         let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: categories as? Set<UIUserNotificationCategory>)

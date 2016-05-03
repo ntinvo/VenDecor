@@ -25,6 +25,27 @@ class MyMessagesTableViewController: UITableViewController {
         self.messageTitles.removeAll()
         self.postsID.removeAll()
         
+        
+//        // Testing notification
+//        var dateComp = NSDateComponents()
+//        dateComp.year = 2016
+//        dateComp.month = 05
+//        dateComp.day = 3
+//        dateComp.hour = 13
+//        dateComp.minute = 12
+//        dateComp.timeZone = NSTimeZone.systemTimeZone()
+//        
+//        var calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+//        var date = calendar?.dateFromComponents(dateComp)
+//        
+//        var notification = UILocalNotification()
+//        notification.category = "message"
+//        notification.alertBody = "You have a new message!!!"
+//        notification.fireDate = date
+//        
+//        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
+        
         // navigation bar
         let logo = UIImage(named: "Sample.png")
         let imageView = UIImageView(image: logo)

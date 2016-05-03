@@ -27,26 +27,50 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         
         
-        // Testing notification
-//        var dateComp = NSDateComponents()
-//        dateComp.year = 2016
-//        dateComp.month = 05
-//        dateComp.day = 3
-//        dateComp.hour = 12
-//        dateComp.minute = 59
-//        dateComp.timeZone = NSTimeZone.systemTimeZone()
-//        
-//        var calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-//        var date = calendar?.dateFromComponents(dateComp)
-//        
-//        var notification = UILocalNotification()
-//        notification.category = "claimed"
-//        notification.alertBody = "Your item has been claimed!!!"
-//        notification.fireDate = date
-//        
-//        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+
         
-        
+        let uid = myRootRef.authData.uid
+        let postsRef = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/postIDs/")
+        // retrieve new posts as they are added to your database
+        postsRef.observeEventType(.Value, withBlock: { snapshot in
+            if !(snapshot.value is NSNull) {
+                let postIDsSnap = snapshot.value as! NSDictionary
+                for (_, val) in postIDsSnap {
+                    let postMessagesRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(val ))
+                    let postClaimedRef = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(val ) + "/claimed/")
+                    var postTitle = ""
+                    
+                    
+                    // retrieve new posts as they are added to your database
+                    postMessagesRef.observeEventType(.Value, withBlock: { snapshot in
+                        if !(snapshot.value is NSNull) {
+                            postTitle = snapshot.value.valueForKey("title") as! String
+                        }
+                    })
+                    
+                    
+                    // retrieve new posts as they are added to your database
+                    postClaimedRef.observeEventType(.Value, withBlock: { snapshot in
+                        if !(snapshot.value is NSNull) {
+                            let date = NSDate()
+                            let calendar = NSCalendar.currentCalendar()
+                            let components = calendar.components([.Hour, .Minute, .Second], fromDate: date)
+                            _ = components.hour
+                            _ = components.minute
+                            _ = components.second + 3
+                            
+                            
+                            let notification = UILocalNotification()
+                            notification.category = "claimed"
+                            notification.alertBody = "Your " + postTitle + " has been claimed."
+                            notification.fireDate = date
+                            
+                            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                        }
+                    })
+                }
+            }
+        })
         
         
         
