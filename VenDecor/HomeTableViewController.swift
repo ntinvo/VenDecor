@@ -19,6 +19,53 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var postIDsSnap = NSDictionary()
+        // claimed notification
+        let uid = myRootRef.authData.uid
+        let postsRefForNotification = Firebase(url: "https://vendecor.firebaseio.com/users/" + uid + "/postIDs/")
+        postsRefForNotification.observeEventType(.Value, withBlock: { snapshot in
+            if !(snapshot.value is NSNull) {
+                postIDsSnap = snapshot.value as! NSDictionary
+                for (_, val) in postIDsSnap {
+                    let postMessagesRefForNotification = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(val ))
+                    let postClaimedRefForNotification = Firebase( url: "https://vendecor.firebaseio.com/posts/" + String(val ) + "/claimed/")
+                    var postTitle = ""
+                    var postIDNotification = ""
+                    
+                    // listen to changes in the post
+                    postMessagesRefForNotification.observeEventType(.Value, withBlock: { snapshot in
+                        if !(snapshot.value is NSNull) {
+                            postTitle = snapshot.value.valueForKey("title") as! String
+                            postIDNotification = snapshot.value.valueForKey("id") as! String
+                        }
+                    })
+                    
+                    // listen to changes in claimed atribute of the post
+                    postClaimedRefForNotification.observeEventType(.Value, withBlock: { snapshot in
+                        if !(snapshot.value is NSNull) {
+                            print(postIDsSnap)
+                            let temp = postIDsSnap.valueForKey(postIDNotification)
+                            print(temp)
+                            if temp != nil {
+                                let date = NSDate()
+                                let calendar = NSCalendar.currentCalendar()
+                                let components = calendar.components([.Hour, .Minute, .Second], fromDate: date)
+                                _ = components.hour
+                                _ = components.minute
+                                _ = components.second + 3
+                                let notification = UILocalNotification()
+                                notification.category = "claimed"
+                                notification.alertBody = "Your " + postTitle + " has been claimed."
+                                notification.fireDate = date
+                                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                                
+                            }
+                        }
+                    })
+                }
+            }
+        })
+        
         
         // navigation bar
         let logo = UIImage(named: "Sample.png")

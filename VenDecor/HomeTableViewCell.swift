@@ -101,6 +101,16 @@ class HomeTableViewCell: UITableViewCell {
             //let msg:JSQMessage = JSQMessage(senderId: "test", displayName: "test", text: "test")
             //postRef.childByAppendingPath( "messages" ).setValue( msg )
             
+            
+//            let myRootRef = Firebase(url:"https://vendecor.firebaseio.com")
+//            let messageVC = MessageViewController()
+
+//            messageVC.postID = self.postID
+//            messageVC.senderId = myRootRef.authData.uid
+//            messageVC.senderDisplayName = ""
+//            messageVC.addMessage(myRootRef.authData.uid as String, text: "Hi, I've just claimed your item")
+//            messageVC.finishSendingMessage()
+            
             postRef.childByAppendingPath("claimed").setValue(true)
             self.alertController = UIAlertController(title: "Claim Item", message: "Pick up the item within 24 hours. Contact the seller for more details.", preferredStyle: UIAlertControllerStyle.Alert)
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
