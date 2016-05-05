@@ -59,6 +59,7 @@
 		9C0D052D1CA377F300AF897C /* sell.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0D052C1CA377F300AF897C /* sell.png */; };
 		9C0D05311CA379E600AF897C /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0D05301CA379E600AF897C /* photo.png */; };
 		9C0D05341CA3828100AF897C /* GROUP11README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9C0D05331CA3828100AF897C /* GROUP11README.rtf */; };
+		9C0D46B41CDAC5BB00285191 /* placeholderImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C0D46B31CDAC5BB00285191 /* placeholderImg.png */; };
 		9C20CE781CA34A3E0061AC7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C20CE771CA34A3E0061AC7F /* Main.storyboard */; };
 		9C56BBB11CB32C95003723C9 /* MyMessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C56BBB01CB32C95003723C9 /* MyMessagesTableViewController.swift */; };
 		9C6FE09D1CD7FB6500CCFAE7 /* no picture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9C6FE09C1CD7FB6500CCFAE7 /* no picture.jpg */; };
@@ -129,6 +130,7 @@
 		9C0D052C1CA377F300AF897C /* sell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sell.png; sourceTree = "<group>"; };
 		9C0D05301CA379E600AF897C /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
 		9C0D05331CA3828100AF897C /* GROUP11README.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = GROUP11README.rtf; sourceTree = "<group>"; };
+		9C0D46B31CDAC5BB00285191 /* placeholderImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholderImg.png; sourceTree = "<group>"; };
 		9C20CE771CA34A3E0061AC7F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9C56BBB01CB32C95003723C9 /* MyMessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMessagesTableViewController.swift; sourceTree = "<group>"; };
 		9C6FE09C1CD7FB6500CCFAE7 /* no picture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "no picture.jpg"; sourceTree = SOURCE_ROOT; };
@@ -294,6 +296,7 @@
 		9C0D05321CA3815000AF897C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9C0D46B31CDAC5BB00285191 /* placeholderImg.png */,
 				9C6FE09C1CD7FB6500CCFAE7 /* no picture.jpg */,
 				4CBEB5461CD3A76A00BD4C3D /* location-pin.png */,
 				4CBEB5401CD32D2E00BD4C3D /* price-tag.png */,
@@ -399,6 +402,7 @@
 				4C1CCD1A1CA6FB89002C39E2 /* saved-posts.png in Resources */,
 				749EDF501CD2597900449591 /* Icon-Spotlight-40.png in Resources */,
 				749EDF4D1CD2597900449591 /* Icon-Small.png in Resources */,
+				9C0D46B41CDAC5BB00285191 /* placeholderImg.png in Resources */,
 				9C0D052D1CA377F300AF897C /* sell.png in Resources */,
 				749EDF4C1CD2597900449591 /* Icon-Small-50@2x.png in Resources */,
 				749EDF561CD2597900449591 /* iTunesArtwork@2x in Resources */,

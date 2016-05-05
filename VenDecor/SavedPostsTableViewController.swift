@@ -51,13 +51,13 @@ class SavedPostsTableViewController: UITableViewController {
                             self.postImages.append( snapshot.value.valueForKey("image") as! String )
                             self.postDates.append( snapshot.value.valueForKey("datePosted") as! String )
                             self.postPrices.append( snapshot.value.valueForKey("price") as! String )
-                            self.postLocations.append( String(snapshot.value.valueForKey("street")!) + ", " + String(snapshot.value.valueForKey("state")!) + " " + String(snapshot.value.valueForKey("zip")!))
+                            self.postLocations.append( String(snapshot.value.valueForKey("street")!) + " Austin, " + String(snapshot.value.valueForKey("state")!) + " " + String(snapshot.value.valueForKey("zip")!))
                             self.postIDs.append(snapshot.value.valueForKey("id") as! String)
                             self.claims.append( snapshot.value.valueForKey( "claimed" ) as! Bool )
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.tableView.reloadData()
                                 if( self.messageTitles.count == 0 ) {
-                                    self.noPostsLabel.text = "No posts have been saved"
+                                    self.noPostsLabel.text = "You have not saved any posts"
                                 } else {
                                     self.noPostsLabel.text = ""
                                 }

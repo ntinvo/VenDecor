@@ -22,6 +22,7 @@ class MyPostsTableViewController: UITableViewController {
     var postPrices = [String]()
     var postConditions = [String]()
     var postStreets = [String]()
+    var postCities = [String]()
     var postStates = [String]()
     var postZipcodes = [String]()
     var postIDs = [String]()
@@ -62,6 +63,7 @@ class MyPostsTableViewController: UITableViewController {
                             let price = snapshot.value.valueForKey("price") as! String
                             let condition = snapshot.value.valueForKey("condition") as! String
                             let street = snapshot.value.valueForKey("street") as! String
+                            // TODO: can we add city here?
                             let state = snapshot.value.valueForKey("state") as! String
                             let zipcode = snapshot.value.valueForKey("zip") as! String
                             
@@ -81,13 +83,14 @@ class MyPostsTableViewController: UITableViewController {
                             self.postPrices.append(price)
                             self.postConditions.append(condition)
                             self.postStreets.append(street)
+                            self.postCities.append( "Austin" ) // placeholder until we add city to DB
                             self.postStates.append(state)
                             self.postZipcodes.append(zipcode)
                     
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.tableView.reloadData()
                                 if( self.messageTitles.count == 0 ) {
-                                    self.noPosts.text = "No posts have been saved"
+                                    self.noPosts.text = "You have not made any posts"
                                 } else {
                                     self.noPosts.text = ""
                                 }
@@ -155,6 +158,7 @@ class MyPostsTableViewController: UITableViewController {
             self.postPrices.removeAtIndex(indexPath.row)
             self.postConditions.removeAtIndex(indexPath.row)
             self.postStreets.removeAtIndex(indexPath.row)
+            self.postCities.removeAtIndex(indexPath.row )   //check this
             self.postStates.removeAtIndex(indexPath.row)
             self.postZipcodes.removeAtIndex(indexPath.row)
             self.postImages.removeAtIndex(indexPath.row)
@@ -189,6 +193,7 @@ class MyPostsTableViewController: UITableViewController {
         postTemplateVC.postPrice = self.postPrices[indexPath.row]
         postTemplateVC.postCondition = self.postConditions[indexPath.row]
         postTemplateVC.postStreet = self.postStreets[indexPath.row]
+        postTemplateVC.postCity = self.postCities[ indexPath.row ]
         postTemplateVC.postState = self.postStates[indexPath.row]
         postTemplateVC.postZip = self.postZipcodes[indexPath.row]
         postTemplateVC.postImageString = self.postImages[indexPath.row]

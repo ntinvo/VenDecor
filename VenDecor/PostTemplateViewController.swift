@@ -18,6 +18,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     @IBOutlet weak var priceTxtField: UITextField!
     @IBOutlet weak var conditionTxtField: UITextField!
     @IBOutlet weak var streetTxtField: UITextField!
+    @IBOutlet weak var cityTxtField: UITextField!
     @IBOutlet weak var stateTextField: UITextField!
     @IBOutlet weak var zipTxtField: UITextField!
     @IBOutlet weak var postImage: UIImageView!
@@ -36,6 +37,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
     var postPrice: String? = nil
     var postCondition: String? = nil
     var postStreet: String? = nil
+    var postCity: String? = nil 
     var postState: String? = nil
     var postZip: String? = nil
     var postImageString: String? = nil
@@ -51,6 +53,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         self.priceTxtField.delegate = self
         self.conditionTxtField.delegate = self
         self.streetTxtField.delegate = self
+        self.cityTxtField.delegate = self
         self.stateTextField.delegate = self
         self.zipTxtField.delegate = self
         self.postItemBtn.layer.cornerRadius = 5
@@ -61,6 +64,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
         self.streetTxtField.tag = 4
         self.stateTextField.tag = 5
         self.zipTxtField.tag = 6
+        self.cityTxtField.tag = 7
         
         // check where it segued from
         if(self.myPostsTableVC != nil) {
@@ -69,6 +73,7 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
             self.priceTxtField.text = self.postPrice
             self.conditionTxtField.text = self.postCondition
             self.streetTxtField.text = self.postStreet
+            self.cityTxtField.text = self.postCity
             self.stateTextField.text = self.postState
             self.zipTxtField.text = self.postZip
             let decodedData = NSData(base64EncodedString: self.postImageString!, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)

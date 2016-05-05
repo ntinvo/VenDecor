@@ -83,7 +83,7 @@ class MyMessagesTableViewController: UITableViewController {
                         }
                         self.tableView.reloadData()
                         if( self.messageTitles.count == 0 ) {
-                            self.noMessages.text = "No posts have been saved"
+                            self.noMessages.text = "You do not have any messages"
                         } else {
                             self.noMessages.text = ""
                         }
