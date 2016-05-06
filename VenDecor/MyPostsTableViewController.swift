@@ -63,7 +63,7 @@ class MyPostsTableViewController: UITableViewController {
                             let price = snapshot.value.valueForKey("price") as! String
                             let condition = snapshot.value.valueForKey("condition") as! String
                             let street = snapshot.value.valueForKey("street") as! String
-                            // TODO: can we add city here?
+                            let city = snapshot.value.valueForKey("city" ) as! String
                             let state = snapshot.value.valueForKey("state") as! String
                             let zipcode = snapshot.value.valueForKey("zip") as! String
                             
@@ -83,7 +83,7 @@ class MyPostsTableViewController: UITableViewController {
                             self.postPrices.append(price)
                             self.postConditions.append(condition)
                             self.postStreets.append(street)
-                            self.postCities.append( "Austin" ) // placeholder until we add city to DB
+                            self.postCities.append( city )
                             self.postStates.append(state)
                             self.postZipcodes.append(zipcode)
                     

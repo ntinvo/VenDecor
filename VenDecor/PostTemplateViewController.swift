@@ -123,8 +123,10 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
             return newLength <= 40
         } else if( textField.tag == 5 ) {
             return newLength <= 2
-        } else {
+        } else if( textField.tag == 6 ){
             return newLength <= 5
+        } else {
+            return newLength <= 25
         }
     }
     
@@ -310,9 +312,12 @@ class PostTemplateViewController: UIViewController, UITextFieldDelegate, UITextV
                 
                     let datePosted = monthStr + " " + day + ", " + year
                 
+                    let city = String(self.cityTxtField.text!) as! String
+                    
                     // create post info
-                    let postInfo = ["id": postID,"title" : String(self.titleTxtField.text!),"image": base64String, "description" : self.descriptionTxtField.text!, "price" : String(self.priceTxtField.text!), "condition": String(self.conditionTxtField.text!), "street": String(self.streetTxtField.text!), "state": String(self.stateTextField.text!), "zip": String(self.zipTxtField.text!), "userID" : self.myRootRef.authData.uid, "datePosted" : datePosted, "claimed" : false ]
-                
+                    let postInfo = ["id": postID,"title" : String(self.titleTxtField.text!),"image": base64String, "description" : self.descriptionTxtField.text!, "price" : String(self.priceTxtField.text!), "condition": String(self.conditionTxtField.text!), "street": String(self.streetTxtField.text!), "city": city, "state": String(self.stateTextField.text!), "zip": String(self.zipTxtField.text!), "userID" : self.myRootRef.authData.uid, "datePosted" : datePosted, "claimed" : false ]
+                    //postInfo.setValue( String(self.cityTxtField.text!), forKey: "city" )
+                    
                     // save post id to Firebase
                     let myUserRef = Firebase(url:"https://vendecor.firebaseio.com/users/" + self.myRootRef.authData.uid)
                     let postIDsRef = myUserRef.childByAppendingPath("postIDs")
